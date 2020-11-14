@@ -1,7 +1,7 @@
 .DS_Store
+phpmyadmin/
 node_modules
 /dist
-phpmyadmin/*
 
 
 # local env files
