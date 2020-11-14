@@ -1,5 +1,5 @@
 .DS_Store
-phpmyadmin/
+phpMyAdmin/
 node_modules
 /dist
 
