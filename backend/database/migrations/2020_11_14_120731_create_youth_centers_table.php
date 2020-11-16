@@ -17,6 +17,9 @@ class CreateYouthCentersTable extends Migration
             $table->id();
             $table->string('name', 40);
             $table->string('bio', 90)->nullable();
+            $table->string('town', 255)->nullable();
+            $table->string('street', 255)->nullable();
+            $table->string('number', int)->nullable();
             $table->string('longitude', 255)->nullable();
             $table->string('latitude', 255)->nullable();
             $table->json('ads')->nullable();

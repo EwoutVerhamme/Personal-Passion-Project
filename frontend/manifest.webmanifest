@@ -1,0 +1,15 @@
+{
+    "background_color": "purple",
+    "description": "Progressive app version of Kollapp",
+    "display": "fullscreen",
+    "icons": [
+        {
+            "src": "https://cdn1.iconfinder.com/data/icons/hand-4/512/11-512.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        }
+    ],
+    "name": "Kollapp",
+    "short_name": "Kollapp",
+    "start_url": "https://192.168.1.129:8080"
+}

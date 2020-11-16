@@ -1,30 +1,48 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
-  <router-view/>
+	<TopTile class="toptile" />
+	<div class="container">
+		<router-view />
+	</div>
+	<NavBar class="navigation" />
 </template>
 
+<script>
+	import NavBar from "./components/NavBar.vue";
+	import TopTile from "./components/TopTitle";
+	export default {
+		name: "App",
+		components: {
+			// Home,
+			NavBar,
+			TopTile,
+		},
+	};
+</script>
+
 <style>
+	@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap");
+
+	body {
+		margin: 0;
+		padding: 0;
+	}
+
 	#app {
-		font-family: Avenir, Helvetica, Arial, sans-serif;
-		-webkit-font-smoothing: antialiased;
-		-moz-osx-font-smoothing: grayscale;
-		text-align: center;
-		color: #2c3e50;
+		height: 100vh;
+		width: 100vw;
+		display: grid;
+		grid-template-rows: 15% 75% 10%;
 	}
 
-	#nav {
-		padding: 30px;
+	.toptile {
+		grid-row: 1;
+		position: sticky;
 	}
-
-	#nav a {
-		font-weight: bold;
-		color: #2c3e50;
+	.container {
+		grid-row: 2;
 	}
-
-	#nav a.router-link-exact-active {
-		color: #42b983;
+	.navigation {
+		position: sticky;
+		grid-row: 3;
 	}
 </style>
