@@ -158,14 +158,14 @@
 <style>
 	.navigation {
 		width: 100%;
-		height: 5rem;
+		height: 4rem;
 		display: flex;
 		justify-content: space-around;
 		align-items: center;
 		bottom: 0;
 		background-color: white;
 		box-shadow: 0rem 0rem 1.3rem 1rem rgba(0, 0, 0, 0.09);
-		border-radius: 3.5rem 3.5rem 0rem 0rem;
+		border-radius: 2.5rem 2.5rem 0rem 0rem;
 	}
 	.icon {
 		width: 2.5rem;

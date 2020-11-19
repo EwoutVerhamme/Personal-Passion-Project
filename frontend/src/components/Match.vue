@@ -1,7 +1,7 @@
 <template>
 	<div class="match-box">
 		<div class="title-wrapper">
-			<img src="../assets/img/profile-pic.png" alt="" class="profile-pic-box" />
+			<img src="/assets/img/profile-pic.png" alt="" class="profile-pic-box" />
 			<p class="title-text">Lien zoekt een <strong>DJ</strong></p>
 		</div>
 		<div class="info">
@@ -9,13 +9,13 @@
 				<img
 					width="25px"
 					height="25px"
-					src="../assets/img/calendar.png"
+					src="/assets/img/calendar.png"
 					alt=""
 				/>
 				<p class="info-text">Zaterdag 12 december</p>
 			</div>
 			<div class="info-youthcenter">
-				<img width="25px" height="25px" src="../assets/img/place.svg" alt="" />
+				<img width="25px" height="25px" src="/assets/img/place.svg" alt="" />
 				<p class="info-text">Jeugdhuis Krak</p>
 			</div>
 		</div>

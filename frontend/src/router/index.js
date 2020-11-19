@@ -1,9 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Home from '../views/Home.vue';
-import CreatePost from "../views/CreatePost.vue";
-import Profile from "../views/Profile.vue";
-import Search from "../views/Search.vue"
-import Calendar from "../views/Calendar.vue"
+import Home from '../views/Dashboard/Home.vue';
+import CreatePost from "../views/Dashboard/CreatePost.vue";
+import Profile from "../views/Dashboard/Profile.vue";
+import Search from "../views/Dashboard/Search.vue"
+import Calendar from "../views/Dashboard/Calendar.vue"
 
 const routes = [
   {

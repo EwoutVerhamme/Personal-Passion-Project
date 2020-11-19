@@ -19,7 +19,7 @@
 </template>
 
 <script>
-	import Match from "../components/Match.vue";
+	import Match from "../../components/Match.vue";
 	export default {
 		name: "Home",
 		components: {

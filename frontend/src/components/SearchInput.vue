@@ -3,6 +3,8 @@
 		<div class="input-field_wrapper">
 			<label for="">
 				<input
+					v-model="search"
+					@input="onSearch"
 					class="input-field"
 					placeholder="Zoeken naar een jeugdhuis"
 					type="text"
@@ -37,6 +39,29 @@
 	export default {
 		name: "SearchInput",
 		components: {},
+
+		data() {
+			return {
+				search: "",
+				timeout: null,
+			};
+		},
+		methods: {
+			onSearch() {
+				clearTimeout(this.timeout);
+				this.timeout = setTimeout(() => {
+					this.makeSearch();
+				}, 500);
+			},
+			makeSearch() {
+				fetch(`http://api.kollapp.test/api/youth_centers?name=${this.search}`)
+					.then((response) => response.json())
+					.then((result) => {
+						this.$emit("youth-centers-fetched", result);
+						console.log("youth-centers-fetched", result);
+					});
+			},
+		},
 	};
 </script>
 

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\YouthCenter;
-use Illuminate\Http\Request;
+use Request;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\YouthCenterResource;
 
@@ -17,8 +17,11 @@ class YouthCenterController extends Controller
      */
     public function index()
     {
-        $youthcenters = YouthCenter::all();
-        return response([ 'youth_centers' => YouthCenterResource::collection($youthcenters), 'message' => 'Retrieved successfully'], 200);
+       return response()->json(YouthCenter::get(),200);
+
+        // $filters = Request::only('name', 'town');
+        // $youthcenters = $this->applyFilters($filters)->all();
+        // return $youthcenters->toJSON();
     }
 
     /**
@@ -30,6 +33,7 @@ class YouthCenterController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
+        
 
         $validator = Validator::make($data, [
             'name' => 'required|max:90',
@@ -53,7 +57,8 @@ class YouthCenterController extends Controller
      */
     public function show(YouthCenter $youthCenter)
     {
-        return response(['youth_center' => new YouthCenterResource($youthCenter), 'message' => 'Retrieved successfully'], 200);
+        
+        return response(new YouthCenterResource($youthCenter));
     }
 
     /**
