@@ -1,5 +1,4 @@
 <template>
-	<TopTile class="toptile" />
 	<div class="container">
 		<router-view />
 	</div>
@@ -8,13 +7,10 @@
 
 <script>
 	import NavBar from "./components/NavBar.vue";
-	import TopTile from "./components/TopTitle";
 	export default {
 		name: "App",
 		components: {
-			// Home,
 			NavBar,
-			TopTile,
 		},
 	};
 </script>
@@ -23,26 +19,28 @@
 	@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap");
 
 	body {
-		margin: 0;
 		padding: 0;
+		margin: 0;
+		height: 100vh;
+		background-color: #FCFEFF;
 	}
 
 	#app {
-		height: 100vh;
-		width: 100vw;
+		height: 100%;
+		min-height: -webkit-fill-available;
 		display: grid;
-		grid-template-rows: 15% 75% 10%;
+		grid-template-columns: 100vw;
 	}
 
-	.toptile {
-		grid-row: 1;
-		position: sticky;
-	}
-	.container {
-		grid-row: 2;
-	}
 	.navigation {
-		position: sticky;
 		grid-row: 3;
+		align-self: flex-end;
+		overflow: hidden;
+		position: fixed;
+		bottom: 0;
+		width: 100%;
+	}
+	router-link a {
+		text-decoration: none;
 	}
 </style>
