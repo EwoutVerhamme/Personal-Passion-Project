@@ -3,10 +3,10 @@
 		<div class="input-field_wrapper">
 			<label class="search-label" for="">
 				<input
+					placeholder="Zoeken naar een jeugdhuis "
 					v-model="search"
 					@input="onSearch"
 					class="input-field"
-					placeholder="Zoeken naar een jeugdhuis"
 					type="text"
 				/>
 			</label>
@@ -33,6 +33,24 @@
 			/>
 		</svg>
 	</div>
+	<div class="load-content">
+		<h2 class="search-subtitle">Aanbevolen {{ currentTab.toLowerCase() }}</h2>
+		<p class="loading" v-if="loading">{{ currentTab }} ophalen...</p>
+		<p class="loading" v-if="found === false">
+			{{ currentTab }} niet gevonden...
+		</p>
+
+		<div>
+			<div
+				:key="youth_center.id"
+				v-for="youth_center in youth_centers"
+				class="content-block"
+			>
+				<img class="content-img" src="../assets/img/jctg.png" alt="" />
+				<p class="content-title">{{ youth_center.name }}</p>
+			</div>
+		</div>
+	</div>
 </template>
 
 <script>
@@ -40,10 +58,21 @@
 		name: "SearchInput",
 		components: {},
 
+		props: ["currentTab"],
+
+		created() {
+			// fetch the data when the view is created and the data is
+			// already being observed
+			this.makeSearch();
+		},
+
 		data() {
 			return {
 				search: "",
 				timeout: null,
+				youth_centers: {},
+				loading: true,
+				found: true,
 			};
 		},
 		methods: {
@@ -51,14 +80,21 @@
 				clearTimeout(this.timeout);
 				this.timeout = setTimeout(() => {
 					this.makeSearch();
-				}, 500);
+				}, 200);
 			},
 			makeSearch() {
-				fetch(`http://api.kollapp.test/api/youth_centers?name=${this.search}`)
+				this.found = true;
+				fetch(`http://api.kollapp.test/api/youth_centers/${this.search}`)
 					.then((response) => response.json())
 					.then((result) => {
-						this.$emit("youth-centers-fetched", result);
+						// this.$emit("youth-centers-fetched", result);
 						console.log("youth-centers-fetched", result);
+						this.loading = false;
+						this.youth_centers = result;
+
+						if (result.length == 0) {
+							this.found = false;
+						}
 					});
 			},
 		},

@@ -1,25 +1,18 @@
 <template>
 	<div>
-		<h1 class="title">Jeugdhuis zoeken</h1>
+		<h1 class="title">{{ tabs[current] }} zoeken</h1>
 		<div class="search-select_wrapper">
-			<div class="search-select">
-				<p class="search-select_text">Talent</p>
-				<p class="search-select_text">Materiaal</p>
-				<p class="search-select_text">Engagement</p>
-				<p class="search-select_text active">Jeugdhuis</p>
-			</div>
+			<a
+				v-for="(tab, i) in tabs"
+				@click="current = i"
+				class="search-select_text"
+				v-bind:key="tab.index"
+				:class="{ current: i == current }"
+			>
+				{{ tab }}
+			</a>
 		</div>
-		<SearchInput />
-		<div class="load-content">
-			<h2 class="search-subtitle">Aanbevolen jeugdhuizen</h2>
-			<p class="loading" v-if="loading">Jeugdhuizen ophalen...</p>
-			<div v-for="youth_center in youth_centers" v-bind:key="youth_center.id">
-				<div class="content-block">
-					<img class="content-img" src="../assets/img/jctg.png" alt="" />
-					<p class="content-title">{{ youth_center.name }}</p>
-				</div>
-			</div>
-		</div>
+		<SearchInput :currentTab="tabs[current].toLowerCase()"> </SearchInput>
 	</div>
 </template>
 
@@ -31,23 +24,30 @@
 		components: {
 			SearchInput,
 		},
+
 		data() {
 			return {
-				youth_centers: {},
-				loading: true,
+				current: 0,
+				tabs: ["Talent", "Materiaal", "Engagement", "Jeugdhuis"],
+				isActive: true,
 			};
 		},
-		beforeMount() {
-			this.getYouthCenters();
+		// beforeMount() {
+		// 	this.getYouthCenters();
+		// },
+
+		currentTab() {
+			return this.tabs[this.current].toLowerCase();
 		},
-		methods: {
-			async getYouthCenters() {
-				const res = await fetch("http://api.kollapp.test/api/youth_centers");
-				const data = await res.json();
-				this.loading = await false;
-				this.youth_centers = data;
-			},
-		},
+
+		// methods: {
+		// 	async getYouthCenters() {
+		// 		const res = await fetch("http://api.kollapp.test/api/youth_centers");
+		// 		const data = await res.json();
+		// 		this.loading = await false;
+		// 		this.youth_centers = data;
+		// 	},
+		// },
 	};
 </script>
 
@@ -63,12 +63,13 @@
 
 	.search-select_wrapper {
 		/* border-bottom: solid 0.2rem #8ce4e3; */
-	}
-
-	.search-select {
 		display: flex;
 		width: 100%;
 		justify-content: space-around;
+		flex-direction: ;
+	}
+
+	.search-select {
 	}
 
 	.search-select_text {
@@ -85,7 +86,7 @@
 		margin-bottom: -0.6rem;
 	}
 
-	.active {
+	.current {
 		border-bottom: solid 0.2rem #8ce4e3;
 	}
 
