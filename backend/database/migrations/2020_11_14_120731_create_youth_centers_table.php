@@ -14,8 +14,8 @@ class CreateYouthCentersTable extends Migration
     public function up()
     {
         Schema::create('youth_centers', function (Blueprint $table) {
-            $table->id();
             $table->string('name', 40);
+            $table->id();
             $table->string('bio', 90)->nullable();
             $table->string('profilepic', 90)->nullable();
             $table->string('town', 255)->nullable();
