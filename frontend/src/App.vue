@@ -12,6 +12,7 @@
 		components: {
 			NavBar,
 		},
+
 	};
 </script>
 

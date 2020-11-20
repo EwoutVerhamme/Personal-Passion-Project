@@ -1,7 +1,7 @@
 <template>
 	<div class="input">
 		<div class="input-field_wrapper">
-			<label for="">
+			<label class="search-label" for="">
 				<input
 					v-model="search"
 					@input="onSearch"
@@ -83,6 +83,7 @@
 	.input-field {
 		border: none;
 		width: 100%;
+		padding: 10px 30px;
 	}
 
 	.input-field::placeholder {
@@ -90,11 +91,11 @@
 		font-size: 0.9rem;
 	}
 
-	label {
+	.search-label {
 		position: relative;
 	}
 
-	label:before {
+	.search-label:before {
 		content: "";
 		position: absolute;
 		width: 0.5rem;
@@ -102,9 +103,6 @@
 		bottom: 0;
 		padding-right: 1rem;
 		background: url("/assets/img/search.svg") center / contain no-repeat;
-	}
-	input {
-		padding: 10px 30px;
 	}
 
 	input:focus,

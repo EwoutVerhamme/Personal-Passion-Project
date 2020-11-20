@@ -2,8 +2,12 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Dashboard/Home.vue';
 import CreatePost from "../views/Dashboard/CreatePost.vue";
 import Profile from "../views/Dashboard/Profile.vue";
-import Search from "../views/Dashboard/Search.vue"
+import Search from "../views/Dashboard/Search.vue";
 import Calendar from "../views/Dashboard/Calendar.vue"
+import Register from "../views/Register/Register.vue";
+import Login from "../views/Login/Login.vue"
+
+
 
 const routes = [
   {
@@ -25,15 +29,25 @@ component: Profile,
 meta: { title: 'Profiel' }
 },
 {
-  path: '/search',
-  name: 'Search',
-  component: Search,
-  },
-  {
-    path: '/calendar',
-    name: 'Calendar',
-    component: Calendar,
-    },
+path: '/search',
+name: 'Search',
+component: Search,
+},
+{
+path: '/calendar',
+name: 'Calendar',
+component: Calendar,
+},
+{
+  path: '/register',
+  name: 'Register',
+  component: Register,
+},
+{
+  path: '/login',
+  name: 'Login',
+  component: Login,
+},
   
 
 ]
