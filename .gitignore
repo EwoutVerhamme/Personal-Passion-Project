@@ -1,4 +1,5 @@
 .DS_Store
+frontend/
 phpMyAdmin/
 node_modules
 /dist
