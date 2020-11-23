@@ -18,6 +18,7 @@ class YouthCenter extends Model
     protected $fillable = [
         'name',
         'bio',
+        'profilepic',
         'location',
         'ads',
     ];

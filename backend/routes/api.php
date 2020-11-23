@@ -25,8 +25,17 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
-Route::get("youth_centers/{name}", [YouthCenterController::class, "index"]);
+
+// Get the youthcenters 
 Route::get("youth_centers", [YouthCenterController::class, "getAll"]);
+Route::get("youth_centers/{name}", [YouthCenterController::class, "index"]);
+Route::get("youth_centers/{image}", [YouthCenterController::class, "store"]);
+Route::post('youth_centers', [YouthCenterController::class, "store"]);
+
+
+
+
+
 
 // Route::apiResource('projects/{$name}', ProjectController::class)->middleware('auth:api');
 // Route::apiResource('youth_centers/{name}', YouthCenterController::class);

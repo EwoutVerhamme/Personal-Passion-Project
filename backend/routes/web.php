@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SpaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('storage/{name}', function ($name) {
+
+    $path = storage_path($name);
+
+    $mime = \File::mimeType($path);
+
+    header('Content-type: ' . $mime);
+
+    return readfile($path);
+
+})->where('name', '(.*)');
+
+// Route::group(function () {
+    Route::view('/{any}', 'app')->where('any', '.*');
+// Route::get("/{search}?", "SPAController@index")->where('any_path', '(.*)');
+// });
+
 Route::get('/', function () {
-    return view('welcome');
+    return view('app');
 });

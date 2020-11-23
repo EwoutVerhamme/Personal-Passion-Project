@@ -4,9 +4,10 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\YouthCenter;
-use Request;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Request as Requests;
+use Illuminate\Http\Request;
 use App\Http\Resources\YouthCenterResource;
+use Validator;
 
 class YouthCenterController extends Controller
 {
@@ -55,21 +56,52 @@ class YouthCenterController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
+    //     $data = $request->all();
         
 
-        $validator = Validator::make($data, [
-            'name' => 'required|max:90',
-        ]);
+    //     $validator = Validator::make($data, [
+    //         'name' => 'required|max:90',
+    //     ]);
 
-        if ($validator->fails()) {
-            return response(['error' => $validator->errors(), 'Validation Error']);
-        }
+    //     if ($validator->fails()) {
+    //         return response(['error' => $validator->errors(), 'Validation Error']);
+    //     }
 
-        $youthcenter = YouthCenter::create($data);
+    //     $youthcenter = YouthCenter::create($data);
 
-        return response(['youth_center' => new YouthCenterResource($youthcenter), 'message' => 'Created successfully'], 201);
-    
+    //     return response(['youth_center' => new YouthCenterResource($youthcenter), 'message' => 'Created successfully'], 201);
+
+    //     $validator = Validator::make($request->all(), 
+    //     [ 
+    //     'user_id' => 'required',
+    //     'file' => 'required|mimes:doc,docx,pdf,txt|max:2048',
+    //    ]);   
+
+    $data = $request->all();
+
+    $validator = Validator::make($data, [
+                'name' => 'required|max:90',
+                'image' => 'required|image:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+
+        if ($validator->fails()) {          
+      return response()->json(['error'=>$validator->errors()], 401);                        
+   }  
+
+
+       
+      //store file into document folder
+      $file = $request->image->store('public/youth_centers');
+      $filePath = "storage/app/$file" ;
+      $name = $request->name;
+      
+      //store your file into database
+      $youthCenter = YouthCenter::create($data);
+      $youthCenter->name = $name;
+      $youthCenter->profilepic = $filePath;
+      $youthCenter->save();
+
+      return response($youthCenter);
     }
 
     /**
