@@ -3,7 +3,7 @@
 		<div class="input-field_wrapper">
 			<label class="search-label" for="">
 				<input
-					placeholder="Zoeken naar een jeugdhuis "
+					placeholder="Zoeken naar een "
 					v-model="search"
 					@input="onSearch"
 					class="input-field"
@@ -46,7 +46,12 @@
 				v-for="youth_center in youth_centers"
 				class="content-block"
 			>
-				<img class="content-img" src="../assets/img/jctg.png" alt="" />
+				<img
+					width="40"
+					class="content-img"
+					:src="youth_center.profilepic"
+					alt=""
+				/>
 				<p class="content-title">{{ youth_center.name }}</p>
 			</div>
 		</div>
@@ -54,6 +59,8 @@
 </template>
 
 <script>
+	const baseUrl = "http://api.kollapp.test/api/";
+
 	export default {
 		name: "SearchInput",
 		components: {},
@@ -84,7 +91,7 @@
 			},
 			makeSearch() {
 				this.found = true;
-				fetch(`http://api.kollapp.test/api/youth_centers/${this.search}`)
+				fetch(`${baseUrl}youth_centers/${this.search}`)
 					.then((response) => response.json())
 					.then((result) => {
 						// this.$emit("youth-centers-fetched", result);
@@ -139,6 +146,10 @@
 		bottom: 0;
 		padding-right: 1rem;
 		background: url("/assets/img/search.svg") center / contain no-repeat;
+	}
+
+	.content-img {
+		border-radius: 50%;
 	}
 
 	input:focus,

@@ -6,16 +6,26 @@
 	</div>
 	<form action="" class="register-form">
 		<h2 class="register-form-title">Inloggen</h2>
-		<input type="text" placeholder="Email" class="register-input" />
-		<input type="text" placeholder="Wachtwoord" class="register-input" />
+		<p v-if="error == true" class="error">Je email/passwoord klopt niet.</p>
+		<input
+			v-model="email"
+			type="text"
+			placeholder="Email"
+			class="register-input"
+		/>
+		<input
+			v-model="password"
+			type="text"
+			placeholder="Wachtwoord"
+			class="register-input"
+		/>
 
 		<div class="register-accept">
 			<input type="radio" class="register-accept_radio" />
 			<p class="register-accept_text">Ingelogd blijven</p>
 		</div>
-
 		<div class="button-wrapper">
-			<button class="register-button">Inloggen</button>
+			<button @click="login" class="register-button">Inloggen</button>
 			<router-link to="/register">
 				<p class="login">Nog geen account? <strong>Aanmelden</strong></p>
 			</router-link>
@@ -24,9 +34,42 @@
 </template>
 
 <script>
+	import axios from "axios";
+	import router from "../../router/index";
+
+	const axiosInstance = axios.create({
+		baseURL: "http://api.kollapp.test/api/",
+		timeout: 1000,
+		headers: { "Content-Type": "application/json" },
+	});
 	export default {
 		name: "Register",
 		components: {},
+
+		data() {
+			return {
+				email: "",
+				password: "",
+			};
+		},
+
+		methods: {
+			login(e) {
+				e.preventDefault();
+				axiosInstance
+					.post("/login", {
+						email: this.email,
+						password: this.password,
+					})
+					.then(function (response) {
+						console.log(response);
+						router.push("/");
+					})
+					.catch(function (error) {
+						console.log(error);
+					});
+			},
+		},
 	};
 </script>
 

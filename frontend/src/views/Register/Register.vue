@@ -6,9 +6,20 @@
 	</div>
 	<form action="" class="register-form">
 		<h2 class="register-form-title">Aanmelden</h2>
-		<input type="text" placeholder="Email" class="register-input" />
-		<input type="text" placeholder="Wachtwoord" class="register-input" />
 		<input
+			v-model="email"
+			type="text"
+			placeholder="Email"
+			class="register-input"
+		/>
+		<input
+			v-model="password"
+			type="text"
+			placeholder="Wachtwoord"
+			class="register-input"
+		/>
+		<input
+			v-model="password_confirmation"
 			type="text"
 			placeholder="Herhaal wachtwoord"
 			class="register-input"
@@ -22,7 +33,7 @@
 		</div>
 
 		<div class="button-wrapper">
-			<button class="register-button">Inloggen</button>
+			<button @click="register" class="register-button">Inloggen</button>
 			<router-link to="/login">
 				<p class="login">Heb je al een account? <strong>Inloggen</strong></p>
 			</router-link>
@@ -31,9 +42,42 @@
 </template>
 
 <script>
+	import axios from "axios";
+
+	const axiosInstance = axios.create({
+		baseURL: "http://api.kollapp.test/api/",
+		timeout: 1000,
+		headers: { "Content-Type": "application/json" },
+	});
+
 	export default {
 		name: "Register",
 		components: {},
+
+		data() {
+			return {
+				email: "",
+				password: "",
+				password_confirmation: "",
+			};
+		},
+		methods: {
+			register(e) {
+				e.preventDefault();
+				axiosInstance
+					.post("/register", {
+						email: this.email,
+						password: this.password,
+						password_confirmation: this.password_confirmation,
+					})
+					.then(function (response) {
+						console.log(response);
+					})
+					.catch(function (error) {
+						console.log(error);
+					});
+			},
+		},
 	};
 </script>
 
