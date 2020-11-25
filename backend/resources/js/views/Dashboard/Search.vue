@@ -59,17 +59,22 @@
 
 			<div>
 				<div
-					:key="youth_center.id"
-					v-for="youth_center in youth_centers"
+					v-if="tabs[current] == 'Talent'"
+					:key="t.id"
+					v-for="t in tab"
 					class="content-block"
 				>
-					<img
-						width="40"
-						class="content-img"
-						:src="youth_center.profilepic"
-						alt=""
-					/>
-					<p class="content-title">{{ youth_center.name }}</p>
+					<img width="40" class="content-img" :src="t.profilepic" alt="" />
+					<p class="content-title">{{ t.first_name }} {{ t.last_name }}</p>
+				</div>
+				<div
+					v-if="tabs[current] == 'Jeugdhuis'"
+					:key="t.id"
+					v-for="t in tab"
+					class="content-block"
+				>
+					<img width="40" class="content-img" :src="t.profilepic" alt="" />
+					<p class="content-title">{{ t.name }}</p>
 				</div>
 			</div>
 		</div>
@@ -88,9 +93,10 @@
 				isActive: true,
 				search: "",
 				timeout: null,
-				youth_centers: {},
+				tab: {},
 				loading: true,
 				found: true,
+				slug: "",
 			};
 		},
 
@@ -104,10 +110,14 @@
 
 		methods: {
 			checkCurrentTab() {
+				let slug = "";
 				const tab = this.tabs[this.current].toLowerCase();
 				switch (tab) {
 					case "talent":
-						console.log("Talent");
+						slug = "users";
+						this.slug = slug;
+						this.makeSearch();
+
 						break;
 					case "materiaal":
 						console.log("Materiaal");
@@ -116,6 +126,8 @@
 						console.log("Engagement");
 						break;
 					case "jeugdhuis":
+						slug = "youth_centers";
+						this.slug = slug;
 						this.makeSearch();
 						break;
 					default:
@@ -138,13 +150,15 @@
 			},
 			makeSearch() {
 				this.found = true;
-				fetch(`http://api.kollapp.test/api/youth_centers/${this.search}`)
+				const url = `http://api.kollapp.test/api/${this.slug}/${this.search}`;
+				console.log(url);
+				fetch(url)
 					.then((response) => response.json())
 					.then((result) => {
 						// this.$emit("youth-centers-fetched", result);
-						console.log("youth-centers-fetched", result);
+						console.log(`${this.slug} fetched`, result);
 						this.loading = false;
-						this.youth_centers = result;
+						this.tab = result;
 
 						if (result.length == 0) {
 							this.found = false;

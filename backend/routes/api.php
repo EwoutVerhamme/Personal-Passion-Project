@@ -30,7 +30,8 @@ Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
 
 //Get the user with skills
-Route::get("users", [AuthController::class, "getWithSkill"]);
+Route::get("users", [AuthController::class, "getAll"]);
+Route::get("users/{skill_name}", [AuthController::class, "getAllWithSkill"]);
 
 // Get the youthcenters 
 Route::get("youth_centers", [YouthCenterController::class, "getAll"]);
