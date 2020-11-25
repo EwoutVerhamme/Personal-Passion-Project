@@ -5,8 +5,7 @@
 		<img src="/assets/img/logo.svg" alt="" class="register-img" />
 	</div>
 	<form action="" class="register-form">
-		<h2 class="register-form-title">Inloggen</h2>
-		<p v-if="error == true" class="error">Je email/passwoord klopt niet.</p>
+		<h2 class="register-form-title">Aanmelden</h2>
 		<input
 			v-model="email"
 			type="text"
@@ -19,24 +18,31 @@
 			placeholder="Wachtwoord"
 			class="register-input"
 		/>
+		<input
+			v-model="password_confirmation"
+			type="text"
+			placeholder="Herhaal wachtwoord"
+			class="register-input"
+		/>
 
 		<div class="register-accept">
 			<input type="radio" class="register-accept_radio" />
-			<p class="register-accept_text">Ingelogd blijven</p>
+			<p class="register-accept_text">
+				Ik accepteer de <strong>algemene voorwaarden</strong>
+			</p>
 		</div>
+
 		<div class="button-wrapper">
-			<button @click="login" class="register-button">Inloggen</button>
-			<router-link to="/register">
-				<p class="login">Nog geen account? <strong>Aanmelden</strong></p>
+			<button @click="register" class="register-button">Aanmelden</button>
+			<router-link to="/login">
+				<p class="login">Heb je al een account? <strong>Inloggen</strong></p>
 			</router-link>
 		</div>
 	</form>
 </template>
 
 <script>
-	import axios from "axios";
-	import router from "../../router/index";
-	import store from "../../store/index";
+	import router from "../../../router/index";
 	export default {
 		name: "Register",
 		components: {},
@@ -45,26 +51,22 @@
 			return {
 				email: "",
 				password: "",
-				error: false,
+				password_confirmation: "",
 			};
 		},
-
 		methods: {
-			login(e) {
+			register(e) {
 				e.preventDefault();
-				axios
-					.post("api/login", {
+				if (this.password === this.password_confirmation) {
+					// router.push("/profile-info");
+					this.$store.dispatch("SetLoginCredentials", {
 						email: this.email,
 						password: this.password,
-					})
-					.then(function (response) {
-						console.log(response);
-						router.push("/");
-					})
-					.catch(function (error) {
-						console.log(error);
-						error: true;
+						password_confirmation: this.password_confirmation,
 					});
+				} else {
+					console.log("Passwords don't match");
+				}
 			},
 		},
 	};
@@ -152,7 +154,6 @@
 		font-family: "Poppins", sans-serif;
 		font-size: 1.2rem;
 	}
-
 	.button-wrapper {
 		display: flex;
 		justify-content: center;
@@ -166,10 +167,5 @@
 		font-family: "Poppins", sans-serif;
 		font-weight: 300;
 		font-size: 0.9rem;
-		color: #434343;
-	}
-
-	router-link a {
-		text-decoration: none;
 	}
 </style>

@@ -7,6 +7,8 @@ use App\Http\Controllers\API\ProjectController;
 use App\Http\Controllers\API\YouthCenterController;
 use App\Http\Controllers\API\ActivitiesController;
 use App\Http\Controllers\ApiController;
+use App\Http\Controllers\API\UserController;
+use App\Http\Controllers\API\SkillController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,12 +21,16 @@ use App\Http\Controllers\ApiController;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
+// Login or Register
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
+
+//Get the user with skills
+Route::get("users", [AuthController::class, "getWithSkill"]);
 
 // Get the youthcenters 
 Route::get("youth_centers", [YouthCenterController::class, "getAll"]);

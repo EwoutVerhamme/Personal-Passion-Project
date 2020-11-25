@@ -5,35 +5,65 @@
 		<img src="/assets/img/logo.svg" alt="" class="register-img" />
 	</div>
 	<form action="" class="register-form">
-		<h2 class="register-form-title">Aanmelden</h2>
-		<input type="text" placeholder="Email" class="register-input" />
-		<input type="text" placeholder="Wachtwoord" class="register-input" />
+		<h2 class="register-form-title">Inloggen</h2>
+		<p v-if="error == true" class="error">Je email/passwoord klopt niet.</p>
 		<input
+			v-model="email"
 			type="text"
-			placeholder="Herhaal wachtwoord"
+			placeholder="Email"
+			class="register-input"
+		/>
+		<input
+			v-model="password"
+			type="text"
+			placeholder="Wachtwoord"
 			class="register-input"
 		/>
 
 		<div class="register-accept">
 			<input type="radio" class="register-accept_radio" />
-			<p class="register-accept_text">
-				Ik accepteer de <strong>algemene voorwaarden</strong>
-			</p>
+			<p class="register-accept_text">Ingelogd blijven</p>
 		</div>
-
 		<div class="button-wrapper">
-			<button class="register-button">Aanmelden</button>
-			<router-link to="/login">
-				<p class="login">Heb je al een account? <strong>Inloggen</strong></p>
+			<button @click.prevent="login" class="register-button">Inloggen</button>
+			<router-link to="/register">
+				<p class="login">Nog geen account? <strong>Aanmelden</strong></p>
 			</router-link>
 		</div>
 	</form>
 </template>
 
 <script>
+	import axios from "axios";
+	import router from "../../../router/index";
+	import store from "../../../store/index";
 	export default {
 		name: "Register",
 		components: {},
+
+		data() {
+			return {
+				email: "",
+				password: "",
+				error: false,
+			};
+		},
+
+		methods: {
+			login() {
+				this.$store
+					.dispatch("LOGIN", {
+						email: this.email,
+						password: this.password,
+					})
+					.then((success) => {
+						this.$router.push("/");
+					})
+					.catch((error) => {
+						this.error = true;
+					});
+			},
+		},
 	};
 </script>
 
@@ -119,6 +149,7 @@
 		font-family: "Poppins", sans-serif;
 		font-size: 1.2rem;
 	}
+
 	.button-wrapper {
 		display: flex;
 		justify-content: center;
@@ -132,5 +163,10 @@
 		font-family: "Poppins", sans-serif;
 		font-weight: 300;
 		font-size: 0.9rem;
+		color: #434343;
+	}
+
+	router-link a {
+		text-decoration: none;
 	}
 </style>

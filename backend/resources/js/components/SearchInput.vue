@@ -66,8 +66,6 @@
 		props: ["currentTab"],
 
 		created() {
-			// fetch the data when the view is created and the data is
-			// already being observed
 			this.makeSearch();
 		},
 
@@ -80,12 +78,18 @@
 				found: true,
 			};
 		},
+
 		methods: {
+			searchOnTab() {
+				const currentTab = this.currentTab;
+				console.log(currentTab);
+			},
+
 			onSearch() {
 				clearTimeout(this.timeout);
 				this.timeout = setTimeout(() => {
 					this.makeSearch();
-				}, 200);
+				}, 500);
 			},
 			makeSearch() {
 				this.found = true;

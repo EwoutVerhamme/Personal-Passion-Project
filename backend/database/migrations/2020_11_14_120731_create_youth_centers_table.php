@@ -16,6 +16,8 @@ class CreateYouthCentersTable extends Migration
         Schema::create('youth_centers', function (Blueprint $table) {
             $table->id();
             $table->string('name', 40);
+            $table->string('first_name', 90)->nullable();
+            $table->string('last_name', 90)->nullable();
             $table->string('bio', 90)->nullable();
             $table->string('profilepic', 255)->nullable();
             $table->string('town', 255)->nullable();

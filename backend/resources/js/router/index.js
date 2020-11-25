@@ -3,9 +3,10 @@ import Home from '../views/Dashboard/Home.vue';
 import CreatePost from "../views/Dashboard/CreatePost.vue";
 import Profile from "../views/Dashboard/Profile.vue";
 import Search from "../views/Dashboard/Search.vue";
-import Register from "../views/Register/Register.vue";
-import Login from "../views/Login/Login.vue";
+import Register from "../views/Auth/Register/Register.vue";
+import Login from "../views/Auth/Login/Login.vue";
 import NotFound from "../components/NotFound.vue";
+import ProfileInfo from "../views/Auth/Register/ProfileInfo.vue"
 
 
 
@@ -37,6 +38,11 @@ component: Search,
   path: '/register',
   name: 'Register',
   component: Register,
+},
+{
+  path: '/profile-info',
+  name: 'ProfileInfo',
+  component: ProfileInfo,
 },
 {
   path: '/login',

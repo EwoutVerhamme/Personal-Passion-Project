@@ -6,17 +6,50 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use DB;
 
 
 
 class AuthController extends Controller
 {
+
+    public function getAll() {
+
+        // return BookResource::collection(Book::with('ratings')->paginate(25));
+
+        return response()->json(User::get(),200);
+
+    }
+
+    public function getWithSkill(){
+
+        $fetchedUsers = DB::table('users')->get();
+    
+        $users = [];
+
+        foreach ($fetchedUsers as $userId => $user) {
+            $fetchedSkillByUserId = DB::table('skills')->where('user_id', $user->id)->get('name');
+            $myObj = new \stdClass();
+            $myObj = $user;
+            $myObj->skills = $fetchedSkillByUserId;
+            array_push($users, $myObj);
+        }
+        
+        // $users = DB::table('users')
+        //     ->join('skills', 'users.id', '=', 'skills.user_id')
+        //     ->get();
+
+        // return BookResource::collection(Book::with('ratings')->paginate(25));
+        // return response()->json($users);
+        return response($users, 201);
+
+    }
+
     public function register(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => 'required|max:55',
             'email' => 'email|required|unique:users',
-            'password' => 'required|confirmed'
+            'password' => 'required'
         ]);
 
         $validatedData['password'] = Hash::make($request->password);
@@ -25,7 +58,7 @@ class AuthController extends Controller
 
         $accessToken = $user->createToken('authToken')->accessToken;
 
-        return response(['user' => $user, 'access_token' => $accessToken], 201);
+        return response([$user, 'access_token' => $accessToken], 201);
     }
 
     public function login(Request $request)

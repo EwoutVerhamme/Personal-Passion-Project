@@ -2,7 +2,7 @@
 	<div class="welcome">
 		<h1 class="welcome-title">
 			Welkom <br />
-			<strong>Sebastiaan!</strong>
+			<strong>{{ first_name }}!</strong>
 		</h1>
 		<img src="/assets/img/profile-pic.png" alt="" class="profile-pic" />
 	</div>
@@ -24,6 +24,27 @@
 		name: "Home",
 		components: {
 			Match,
+		},
+
+		data() {
+			return {
+				first_name: "",
+			};
+		},
+
+
+		mounted() {
+			const getUser = JSON.parse(localStorage.getItem("user"));
+			if (localStorage.user) {
+				const user = getUser.user;
+				this.first_name = user.first_name;
+			}
+		},
+
+		watch: {
+			first_name(currentName) {
+				localStorage.name = currentName;
+			},
 		},
 	};
 </script>
