@@ -5,7 +5,8 @@
         "watch": "mix watch",
         "watch-poll": "mix watch -- --watch-options-poll=1000",
         "hot": "mix watch --hot",
-        "prod": "mix --production"
+        "prod": "mix --production",
+        "postinstall": "npm run prod"
     },
     "devDependencies": {
         "@vue/compiler-sfc": "^3.0.3",
