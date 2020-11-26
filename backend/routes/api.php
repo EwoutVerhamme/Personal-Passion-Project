@@ -30,7 +30,7 @@ Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
 
 //Get the users with skills
-Route::get("users/", [AuthController::class, "getAll"]);
+Route::get("users", [AuthController::class, "getAll"]);
 Route::get("users/{skill_name}", [AuthController::class, "getAllWithSkill"]);
 
 

@@ -14,15 +14,8 @@ use DB;
 class AuthController extends Controller
 {
 
-
-    public function index($name) {
-
-        return response()->json(Skill::where('name', $name)
-        ->orWhere('name', 'like', '%' . $name . '%')->get());
-
-    }
     public function getAll() {
-        $users = DB::table('users')->join("skills", "users.id" , "skills.user_id")->get();
+        $users = DB::table('users')->get();
         return response($users, 201);
     }
 
@@ -30,11 +23,16 @@ class AuthController extends Controller
 
         // SELECT * FROM users INNER JOIN skills ON users.id = skills.user_id
 
-        $fetchedUsers = DB::table('users')->join("skills", "users.id" , "skills.user_id")->orWhere('skill_name', 'like', '%' . $skill_name . '%')->orWhere('first_name', 'like', '%' . $skill_name . '%')->get();
+        $fetchedUsers = DB::table('users')
+        ->join("skills", "users.id" , "skills.user_id")
+        ->where('first_name', 'like', '%' . $skill_name . '%')
+        ->orWhere('skill_name', 'like', '%' . $skill_name . '%')->get();
 
         return response($fetchedUsers, 201);
 
     }
+
+
     public function register(Request $request)
     {
 
@@ -42,16 +40,18 @@ class AuthController extends Controller
 
 
         $registerData = $request->validate([
-            'first_name' => 'required',
-            'last_name' => 'required',
             'email' => 'email|required|unique:users',
             'password' => 'required',
+            'first_name' => 'required',
+            'last_name' => 'required',
             'profilepic' => 'required|image:jpeg,png,jpg,gif,svg|max:2048',
             'sex' => 'required',
             'town' => 'required',
             'youth_center' => 'required',
             
         ]);
+
+        $registerData['password'] = Hash::make($request->password);
 
         //store file into document folder
         $file = $request->profilepic->store('public/users');
@@ -63,7 +63,7 @@ class AuthController extends Controller
         $user->save();
 
 
-        $registerData['password'] = Hash::make($request->password);
+
 
 
         $accessToken = $user->createToken('authToken')->accessToken;

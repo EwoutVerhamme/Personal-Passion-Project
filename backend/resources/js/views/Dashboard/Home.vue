@@ -4,7 +4,7 @@
 			Welkom <br />
 			<strong>{{ first_name }}!</strong>
 		</h1>
-		<img src="/assets/img/profile-pic.png" alt="" class="profile-pic" />
+		<img src="{{profilepic}}" alt="" class="profile-pic" />
 	</div>
 	<div class="matches">
 		<h2 class="subtitle">
@@ -27,15 +27,16 @@
 		data() {
 			return {
 				first_name: "",
+				profilepic: "",
 			};
 		},
-
 
 		mounted() {
 			const getUser = JSON.parse(localStorage.getItem("user"));
 			if (localStorage.user) {
 				const user = getUser.user;
 				this.first_name = user.first_name;
+				this.profilepic = user.profilepic;
 			}
 		},
 
