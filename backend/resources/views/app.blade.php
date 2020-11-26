@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     </script>
 
-    <title>{{env('APP_NAME')}}</title>
+    <title>Kollapp</title>
 </head>
 <body>
     <div id="app">

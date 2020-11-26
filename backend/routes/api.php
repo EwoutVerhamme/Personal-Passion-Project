@@ -29,9 +29,10 @@ use App\Http\Controllers\API\SkillController;
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
 
-//Get the user with skills
-Route::get("users", [AuthController::class, "getAll"]);
+//Get the users with skills
+Route::get("users/", [AuthController::class, "getAll"]);
 Route::get("users/{skill_name}", [AuthController::class, "getAllWithSkill"]);
+
 
 // Get the youthcenters 
 Route::get("youth_centers", [YouthCenterController::class, "getAll"]);

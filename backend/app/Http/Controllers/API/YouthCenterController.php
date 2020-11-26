@@ -22,14 +22,6 @@ class YouthCenterController extends Controller
         return response()->json(YouthCenter::where('name', $name)
         ->orWhere('name', 'like', '%' . $name . '%')->get());
 
-        // JE kan ook order by enal 
-
-        // if(!empty($name)) {
-        //     return response()->json(YouthCenter::first('name', $name),200);
-
-        // }else {
-        //     return response()->json(YouthCenter::get(),200);
-        // }
 
        
   }
@@ -38,12 +30,7 @@ class YouthCenterController extends Controller
     {
 
         return response()->json(YouthCenter::get(),200);
-        // if(!empty($name)) {
-        //     return response()->json(YouthCenter::first('name', $name),200);
 
-        // }else {
-        //     return response()->json(YouthCenter::get(),200);
-        // }
 
        
   }

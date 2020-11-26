@@ -13,8 +13,6 @@
 		<Match class="match" />
 		<Match class="match" />
 		<Match class="match" />
-		<Match class="match" />
-		<Match class="match" />
 	</div>
 </template>
 

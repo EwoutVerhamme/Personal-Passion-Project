@@ -116,8 +116,8 @@
 					case "talent":
 						slug = "users";
 						this.slug = slug;
+						this.search = "";
 						this.makeSearch();
-
 						break;
 					case "materiaal":
 						console.log("Materiaal");
@@ -128,10 +128,14 @@
 					case "jeugdhuis":
 						slug = "youth_centers";
 						this.slug = slug;
+						this.search = "";
 						this.makeSearch();
 						break;
 					default:
-					// code block
+						slug = "users";
+						this.slug = slug;
+						this.search = "";
+						this.makeSearch();
 				}
 			},
 
@@ -156,7 +160,7 @@
 					.then((response) => response.json())
 					.then((result) => {
 						// this.$emit("youth-centers-fetched", result);
-						console.log(`${this.slug} fetched`, result);
+						// console.log(`${this.slug} fetched`, result);
 						this.loading = false;
 						this.tab = result;
 
