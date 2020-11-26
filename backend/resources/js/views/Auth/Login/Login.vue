@@ -68,7 +68,7 @@
 </script>
 
 
-<style>
+<style scoped>
 	.register-welcome {
 		display: flex;
 		justify-content: center;
@@ -168,5 +168,9 @@
 
 	router-link a {
 		text-decoration: none;
+	}
+
+	strong {
+		color: #FF899E;
 	}
 </style>

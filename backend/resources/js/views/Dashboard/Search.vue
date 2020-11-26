@@ -54,7 +54,7 @@
 				{{ tabs[current].toLowerCase() }} ophalen...
 			</p>
 			<p class="loading" v-if="found === false">
-				{{ tabs[current].toLowerCase() }} niet gevonden...
+				geen {{ tabs[current].toLowerCase() }} gevonden...
 			</p>
 
 			<div>
@@ -174,7 +174,7 @@
 </script>
 
 
-<style>
+<style scoped>
 	.title {
 		text-align: center;
 		font-family: "Poppins", sans-serif;
@@ -184,20 +184,19 @@
 	}
 
 	.search-select_wrapper {
-		/* border-bottom: solid 0.2rem #8ce4e3; */
 		display: flex;
 		width: 100%;
 		justify-content: space-around;
-		flex-direction: ;
+		border-bottom: solid 0.2rem #D3FFFF;
+		position: relative;
+		z-index: 1;
+		margin-top: .5rem;
 	}
-
-	.search-select {
-	}
-
 	.search-select_text {
 		font-family: "Poppins", sans-serif;
 		font-size: 0.9rem;
-		margin-bottom: 0.3rem;
+		margin-bottom: -0.25rem;
+		z-index: 2;
 	}
 
 	.search-subtitle {
@@ -231,7 +230,7 @@
 		margin-left: 1rem;
 		font-family: "Poppins", sans-serif;
 		font-size: 1.2rem;
-		font-weight: 600;
+		font-weight: 400;
 	}
 
 	.content-img {
@@ -261,6 +260,7 @@
 		border: none;
 		width: 100%;
 		padding: 10px 30px;
+		background-color: transparent;
 	}
 
 	.input-field::placeholder {

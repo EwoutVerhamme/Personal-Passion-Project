@@ -73,7 +73,7 @@
 </script>
 
 
-<style>
+<style scoped>
 	.register-welcome {
 		display: flex;
 		justify-content: center;
@@ -167,5 +167,9 @@
 		font-family: "Poppins", sans-serif;
 		font-weight: 300;
 		font-size: 0.9rem;
+	}
+
+	strong {
+		color: #FF899E;
 	}
 </style>

@@ -6,12 +6,7 @@
 		</div>
 		<div class="info">
 			<div class="info-date">
-				<img
-					width="25px"
-					height="25px"
-					src="/assets/img/calendar.png"
-					alt=""
-				/>
+				<img width="25px" height="25px" src="/assets/img/calendar.png" alt="" />
 				<p class="info-text">Zaterdag 12 december</p>
 			</div>
 			<div class="info-youthcenter">
@@ -30,13 +25,14 @@
 </script>
 
 
-<style>
+<style scoped>
 	.match-box {
 		background-color: white;
 		box-shadow: 0px 0px 13px 1px rgba(0, 0, 0, 0.09);
 		border-radius: 20px;
 		width: 95vw;
 		margin: 0 auto;
+		margin-top: 1rem;
 	}
 	.title-wrapper {
 		display: flex;
@@ -71,5 +67,9 @@
 	.info-text {
 		margin: 0 0 0 0.5rem;
 		font-family: "Poppins", sans-serif;
+	}
+
+	strong {
+		color: #36C9C6;
 	}
 </style>

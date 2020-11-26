@@ -4,7 +4,7 @@
 			Welkom <br />
 			<strong>{{ first_name }}!</strong>
 		</h1>
-		<img src="{{profilepic}}" alt="" class="profile-pic" />
+		<img :src="profilepic" alt="" class="profile-pic" />
 	</div>
 	<div class="matches">
 		<h2 class="subtitle">
@@ -49,7 +49,7 @@
 </script>
 
 
-<style>
+<style scoped>
 	.welcome {
 		display: flex;
 		justify-content: center;
@@ -60,15 +60,15 @@
 
 	.welcome-title {
 		font-family: "Poppins", sans-serif;
-		font-weight: 400;
+		font-weight: 300;
 		font-size: calc(1.6rem + 10 * ((100vw - 100px) / 400));
-		line-height: 2.3rem;
+		line-height: 2rem;
 		width: 65%;
 	}
 	.subtitle {
 		font-family: "Poppins", sans-serif;
 		font-weight: 300;
-		font-size: calc(1.2rem + 10 * ((100vw - 320px) / 680));
+		font-size: 1rem;
 		margin-top: 1rem;
 		margin-left: 0.5rem;
 		margin-bottom: 0;

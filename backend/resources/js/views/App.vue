@@ -32,6 +32,10 @@
 		grid-template-columns: 100vw;
 	}
 
+	.container {
+		padding-bottom: 5rem;
+	}
+
 	.navigation {
 		grid-row: 3;
 		align-self: flex-end;
