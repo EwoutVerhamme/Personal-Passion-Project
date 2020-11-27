@@ -12,6 +12,12 @@
 		components: {
 			NavBar,
 		},
+
+		computed: {
+			isLoggedIn: function () {
+				return this.$store.getters.isLoggedIn;
+			},
+		},
 	};
 </script>
 

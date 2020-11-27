@@ -79,7 +79,6 @@
 				setTimeout(() => {
 					const route = this.$router.currentRoute._rawValue.fullPath;
 					routeArray.push(route), 200;
-					console.log(routeArray[0]);
 
 					switch (routeArray[0]) {
 						case "/":

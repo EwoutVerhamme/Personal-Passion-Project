@@ -7,10 +7,10 @@ export default {
     status: '',
     token: localStorage.getItem('acces_token') || '',
     user : {},
-    loggedIn: undefined
+    isLoggedIn: undefined
   },
   getters: {
-    isLoggedIn: state => state.loggedIn,
+    isLoggedIn: state => !!state.token,
     authStatus: state => state.status,
   },
   mutations: {
@@ -30,7 +30,6 @@ export default {
   actions: {
     
     LOGIN: ({ commit }, payload) => {
-
       return new Promise((resolve, reject) => {
         axios
           .post(`api/login`, payload)
