@@ -115,8 +115,9 @@
 	.profile-photo {
 		z-index: 1;
 		position: absolute;
-		top: 4.5rem;
+		top: 5rem;
 		left: 0.5rem;
+		width: 3.5rem;
 	}
 
 	.button {
@@ -129,7 +130,7 @@
 	.profile-info {
 		width: 100vw;
 		display: grid;
-		grid-template-columns: repeat(16, 1fr);
+		grid-template-columns: repeat(20, 1fr);
 	}
 
 	.profile-name {
@@ -138,14 +139,14 @@
 		color: #FF899E;
 		font-size: 1.5rem;
 		grid-row: 1;
-		grid-column: 5 / span 16;
-		align-self: flex-start;
+		grid-column: 6 / span 20;
+		justify-content: center;
 		margin: 0;
 	}
 
 	.profile-location {
 		grid-row: 2;
-		grid-column: 5 / span 16;
+		grid-column: 6 / span 20;
 		display: flex;
 		align-items: center;
 	}
@@ -161,7 +162,7 @@
 		grid-row: 3;
 		display: flex;
 		align-items: center;
-		grid-column: 5 / span 16;
+		grid-column: 6 / span 20;
 		margin-top: 0.5rem;
 	}
 
