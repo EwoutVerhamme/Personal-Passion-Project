@@ -31,6 +31,12 @@
 		background-color: #FCFEFF;
 	}
 
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
+	}
+
 	#app {
 		height: 100%;
 		min-height: -webkit-fill-available;
