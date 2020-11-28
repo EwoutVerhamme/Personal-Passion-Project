@@ -6,7 +6,8 @@ import Search from "../views/Dashboard/Search.vue";
 import Register from "../views/Auth/Register/Register.vue";
 import Login from "../views/Auth/Login/Login.vue";
 import NotFound from "../components/NotFound.vue";
-import ProfileInfo from "../views/Auth/Register/ProfileInfo.vue"
+import ProfileInfo from "../views/Auth/Register/ProfileInfo.vue";
+import AddSkills from "../components/AddSkills.vue";
 
 
 
@@ -48,6 +49,11 @@ component: Search,
   path: '/login',
   name: 'Login',
   component: Login,
+},
+{
+  path: '/addskills',
+  name: 'AddSkills',
+  component: AddSkills,
 },
 {
   path: '/:pathMatch(.*)*',

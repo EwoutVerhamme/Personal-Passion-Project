@@ -6,10 +6,12 @@
 	</div>
 	<div class="select-skill">
 		<p class="select-title">Naar welke skills ben je opzoek?</p>
-		<div class="select-button_wrapper">
-			<p class="select-button">Selecteer skills</p>
-			<img class="select-img" src="/assets/img/select.svg" alt="" />
-		</div>
+		<router-link to="/addskills">
+			<div class="select-button_wrapper">
+				<p class="select-button">Selecteer skills</p>
+				<img class="select-img" src="/assets/img/select.svg" alt="" />
+			</div>
+		</router-link>
 	</div>
 	<InputField class="input" placeholder="Waar zal dit plaatsvinden?" />
 	<InputField class="input" placeholder="Uitvoeringsdatum" />
@@ -67,5 +69,8 @@
 	.select-button_wrapper {
 		display: flex;
 		align-items: center;
+	}
+	router-link p {
+		text-decoration: none;
 	}
 </style>
