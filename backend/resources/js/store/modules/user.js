@@ -51,6 +51,13 @@ export default {
       });
       
     },
+
+    LOGOUT: ({ commit }, payload) => {
+      localStorage.removeItem('user')
+      localStorage.removeItem('name')
+      console.log(localStorage)
+      
+    },
     // REGISTER: ({ commit }, { username, email, password }) => {
     //   return new Promise((resolve, reject) => {
     //     axios

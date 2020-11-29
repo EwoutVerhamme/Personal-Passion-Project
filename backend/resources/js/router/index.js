@@ -8,6 +8,7 @@ import Login from "../views/Auth/Login/Login.vue";
 import NotFound from "../components/NotFound.vue";
 import ProfileInfo from "../views/Auth/Register/ProfileInfo.vue";
 import AddSkills from "../components/AddSkills.vue";
+import EditProfile from "../components/EditProfile.vue"
 
 
 
@@ -54,6 +55,11 @@ component: Search,
   path: '/addskills',
   name: 'AddSkills',
   component: AddSkills,
+},
+{
+  path: '/editprofile',
+  name: 'EditProfile',
+  component: EditProfile,
 },
 {
   path: '/:pathMatch(.*)*',

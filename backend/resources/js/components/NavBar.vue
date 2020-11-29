@@ -128,6 +128,16 @@
 							this.tabs.profile.currentIcon = this.tabs.profile.notActive;
 							break;
 
+						case "/editprofile":
+							//Set selected route active
+							this.tabs.profile.currentIcon = this.tabs.profile.active;
+
+							// Set other routes notactive
+							this.tabs.home.currentIcon = this.tabs.home.notActive;
+							this.tabs.search.currentIcon = this.tabs.search.notActive;
+							this.tabs.create.currentIcon = this.tabs.create.notActive;
+							break;
+
 						default:
 					}
 				});

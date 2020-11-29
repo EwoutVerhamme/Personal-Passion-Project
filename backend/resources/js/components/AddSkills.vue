@@ -96,15 +96,22 @@
 	}
 
 	.skill-title {
-		background-color: #8CE4E3;
+		background-color: transparent;
+		border: 0.2rem solid #8CE4E3;
+		color: #434343;
 		width: fit-content;
 		padding: 0.5rem;
 		border-radius: 0.5rem;
-		color: white;
 		font-family: "Poppins", sans-serif;
 		font-size: 0.8rem;
 		margin: 0.25rem;
 	}
+
+	.clicked {
+		background-color: #8CE4E3;
+		color: white;
+	}
+
 	.input-field_wrapper {
 		display: flex;
 		border-bottom: 0.15rem #979797 solid;
