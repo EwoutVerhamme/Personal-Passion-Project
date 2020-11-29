@@ -15,7 +15,7 @@
 		/>
 		<input
 			v-model="password"
-			type="text"
+			type="password"
 			placeholder="Wachtwoord"
 			class="register-input"
 		/>

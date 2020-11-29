@@ -2,7 +2,7 @@
 	<div class="container">
 		<router-view />
 	</div>
-	<NavBar class="navigation" />
+	<NavBar v-if="isLoggedIn" class="navigation" />
 </template>
 
 <script>
@@ -11,6 +11,10 @@
 		name: "App",
 		components: {
 			NavBar,
+		},
+
+		created() {
+			this.$store.dispatch("AUTOLOGIN");
 		},
 
 		computed: {

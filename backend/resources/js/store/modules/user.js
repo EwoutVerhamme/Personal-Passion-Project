@@ -14,17 +14,20 @@ export default {
     authStatus: state => state.status,
   },
   mutations: {
-    auth_request(state){
-      state.status = 'loading'
-    },
+
     auth_success(state, token, user){
       state.status = 'success'
       state.token = token
-      state.loggedIn = true
       state.user = user
     },
     auth_error(state){
       state.status = 'error'
+    },
+
+    auth_logout(state){
+      state.status = 'logged out'
+      state.token = undefined
+      state.user = undefined
     },
   },
   actions: {
@@ -37,8 +40,8 @@ export default {
             if (status === 200) {
               const token = data.access_token;
               const user = data.user
-              commit('auth_request')
               localStorage.setItem('user', JSON.stringify(data));
+              localStorage.setItem('token', token);
               commit('auth_success', token, user)
               resolve(payload);
             }
@@ -53,11 +56,22 @@ export default {
     },
 
     LOGOUT: ({ commit }, payload) => {
+      commit('auth_logout')
       localStorage.removeItem('user')
       localStorage.removeItem('name')
+      localStorage.removeItem('token')
       console.log(localStorage)
       
     },
+
+    AUTOLOGIN ({commit}) {
+      const token = localStorage.getItem('token')
+      const user = localStorage.getItem('user')
+      if (!token) {
+        return
+      }
+      commit('auth_success', token, user)
+    }
     // REGISTER: ({ commit }, { username, email, password }) => {
     //   return new Promise((resolve, reject) => {
     //     axios
