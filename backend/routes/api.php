@@ -9,6 +9,7 @@ use App\Http\Controllers\API\ActivitiesController;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\SkillController;
+use App\Http\Controllers\API\AllSkillController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,10 @@ Route::post('login', [AuthController::class, 'login']);
 //Get the users with skills
 Route::get("users", [AuthController::class, "getAll"]);
 Route::get("users/{skill_name}", [AuthController::class, "getAllWithSkill"]);
+
+//Get all the skills
+Route::get("skills", [AllSkillController::class, "index"]);
+Route::get("skills/{name}", [AllSkillController::class, "getSkill"]);
 
 
 // Get the youthcenters 
