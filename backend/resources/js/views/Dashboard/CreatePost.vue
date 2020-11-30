@@ -12,6 +12,12 @@
 				<img class="select-img" src="/assets/img/select.svg" alt="" />
 			</div>
 		</router-link>
+
+		<div class="skills">
+			<div class="skill" v-for="getAddedSkill in getAddedSkills">
+				<p class="skill-title">{{ getAddedSkill }}</p>
+			</div>
+		</div>
 	</div>
 	<InputField class="input" placeholder="Waar zal dit plaatsvinden?" />
 	<InputField class="input" placeholder="Uitvoeringsdatum" />
@@ -27,6 +33,16 @@
 		components: {
 			InputField,
 			Button,
+		},
+
+		props: {
+			skills: {},
+		},
+
+		computed: {
+			getAddedSkills: function () {
+				return this.$store.getters.getAddedSkills;
+			},
 		},
 	};
 </script>
@@ -69,6 +85,25 @@
 	.select-button_wrapper {
 		display: flex;
 		align-items: center;
+	}
+
+	.skills {
+		margin-left: 0.25rem;
+		display: flex;
+		flex-flow: wrap;
+		width: 95%;
+		margin-top: 1rem;
+	}
+
+	.skill-title {
+		background-color: #8CE4E3;
+		color: white;
+		width: fit-content;
+		padding: 0.5rem;
+		border-radius: 0.5rem;
+		font-family: "Poppins", sans-serif;
+		font-size: 0.8rem;
+		margin: 0.25rem;
 	}
 	router-link p {
 		text-decoration: none;

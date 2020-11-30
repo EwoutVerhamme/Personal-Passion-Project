@@ -12,8 +12,10 @@
 		</label>
 	</div>
 	<div class="skills">
-		<div class="skill" v-for="skill in skills">
-			<p class="skill-title">{{ skill.name }}</p>
+		<div class="skill" v-for="(skill, index) in skills">
+			<p @click="[(current = index), addSkill(index)]" class="skill-title">
+				{{ skill.skill_name }}
+			</p>
 		</div>
 		<p class="loading" v-if="loading">Skills ophalen...</p>
 		<p class="loading" v-if="found === false">Geen skills gevonden...</p>
@@ -23,7 +25,7 @@
 		Staat je skill er niet tussen? <strong>Voeg hem toe</strong>
 	</p>
 
-	<Button btnText="Voeg de skills toe" />
+	<Button @click="setSkills" btnText="Voeg de skills toe" />
 </template>
 
 <script>
@@ -38,10 +40,14 @@
 
 		data() {
 			return {
+				selected: undefined,
+				current: 0,
 				search: "",
 				skills: {},
+				addedSkills: [],
 				loading: true,
 				found: true,
+				isActive: undefined,
 			};
 		},
 
@@ -50,6 +56,28 @@
 		},
 
 		methods: {
+			setSkills() {
+				const added = this.addedSkills;
+				this.$store.dispatch("SETSKILLS", added);
+				this.$router.push("/create");
+			},
+
+			currentSkill() {
+				console.log(this.skills[this.current].toLowerCase());
+			},
+
+			addSkill(index) {
+				const skill = this.skills[this.current].skill_name;
+
+				if (this.addedSkills.indexOf(skill) !== -1) {
+					this.addedSkills.splice(skill, 1);
+					console.log(this.addedSkills);
+				} else {
+					this.addedSkills.push(skill);
+					console.log(this.addedSkills);
+				}
+			},
+
 			onSearch() {
 				clearTimeout(this.timeout);
 				this.timeout = setTimeout(() => {
@@ -107,7 +135,7 @@
 		margin: 0.25rem;
 	}
 
-	.clicked {
+	.active {
 		background-color: #8CE4E3;
 		color: white;
 	}
