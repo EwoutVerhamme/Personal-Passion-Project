@@ -7,6 +7,7 @@
 	<form action="" class="register-form">
 		<h2 class="register-form-title">Inloggen</h2>
 		<p v-if="error == true" class="error">Je email/passwoord klopt niet.</p>
+		<!-- <InputField type="text" v-model="email" placeholder="Email" /> -->
 		<input
 			v-model="email"
 			type="text"
@@ -37,9 +38,12 @@
 	import axios from "axios";
 	import router from "../../../router/index";
 	import store from "../../../store/index";
+	import InputField from "../../../components/InputField";
 	export default {
 		name: "Register",
-		components: {},
+		components: {
+			InputField,
+		},
 
 		data() {
 			return {

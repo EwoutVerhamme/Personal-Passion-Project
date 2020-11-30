@@ -7,11 +7,7 @@
 				alt=""
 			/>
 
-			<img
-				class="profile-photo"
-				src="/assets/img/profile/profilepic.png"
-				alt=""
-			/>
+			<img class="profile-photo" :src="profilePic" alt="" />
 
 			<router-link to="/editprofile">
 				<svg
@@ -31,7 +27,7 @@
 			</router-link>
 		</div>
 		<div class="profile-info">
-			<h1 class="profile-name">Ewout Verhamme</h1>
+			<h1 class="profile-name">{{ first_name }} {{ last_name }}</h1>
 			<div class="profile-location">
 				<svg
 					width="18"
@@ -55,7 +51,7 @@
 						stroke-linejoin="round"
 					/>
 				</svg>
-				<p class="profile-location_text">JC Ten Goudberge</p>
+				<p class="profile-location_text">{{ youth_center }}</p>
 			</div>
 			<div class="profile-socials">
 				<img src="/assets/img/profile/fb.svg" alt="" />
@@ -97,6 +93,31 @@
 	export default {
 		name: "Profile",
 		components: {},
+
+		data() {
+			return {
+				first_name: "",
+				last_name: "",
+				profilePic: "",
+				youth_center: "",
+				skills: [],
+			};
+		},
+
+		created() {
+			this.setProfileInfo();
+		},
+
+		methods: {
+			setProfileInfo() {
+				const profile = JSON.parse(localStorage.getItem("user"));
+				console.log(profile);
+				this.first_name = profile.user.first_name;
+				this.last_name = profile.user.last_name;
+				this.youth_center = profile.user.youth_center;
+				this.profilePic = profile.user.profilepic;
+			},
+		},
 	};
 </script>
 

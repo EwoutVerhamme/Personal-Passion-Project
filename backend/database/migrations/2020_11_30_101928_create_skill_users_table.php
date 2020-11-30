@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAllSkillsTable extends Migration
+class CreateSkillUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateAllSkillsTable extends Migration
      */
     public function up()
     {
-        Schema::create('all_skills', function (Blueprint $table) {
+        Schema::create('skill_users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('user_id');
+            $table->string('skill_id');
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ class CreateAllSkillsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('all_skills');
+        Schema::dropIfExists('skill_users');
     }
 }
