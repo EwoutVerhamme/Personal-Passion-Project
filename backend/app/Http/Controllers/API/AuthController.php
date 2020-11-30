@@ -19,17 +19,17 @@ class AuthController extends Controller
         return response($users, 201);
     }
 
-    public function getAllWithSkill($skill_name){
+    public function getUserWithSkill($name) {
+        $users = DB::table('users')
+        ->join('skill_users', 'skill_users.user_id', '=', 'users.id')
+        ->join('skills', 'skills.id', '=', 'skill_users.skill_id')
+        ->select('users.first_name', 'users.last_name', 'skills.skill_name', 'users.profilepic')
+        ->where('skill_name', 'like', '%' . $name . '%')
+        ->orWhere('first_name', 'like', '%' . $name . '%')
+        ->orWhere('last_name', 'like', '%' . $name . '%')
+        ->get();
 
-        // SELECT * FROM users INNER JOIN skills ON users.id = skills.user_id
-
-        $fetchedUsers = DB::table('users')
-        ->join("skills", "users.id" , "skills.user_id")
-        ->where('first_name', 'like', '%' . $skill_name . '%')
-        ->orWhere('skill_name', 'like', '%' . $skill_name . '%')->get();
-
-        return response($fetchedUsers, 201);
-
+        return response($users, 200);
     }
 
 
