@@ -10,6 +10,7 @@ use App\Http\Controllers\ApiController;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\SkillController;
 use App\Http\Controllers\API\Skill_userController;
+use App\Http\Controllers\API\AdController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,13 +31,18 @@ use App\Http\Controllers\API\Skill_userController;
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
 
-//Get the users with skills
+//Get the users with skills and ads
 Route::get("users", [AuthController::class, "getAll"]);
 Route::get("users/{skill_name}", [AuthController::class, "getUserWithSkill"]);
+
 
 //Get all the skills
 Route::get("skills", [Skill_userController::class, "index"]);
 
+//Get all the adds
+Route::get("ads", [AdController::class, "index"]);
+Route::get("ads/{ad_name}", [AdController::class, "getUserWithAds"]);
+Route::post("ads", [AdController::class, "store"]);
 
 // Get the youthcenters 
 Route::get("youth_centers", [YouthCenterController::class, "getAll"]);

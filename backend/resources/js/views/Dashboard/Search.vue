@@ -76,6 +76,15 @@
 					<img width="40" class="content-img" :src="t.profilepic" alt="" />
 					<p class="content-title">{{ t.name }}</p>
 				</div>
+				<div
+					v-if="tabs[current] == 'Engagement'"
+					:key="t.id"
+					v-for="t in tab"
+					class="content-block"
+				>
+					<img width="40" class="content-img" :src="t.profilepic" alt="" />
+					<p class="content-title">{{ t.title }}</p>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -123,7 +132,10 @@
 						console.log("Materiaal");
 						break;
 					case "engagement":
-						console.log("Engagement");
+						slug = "ads";
+						this.slug = slug;
+						this.search = "";
+						this.makeSearch();
 						break;
 					case "jeugdhuis":
 						slug = "youth_centers";
@@ -190,7 +202,7 @@
 		border-bottom: solid 0.2rem #D3FFFF;
 		position: relative;
 		z-index: 1;
-		margin-top: .5rem;
+		margin-top: 0.5rem;
 	}
 	.search-select_text {
 		font-family: "Poppins", sans-serif;

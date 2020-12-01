@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 use App\Models\Skill;
+use App\Models\Ad;
 
 class User extends Authenticatable
 {
@@ -16,6 +17,11 @@ class User extends Authenticatable
     public function skills()
     {
         return $this->belongsToMany(Skill::class);
+    }
+
+    public function ads()
+    {
+        return $this->belongsToMany(Ad::class);
     }
 
     /**
