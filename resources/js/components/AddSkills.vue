@@ -1,41 +1,47 @@
 <template>
-	<h1 class="title">Voeg skills toe</h1>
-	<div class="input-field_wrapper">
-		<label class="search-label" for="">
-			<input
-				placeholder="Zoeken naar skills "
-				v-model="search"
-				@input="onSearch"
-				class="input-field"
-				type="text"
-			/>
-		</label>
-	</div>
-	<div class="skills">
-		<div class="skill" v-for="(skill, index) in skills">
-			<p @click="[(current = index), addSkill(index)]" class="skill-title">
-				{{ skill.skill_name }}
-			</p>
+	<div>
+		<div class="title-wrapper">
+			<Back class="back" />
+			<h1 class="title">Voeg skills toe</h1>
 		</div>
-		<p class="loading" v-if="loading">Skills ophalen...</p>
-		<p class="loading" v-if="found === false">Geen skills gevonden...</p>
+		<div class="input-field_wrapper">
+			<label class="search-label" for="">
+				<input
+					placeholder="Zoeken naar skills "
+					v-model="search"
+					@input="onSearch"
+					class="input-field"
+					type="text"
+				/>
+			</label>
+		</div>
+		<div class="skills">
+			<div class="skill" v-for="(skill, index) in skills">
+				<p @click="[(current = index), addSkill(index)]" class="skill-title">
+					{{ skill.skill_name }}
+				</p>
+			</div>
+			<p class="loading" v-if="loading">Skills ophalen...</p>
+			<p class="loading" v-if="found === false">Geen skills gevonden...</p>
+		</div>
+
+		<p class="noskill">
+			Staat je skill er niet tussen? <strong>Voeg hem toe</strong>
+		</p>
+
+		<Button @click="setSkills" btnText="Voeg de skills toe" />
 	</div>
-
-	<p class="noskill">
-		Staat je skill er niet tussen? <strong>Voeg hem toe</strong>
-	</p>
-
-	<Button @click="setSkills" btnText="Voeg de skills toe" />
 </template>
 
 <script>
-	import Button from "../components/Button";
-
+	import Button from "./Button";
+	import Back from "./Back";
 	export default {
 		name: "AddSkills",
 
 		components: {
 			Button,
+			Back,
 		},
 
 		data() {
@@ -107,12 +113,24 @@
 
 
 <style scoped>
+	.title-wrapper {
+		width: 100vw;
+		display: grid;
+	}
 	.title {
 		text-align: center;
 		font-family: "Poppins", sans-serif;
 		font-size: 1.8rem;
 		color: #FF899E;
 		margin-bottom: 0;
+		text-align: center;
+		grid-row: 1;
+	}
+
+	.back {
+		position: absolute;
+		top: 1.2rem;
+		left: 0.5rem;
 	}
 
 	.skills {

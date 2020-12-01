@@ -18,7 +18,7 @@
 </script>
 
 
-<style scoped>
+<style >
 	.input-form {
 		--input_height: 2.5rem;
 		--input_color: #8CE4E3;

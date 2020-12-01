@@ -50,6 +50,7 @@
 
 	.container {
 		padding-bottom: 5rem;
+		display: grid;
 	}
 
 	.navigation {

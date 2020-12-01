@@ -1,37 +1,39 @@
 <template>
-	<div class="register-welcome">
-		<h1 class="register-title">Welkom bij <strong>Kollapp</strong></h1>
-		<h2 class="register-subtitle">Jongeren en jeugdhuizen dichter bijeen</h2>
-		<img src="/assets/img/logo.svg" alt="" class="register-img" />
-	</div>
-	<form action="" class="register-form">
-		<h2 class="register-form-title">Inloggen</h2>
-		<p v-if="error == true" class="error">Je email/passwoord klopt niet.</p>
-		<!-- <InputField type="text" v-model="email" placeholder="Email" /> -->
-		<input
-			v-model="email"
-			type="text"
-			placeholder="Email"
-			class="register-input"
-		/>
-		<input
-			v-model="password"
-			type="password"
-			placeholder="Wachtwoord"
-			class="register-input"
-		/>
-
-		<div class="register-accept">
-			<input type="radio" class="register-accept_radio" />
-			<p class="register-accept_text">Ingelogd blijven</p>
+	<div class="login-wrapper">
+		<div class="register-welcome">
+			<h1 class="register-title">Welkom bij <strong>Kollapp</strong></h1>
+			<h2 class="register-subtitle">Jongeren en jeugdhuizen dichter bijeen</h2>
+			<img src="/assets/img/logo.svg" alt="" class="register-img" />
 		</div>
+		<form action="" class="register-form">
+			<h2 class="register-form-title">Inloggen</h2>
+			<p v-if="error == true" class="error">Je email/passwoord klopt niet.</p>
+			<!-- <InputField type="text" v-model="email" placeholder="Email" /> -->
+			<input
+				v-model="email"
+				type="text"
+				placeholder="Email"
+				class="register-input"
+			/>
+			<input
+				v-model="password"
+				type="password"
+				placeholder="Wachtwoord"
+				class="register-input"
+			/>
+
+			<div class="register-accept">
+				<input type="radio" class="register-accept_radio" />
+				<p class="register-accept_text">Ingelogd blijven</p>
+			</div>
+		</form>
 		<div class="button-wrapper">
 			<button @click.prevent="login" class="register-button">Inloggen</button>
 			<router-link to="/register">
 				<p class="login">Nog geen account? <strong>Aanmelden</strong></p>
 			</router-link>
 		</div>
-	</form>
+	</div>
 </template>
 
 <script>
@@ -73,6 +75,11 @@
 
 
 <style scoped>
+	.login-wrapper {
+		width: 100vw;
+		height: 100%;
+		display: grid;
+	}
 	.register-welcome {
 		display: flex;
 		justify-content: center;
@@ -98,7 +105,7 @@
 
 	.register-img {
 		margin-top: 1rem;
-		height: 5rem;
+		height: 6rem;
 	}
 
 	.register-form {
@@ -156,18 +163,19 @@
 
 	.button-wrapper {
 		display: flex;
-		justify-content: center;
 		flex-direction: column;
+		justify-content: center;
+		align-self: flex-end;
 	}
 
 	.login {
 		text-align: center;
-		margin: 0;
 		margin-top: 0.5rem;
 		font-family: "Poppins", sans-serif;
 		font-weight: 300;
 		font-size: 0.9rem;
 		color: #434343;
+		text-align: center;
 	}
 
 	router-link a {

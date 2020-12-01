@@ -1,27 +1,70 @@
 <template>
-	<div>
-		<h1 class="title">Maak een zoekertje</h1>
-		<InputField class="input" placeholder="Geef je zoekertje een titel" />
-		<InputField class="input" placeholder="Geef wat extra informatie" />
-	</div>
-	<div class="select-skill">
-		<p class="select-title">Naar welke skills ben je opzoek?</p>
-		<router-link to="/addskills">
-			<div class="select-button_wrapper">
-				<p class="select-button">Selecteer skills</p>
-				<img class="select-img" src="/assets/img/select.svg" alt="" />
-			</div>
-		</router-link>
+	<h1 class="title">Maak een zoekertje</h1>
+	<div class="input-wrapper">
+		<div class="input-form">
+			<input
+				v-model="data.title"
+				type="text"
+				class="input-field"
+				autocomplete="off"
+				placeholder=" "
+			/>
+			<label for="" class="input-label">
+				<span class="label-name">Geef je zoekertje een titel</span>
+			</label>
+		</div>
+		<div class="input-form">
+			<input
+				v-model="data.info"
+				type="text"
+				class="input-field"
+				autocomplete="off"
+				placeholder=" "
+			/>
+			<label for="" class="input-label">
+				<span class="label-name">Geef wat extra informatie</span>
+			</label>
+		</div>
+		<div class="select-skill">
+			<p class="select-title">Naar welke skills ben je opzoek?</p>
+			<router-link to="/addskills">
+				<div @click="storeCurrent" class="select-button_wrapper">
+					<p class="select-button">Selecteer skills</p>
+					<img class="select-img" src="/assets/img/select.svg" alt="" />
+				</div>
+			</router-link>
 
-		<div class="skills">
-			<div class="skill" v-for="getAddedSkill in getAddedSkills">
-				<p class="skill-title">{{ getAddedSkill }}</p>
+			<div class="skills">
+				<div class="skill" v-for="getAddedSkill in getAddedSkills">
+					<p class="skill-title">{{ getAddedSkill }}</p>
+				</div>
 			</div>
 		</div>
+		<div class="input-form">
+			<input
+				v-model="data.location"
+				type="text"
+				class="input-field"
+				autocomplete="off"
+				placeholder=" "
+			/>
+			<label for="" class="input-label">
+				<span class="label-name">Waar zal dit plaatsvinden?</span>
+			</label>
+		</div>
+		<div class="input-form">
+			<input
+				v-model="data.date"
+				type="text"
+				class="input-field"
+				autocomplete="off"
+				placeholder=" "
+			/>
+			<label for="" class="input-label">
+				<span class="label-name">Wat is de uitvoeringsdatum?</span>
+			</label>
+		</div>
 	</div>
-	<InputField class="input" placeholder="Waar zal dit plaatsvinden?" />
-	<InputField class="input" placeholder="Uitvoeringsdatum" />
-
 	<Button btnText="Plaats je zoekertje" />
 </template>
 
@@ -39,9 +82,45 @@
 			skills: {},
 		},
 
+		data() {
+			return {
+				data: {
+					title: "",
+					info: "",
+					location: "",
+					date: "",
+				},
+			};
+		},
+
+		created() {
+			this.setCurrent();
+		},
+
 		computed: {
 			getAddedSkills: function () {
 				return this.$store.getters.getAddedSkills;
+			},
+			getCurrent: function () {
+				return this.$store.getters.getCurrent;
+			},
+		},
+
+		methods: {
+			storeCurrent() {
+				this.$store.dispatch("SETCURRENT", this.data);
+			},
+
+			setCurrent() {
+				const set = this.getCurrent;
+				this.data.title = set.title;
+				this.data.info = set.info;
+				this.data.location = set.location;
+				this.data.date = set.date;
+			},
+
+			submitPost() {
+				this.$store.dispatch("SUBMITPOST", this.data);
 			},
 		},
 	};
