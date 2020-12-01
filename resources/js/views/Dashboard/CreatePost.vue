@@ -65,7 +65,7 @@
 			</label>
 		</div>
 	</div>
-	<Button btnText="Plaats je zoekertje" />
+	<Button @click="submitPost" btnText="Plaats je zoekertje" />
 </template>
 
 <script>
@@ -89,6 +89,8 @@
 					info: "",
 					location: "",
 					date: "",
+					user_id: 1,
+					skill_id: 2,
 				},
 			};
 		},
@@ -120,7 +122,9 @@
 			},
 
 			submitPost() {
-				this.$store.dispatch("SUBMITPOST", this.data);
+				const payload = this.data;
+				this.$store.dispatch("SUBMITPOST", payload);
+				this.$router.push("/");
 			},
 		},
 	};

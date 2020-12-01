@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export default {
 
   state: {
@@ -31,7 +33,24 @@ export default {
 
     SETCURRENT: ({ commit }, data) => {
       commit('setCurrent', data)
-  }
+  },
+
+  SUBMITPOST: ({ commit }, payload) => {
+    return new Promise((resolve, reject) => {
+      axios
+        .post(`api/ads`, payload)
+        .then(({ data, status }) => {
+          if (status === 200) {
+            console.log(data)
+            resolve(payload);
+          }
+        })
+        .catch(error => {
+          reject(error);
+        });
+    });
+    
+  },
 
   }
 };
