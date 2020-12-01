@@ -89,7 +89,7 @@
 					info: "",
 					location: "",
 					date: "",
-					user_id: 1,
+					user_id: "",
 					skill_id: 2,
 				},
 			};
@@ -122,9 +122,11 @@
 			},
 
 			submitPost() {
+				const getUser = JSON.parse(localStorage.getItem("user"));
+				const user = getUser.user.id;
+				this.data.user_id = user;
 				const payload = this.data;
 				this.$store.dispatch("SUBMITPOST", payload);
-				this.$router.push("/");
 			},
 		},
 	};

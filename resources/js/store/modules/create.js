@@ -24,6 +24,8 @@ export default {
       setCurrent(state, data){
         state.data = data;
       },
+
+      
   },
   actions: {
 
@@ -36,6 +38,7 @@ export default {
   },
 
   SUBMITPOST: ({ commit }, payload) => {
+    console.log(payload )
     return new Promise((resolve, reject) => {
       axios
         .post(`api/ads`, payload)
