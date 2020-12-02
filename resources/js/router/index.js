@@ -9,7 +9,8 @@ import NotFound from "../components/NotFound.vue";
 import ProfileInfo from "../views/Auth/Register/ProfileInfo.vue";
 import AddSkills from "../components/AddSkills.vue";
 import EditProfile from "../components/EditProfile.vue";
-import OtherProfile from "../components/OtherProfile.vue"
+import OtherProfile from "../components/OtherProfile.vue";
+import Succes from "../components/Succes.vue"
 import store from "../store/index"
 
 const ifNotAuthenticated = (to, from, next) => {
@@ -94,6 +95,14 @@ beforeEnter: ifAuthenticated,
   path: '/user/:id',
   name: 'OtherProfile',
   component: OtherProfile,
+  beforeEnter: ifAuthenticated,
+
+},
+
+{
+  path: '/succes',
+  name: 'Succes',
+  component: Succes,
   beforeEnter: ifAuthenticated,
 
 },

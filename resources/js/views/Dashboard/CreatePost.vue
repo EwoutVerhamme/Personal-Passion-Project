@@ -36,8 +36,8 @@
 				</router-link>
 
 				<div class="skills">
-					<div class="skill" v-for="getAddedSkill in getAddedSkills">
-						<p class="skill-title">{{ getAddedSkill }}</p>
+					<div class="skill">
+						<p class="skill-title">{{ getSkillName }}</p>
 					</div>
 				</div>
 			</div>
@@ -65,7 +65,12 @@
 					<span class="label-name">Wanneer zal dit plaatsvinden?</span>
 				</label>
 			</div>
-			<input ref="image" type="file" @change="onChangeFileUpload()" />
+			<input
+				class="img-input"
+				ref="image"
+				type="file"
+				@change="onChangeFileUpload()"
+			/>
 		</form>
 
 		<div class="button-wrapper">
@@ -97,8 +102,8 @@
 					info: "",
 					location: "",
 					date: "",
-					user_id: 1,
-					skill_id: 2,
+					user_id: "",
+					skill_id: "",
 					image: null,
 				},
 			};
@@ -114,6 +119,13 @@
 			},
 			getCurrent: function () {
 				return this.$store.getters.getCurrent;
+			},
+
+			getSkillId: function () {
+				return this.$store.getters.getSkillId;
+			},
+			getSkillName: function () {
+				return this.$store.getters.getSkillName;
 			},
 		},
 
@@ -133,7 +145,8 @@
 			submitPost() {
 				const getUser = JSON.parse(localStorage.getItem("user"));
 				const user = getUser.user.id;
-				this.user_id = user;
+				this.data.user_id = user;
+				this.data.skill_id = this.getSkillId;
 
 				const data = new FormData();
 				data.append("title", this.data.title);
@@ -143,11 +156,12 @@
 				data.append("user_id", this.data.user_id);
 				data.append("skill_id", this.data.skill_id);
 				data.append("image", this.data.image);
-
+				console.log(data);
 				this.$store
 					.dispatch("SUBMITPOST", data, this.image)
 					.then((success) => {
 						console.log("succes");
+						this.$router.push("/succes");
 					})
 					.catch((error) => {
 						this.error = true;
@@ -223,6 +237,12 @@
 		font-size: 0.8rem;
 		margin: 0.25rem;
 	}
+
+	.img-input {
+		margin-top: 2rem;
+		margin-left: 0.5rem;
+	}
+
 	router-link p {
 		text-decoration: none;
 	}

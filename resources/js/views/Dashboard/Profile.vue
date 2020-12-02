@@ -148,6 +148,8 @@
 		position: absolute;
 		top: 0.5rem;
 		right: 0.5rem;
+		width: 3rem;
+		height: 3rem;
 	}
 
 	.profile-info {
