@@ -6,25 +6,25 @@ export default {
     data: {
       title: "",
       info: "",
-      skill_id: "",
       location: "",
       date: "",
       file: "",
     },
- 
-     skill_name: ""
+
+      skill_id: "",
+     skill_name: "",
       
   },
   getters: {
     getAddedSkills: state => state.addedSkills,
     getCurrent: state => state.data,
-    getSkillId: state => state.data.skill_id,
+    getSkillId: state => state.skill_id,
     getSkillName: state => state.skill_name
   },
   mutations: {
-    setSkill(state, skill, skillId){
-        state.skill_name = skill;
-        state.data.skill_id = skillId
+    setSkill(state, skillId, selectedSkillName){
+        state.skill_id = skillId
+        state.skill_name = selectedSkillName;
       },
 
       setCurrent(state, data){
@@ -36,8 +36,9 @@ export default {
   },
   actions: {
 
-    SETSKILLS: ({ commit },skill, skillId) => {
-        commit('setSkill', skill, skillId)
+    SETSKILLS: ({ commit },skillId) => {
+
+        commit('setSkill', skillId)
     },
 
     SETCURRENT: ({ commit }, data) => {

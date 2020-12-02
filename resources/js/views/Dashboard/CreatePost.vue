@@ -140,13 +140,13 @@
 				this.data.info = set.info;
 				this.data.location = set.location;
 				this.data.date = set.date;
+				this.data.skill_id = this.getSkillId;
 			},
 
 			submitPost() {
 				const getUser = JSON.parse(localStorage.getItem("user"));
 				const user = getUser.user.id;
 				this.data.user_id = user;
-				this.data.skill_id = this.getSkillId;
 
 				const data = new FormData();
 				data.append("title", this.data.title);

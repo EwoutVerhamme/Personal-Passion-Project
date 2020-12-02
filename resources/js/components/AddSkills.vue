@@ -68,9 +68,9 @@
 
 		methods: {
 			setSkills() {
-				const skill = this.selectedSkillName;
 				const skillId = this.selectedSkillId;
-				this.$store.dispatch("SETSKILLS", skill, skillId);
+				const skillName = this.selectedSkillName;
+				this.$store.dispatch("SETSKILLS", skillId, skillName);
 				this.$router.push("/create");
 			},
 
@@ -79,11 +79,9 @@
 			},
 
 			addSkill(index) {
-				const skill = this.skills[this.current].skill_name;
-				const skillId = this.skills[this.current].id;
+				this.selectedSkillName = this.skills[this.current].skill_name;
+				this.selectedSkillId = this.skills[this.current].id;
 				this.isActive = index;
-				this.selectedSkill = skillId;
-				this.selectedSkillName = skill;
 			},
 
 			onSearch() {
