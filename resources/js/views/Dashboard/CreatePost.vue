@@ -1,11 +1,77 @@
 <template>
-	<h1 class="title">Maak een zoekertje</h1>
-	<input v-model="title" type="text" />
-	<input v-model="info" type="text" />
-	<input v-model="location" type="text" />
-	<input v-model="date" type="text" />
-	<input ref="image" type="file" @change="onChangeFileUpload()" />
-	<button @click="submitPost">Submit</button>
+	<div class="create-post">
+		<h1 class="title">Maak een zoekertje</h1>
+		<form action="" class="create-form">
+			<div class="input-form">
+				<input
+					v-model="data.title"
+					type="text"
+					class="input-field"
+					autocomplete="off"
+					placeholder=" "
+				/>
+				<label for="" class="input-label">
+					<span class="label-name">Geef je zoekertje een titel</span>
+				</label>
+			</div>
+			<div class="input-form">
+				<input
+					v-model="data.info"
+					type="text"
+					class="input-field"
+					autocomplete="off"
+					placeholder=" "
+				/>
+				<label for="" class="input-label">
+					<span class="label-name">Geef wat extra informatie</span>
+				</label>
+			</div>
+			<div class="select-skill">
+				<p class="select-title">Naar welke skills ben je opzoek?</p>
+				<router-link to="/addskills">
+					<div @click="storeCurrent" class="select-button_wrapper">
+						<p class="select-button">Selecteer skills</p>
+						<img class="select-img" src="/assets/img/select.svg" alt="" />
+					</div>
+				</router-link>
+
+				<div class="skills">
+					<div class="skill" v-for="getAddedSkill in getAddedSkills">
+						<p class="skill-title">{{ getAddedSkill }}</p>
+					</div>
+				</div>
+			</div>
+			<div class="input-form">
+				<input
+					v-model="data.location"
+					type="text"
+					class="input-field"
+					autocomplete="off"
+					placeholder=" "
+				/>
+				<label for="" class="input-label">
+					<span class="label-name">Waar zal dit plaatsvinden?</span>
+				</label>
+			</div>
+			<div class="input-form">
+				<input
+					v-model="data.date"
+					type="text"
+					class="input-field"
+					autocomplete="off"
+					placeholder=" "
+				/>
+				<label for="" class="input-label">
+					<span class="label-name">Wanneer zal dit plaatsvinden?</span>
+				</label>
+			</div>
+			<input ref="image" type="file" @change="onChangeFileUpload()" />
+		</form>
+
+		<div class="button-wrapper">
+			<button @click="submitPost" class="button">Plaats je zoekertje</button>
+		</div>
+	</div>
 </template>
 
 <script>
@@ -26,13 +92,15 @@
 
 		data() {
 			return {
-				title: "",
-				info: "",
-				location: "",
-				date: "",
-				user_id: 1,
-				skill_id: 2,
-				image: null,
+				data: {
+					title: "",
+					info: "",
+					location: "",
+					date: "",
+					user_id: 1,
+					skill_id: 2,
+					image: null,
+				},
 			};
 		},
 
@@ -56,10 +124,10 @@
 
 			setCurrent() {
 				const set = this.getCurrent;
-				this.title = set.title;
-				this.info = set.info;
-				this.location = set.location;
-				this.date = set.date;
+				this.data.title = set.title;
+				this.data.info = set.info;
+				this.data.location = set.location;
+				this.data.date = set.date;
 			},
 
 			submitPost() {
@@ -68,32 +136,26 @@
 				this.user_id = user;
 
 				const data = new FormData();
-				data.append("title", this.title);
-				data.append("info", this.info);
-				data.append("location", this.location);
-				data.append("date", this.date);
-				data.append("user_id", this.user_id);
-				data.append("skill_id", this.skill_id);
-				data.append("image", this.image);
-				console.log(data);
-				return new Promise((resolve, reject) => {
-					axios
-						.post(`api/ads`, data, this.image)
-						.then(({ data, status }) => {
-							if (status === 200) {
-								console.log(data);
-								resolve(status);
-							}
-						})
-						.catch((error) => {
-							reject(error);
-						});
-				});
+				data.append("title", this.data.title);
+				data.append("info", this.data.info);
+				data.append("location", this.data.location);
+				data.append("date", this.data.date);
+				data.append("user_id", this.data.user_id);
+				data.append("skill_id", this.data.skill_id);
+				data.append("image", this.data.image);
+
+				this.$store
+					.dispatch("SUBMITPOST", data, this.image)
+					.then((success) => {
+						console.log("succes");
+					})
+					.catch((error) => {
+						this.error = true;
+					});
 			},
 
 			onChangeFileUpload() {
-				this.image = this.$refs.image.files[0];
-				console.log(this.image);
+				this.data.image = this.$refs.image.files[0];
 			},
 		},
 	};
@@ -101,6 +163,10 @@
 
 
 <style scoped>
+	.create-post {
+		display: grid;
+		grid-template-rows: 5rem auto 4rem;
+	}
 	.title {
 		text-align: center;
 		font-family: "Poppins", sans-serif;

@@ -10,6 +10,7 @@ export default {
       date: "",
       file: "",
     },
+ 
       addedSkills: {},
       
   },
@@ -23,7 +24,7 @@ export default {
       },
 
       setCurrent(state, data){
-        state.data = data;
+      state.data = data
       },
 
       
@@ -38,20 +39,19 @@ export default {
       commit('setCurrent', data)
   },
 
-  SUBMITPOST: ({ commit }, title, info,location, date,image) => {
-    console.log(title, info,location, date,image)
+  SUBMITPOST: ({ commit }, data, image) => {
+    console.log(data, image)
     return new Promise((resolve, reject) => {
       axios
-        .post(`api/ads`,{
-          title, info,location, date,image
-        })
+        .post(`api/ads`, data, image)
         .then(({ data, status }) => {
           if (status === 200) {
-            console.log(data)
+            console.log(data);
+            
             resolve(status);
           }
         })
-        .catch(error => {
+        .catch((error) => {
           reject(error);
         });
     });
