@@ -78,13 +78,39 @@
 					<p class="content-title">{{ t.name }}</p>
 				</div>
 				<div
+					class="engagement-block"
 					v-if="tabs[current] == 'Engagement'"
 					:key="t.id"
 					v-for="t in tab"
-					class="content-block"
 				>
-					<img width="40" class="content-img" :src="t.image" alt="" />
-					<p class="content-title">{{ t.title }}</p>
+					<img width="40" class="engagement-img" :src="t.image" alt="" />
+					<p class="engagement-title">
+						{{ t.first_name }} zoekt een
+						<strong>{{ t.skill_alias }}</strong>
+					</p>
+
+					<div class="engagement-info">
+						<div class="date-wrapper">
+							<img
+								width="20"
+								height="20"
+								src="/assets/img/calendar.png"
+								alt=""
+							/>
+
+							<p class="engagement-text">{{ t.date }}</p>
+						</div>
+						<div class="location-wrapper">
+							<img
+								width="20"
+								height="20"
+								src="/assets/img/location.svg"
+								alt=""
+							/>
+
+							<p class="engagement-text">{{ t.location }}</p>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -119,7 +145,6 @@
 		},
 
 		methods: {
-
 			checkCurrentTab() {
 				let slug = "";
 				const tab = this.tabs[this.current].toLowerCase();
@@ -297,7 +322,65 @@
 	}
 
 	.content-img {
+		width: 2rem;
+		height: 3rem;
 		border-radius: 50%;
+	}
+
+	.engagement-block {
+		display: grid;
+		grid-template-columns: 0.5rem 0.3fr 1fr 0.5rem;
+		box-shadow: 0px 0px 13px 1px rgba(0, 0, 0, 0.09);
+		border-radius: 20px;
+		width: 95%;
+		height: fit-content;
+		margin: 0 auto;
+		margin-top: 1rem;
+		font-family: "Poppins", sans-serif;
+	}
+
+	.engagement-title {
+		font-size: 1.2rem;
+		grid-column: 3;
+		grid-row: 1;
+		margin: 0;
+	}
+
+	.engagement-img {
+		width: 3rem;
+		height: 3rem;
+		border-radius: 50%;
+		grid-row: 1;
+		grid-column: 2;
+		align-self: center;
+		justify-self: center;
+		margin: 0;
+	}
+
+	.engagement-info {
+		grid-row: 2;
+		grid-column: 3;
+		display: flex;
+		flex-direction: column;
+		margin: 0;
+	}
+
+	.date-wrapper {
+		display: flex;
+		align-items: center;
+	}
+
+	.location-wrapper {
+		display: flex;
+		align-items: center;
+	}
+
+	.engagement-text {
+		margin: 0.2rem;
+	}
+
+	strong {
+		color: #8ce4e3;
 	}
 
 	input:focus,

@@ -42,8 +42,8 @@ Route::get("skills", [Skill_userController::class, "index"]);
 
 //Get all the adds
 Route::get("ads", [AdController::class, "index"]);
-Route::post("ads", [AdController::class, "store"]);
 Route::get("ads/{ad_name}", [AdController::class, "getUserWithAds"]);
+Route::post("ads", [AdController::class, "store"]);
 
 
 // Get the youthcenters 

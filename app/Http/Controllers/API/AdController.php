@@ -19,7 +19,12 @@ public function index() {
     // ->select('ads.id','ads.title', 'ads.location', 'ads.date', 'ads.image','users.first_name', 'users.last_name', 'skills.skill_name')
     // ->get();
 
-    $users = DB::table('ads')->get();
+    $users = DB::table('ads')
+    ->join('users', 'users.id', '=', 'ads.user_id')
+    ->join('skill_users', 'users.id', '=', 'skill_users.user_id')
+    ->join('skills', 'skills.id', '=', 'skill_users.skill_id')
+    ->select( 'ads.id','ads.title', 'ads.info','ads.date', 'ads.location', 'ads.image',"users.first_name", 'users.last_name', 'users.profilepic', 'users.youth_center', 'skills.skill_name', 'skills.skill_alias')
+    ->get();
     return response($users, 200);
 }
 
@@ -28,12 +33,13 @@ public function getUserWithAds($ad_name) {
     //SELECT ads.title, ads.location, ads.date, users.first_name, users.last_name, skills.skill_name FROM ads INNER JOIN users ON users.id = ads.user_id INNER JOIN skills ON skills.id = ads.skill_id
     $users = DB::table('ads')
     ->join('users', 'users.id', '=', 'ads.user_id')
-    ->join('skills', 'skills.id', '=', 'ads.skill_id')
-    ->select('ads.id','ads.title', 'ads.location', 'ads.date','users.first_name', 'users.last_name', 'skills.skill_name')
-    ->where('skill_name', 'like', '%' . $ad_name . '%')
+    ->join('skill_users', 'users.id', '=', 'skill_users.user_id')
+    ->join('skills', 'skills.id', '=', 'skill_users.skill_id')
+    ->select( 'ads.id','ads.title', 'ads.info','ads.date', 'ads.location', 'ads.image',"users.first_name", 'users.last_name', 'users.profilepic', 'users.youth_center', 'skills.skill_name', 'skills.skill_alias')
+    ->orWhere('skill_name', 'like', '%' . $ad_name . '%')
     ->orWhere('first_name', 'like', '%' . $ad_name . '%')
-    ->orWhere('last_name', 'like', '%' . $ad_name . '%')
     ->get();
+
 
     return response($users, 200);
 }
