@@ -1,85 +1,11 @@
 <template>
 	<h1 class="title">Maak een zoekertje</h1>
-	<form class="input-wrapper">
-		<div class="input-form">
-			<input
-				v-model="data.title"
-				type="text"
-				class="input-field"
-				autocomplete="off"
-				placeholder=" "
-			/>
-			<label for="" class="input-label">
-				<span class="label-name">Geef je zoekertje een titel</span>
-			</label>
-		</div>
-		<div class="input-form">
-			<input
-				v-model="data.info"
-				type="text"
-				class="input-field"
-				autocomplete="off"
-				placeholder=" "
-			/>
-			<label for="" class="input-label">
-				<span class="label-name">Geef wat extra informatie</span>
-			</label>
-		</div>
-		<div class="select-skill">
-			<p class="select-title">Naar welke skills ben je opzoek?</p>
-			<router-link to="/addskills">
-				<div @click="storeCurrent" class="select-button_wrapper">
-					<p class="select-button">Selecteer skills</p>
-					<img class="select-img" src="/assets/img/select.svg" alt="" />
-				</div>
-			</router-link>
-
-			<div class="skills">
-				<div class="skill" v-for="getAddedSkill in getAddedSkills">
-					<p class="skill-title">{{ getAddedSkill }}</p>
-				</div>
-			</div>
-		</div>
-		<div class="input-form">
-			<input
-				v-model="data.location"
-				type="text"
-				class="input-field"
-				autocomplete="off"
-				placeholder=" "
-			/>
-			<label for="" class="input-label">
-				<span class="label-name">Waar zal dit plaatsvinden?</span>
-			</label>
-		</div>
-		<div class="input-form">
-			<input
-				v-model="data.date"
-				type="text"
-				class="input-field"
-				autocomplete="off"
-				placeholder=" "
-			/>
-			<label for="" class="input-label">
-				<span class="label-name">Wat is de uitvoeringsdatum?</span>
-			</label>
-		</div>
-
-		<div class="input-form">
-			<input
-				type="file"
-				ref="image"
-				v-on:change="onChangeFileUpload()"
-				class="input-field"
-				autocomplete="off"
-				placeholder=" "
-			/>
-			<label for="" class="input-label">
-				<span class="label-name">Wat is de uitvoeringsdatum?</span>
-			</label>
-		</div>
-	</form>
-	<Button @click="submitPost" btnText="Plaats je zoekertje" />
+	<input v-model="title" type="text" />
+	<input v-model="info" type="text" />
+	<input v-model="location" type="text" />
+	<input v-model="date" type="text" />
+	<input ref="image" type="file" @change="onChangeFileUpload()" />
+	<button @click="submitPost">Submit</button>
 </template>
 
 <script>
@@ -100,15 +26,13 @@
 
 		data() {
 			return {
-				data: {
-					title: "",
-					info: "",
-					location: "",
-					date: "",
-					user_id: "",
-					skill_id: 2,
-					image: "dqzdqzd",
-				},
+				title: "",
+				info: "",
+				location: "",
+				date: "",
+				user_id: 1,
+				skill_id: 2,
+				image: null,
 			};
 		},
 
@@ -132,24 +56,44 @@
 
 			setCurrent() {
 				const set = this.getCurrent;
-				this.data.title = set.title;
-				this.data.info = set.info;
-				this.data.location = set.location;
-				this.data.date = set.date;
+				this.title = set.title;
+				this.info = set.info;
+				this.location = set.location;
+				this.date = set.date;
 			},
 
 			submitPost() {
 				const getUser = JSON.parse(localStorage.getItem("user"));
 				const user = getUser.user.id;
-				this.data.user_id = user;
-				const payload = this.data;
+				this.user_id = user;
 
-				this.$store.dispatch("SUBMITPOST", payload);
+				const data = new FormData();
+				data.append("title", this.title);
+				data.append("info", this.info);
+				data.append("location", this.location);
+				data.append("date", this.date);
+				data.append("user_id", this.user_id);
+				data.append("skill_id", this.skill_id);
+				data.append("image", this.image);
+				console.log(data);
+				return new Promise((resolve, reject) => {
+					axios
+						.post(`api/ads`, data, this.image)
+						.then(({ data, status }) => {
+							if (status === 200) {
+								console.log(data);
+								resolve(status);
+							}
+						})
+						.catch((error) => {
+							reject(error);
+						});
+				});
 			},
 
 			onChangeFileUpload() {
-				this.data.image = this.$refs.image.files[0];
-				console.log(this.data.image);
+				this.image = this.$refs.image.files[0];
+				console.log(this.image);
 			},
 		},
 	};

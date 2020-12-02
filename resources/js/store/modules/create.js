@@ -38,15 +38,17 @@ export default {
       commit('setCurrent', data)
   },
 
-  SUBMITPOST: ({ commit }, payload) => {
-    console.log(payload)
+  SUBMITPOST: ({ commit }, title, info,location, date,image) => {
+    console.log(title, info,location, date,image)
     return new Promise((resolve, reject) => {
       axios
-        .post(`api/ads`, payload)
+        .post(`api/ads`,{
+          title, info,location, date,image
+        })
         .then(({ data, status }) => {
           if (status === 200) {
             console.log(data)
-            resolve(payload);
+            resolve(status);
           }
         })
         .catch(error => {
