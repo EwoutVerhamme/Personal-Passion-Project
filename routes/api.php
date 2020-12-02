@@ -33,6 +33,7 @@ Route::post('login', [AuthController::class, 'login']);
 
 //Get the users with skills and ads
 Route::get("users", [AuthController::class, "getAll"]);
+Route::get("user/{id}", [AuthController::class, "getById"]);
 Route::get("users/{skill_name}", [AuthController::class, "getUserWithSkill"]);
 
 
@@ -41,8 +42,9 @@ Route::get("skills", [Skill_userController::class, "index"]);
 
 //Get all the adds
 Route::get("ads", [AdController::class, "index"]);
-Route::get("ads/{ad_name}", [AdController::class, "getUserWithAds"]);
 Route::post("ads", [AdController::class, "store"]);
+Route::get("ads/{ad_name}", [AdController::class, "getUserWithAds"]);
+
 
 // Get the youthcenters 
 Route::get("youth_centers", [YouthCenterController::class, "getAll"]);

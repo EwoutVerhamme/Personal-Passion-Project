@@ -58,7 +58,8 @@
 			</p>
 
 			<div>
-				<div
+				<router-link
+					:to="`/user/${t.id}`"
 					v-if="tabs[current] == 'Talent'"
 					:key="t.id"
 					v-for="t in tab"
@@ -66,7 +67,7 @@
 				>
 					<img width="40" class="content-img" :src="t.profilepic" alt="" />
 					<p class="content-title">{{ t.first_name }} {{ t.last_name }}</p>
-				</div>
+				</router-link>
 				<div
 					v-if="tabs[current] == 'Jeugdhuis'"
 					:key="t.id"
@@ -82,7 +83,7 @@
 					v-for="t in tab"
 					class="content-block"
 				>
-					<img width="40" class="content-img" :src="t.profilepic" alt="" />
+					<img width="40" class="content-img" :src="t.image" alt="" />
 					<p class="content-title">{{ t.title }}</p>
 				</div>
 			</div>
@@ -118,6 +119,7 @@
 		},
 
 		methods: {
+
 			checkCurrentTab() {
 				let slug = "";
 				const tab = this.tabs[this.current].toLowerCase();

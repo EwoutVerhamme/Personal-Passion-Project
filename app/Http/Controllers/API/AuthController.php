@@ -14,6 +14,22 @@ use DB;
 class AuthController extends Controller
 {
 
+    public function getUserByName($name) {
+        $userByName = DB::table('users')
+        ->where('first_name', '=',  $name )
+        ->get();
+
+        return response($userByName, 201);
+    }
+
+    public function getById($id) {
+        $usersById = DB::table('users')
+        ->select('users.id', 'users.first_name', 'users.last_name', 'users.profilepic', 'users.youth_center')
+        ->where('id', 'like', '%' . $id . '%')
+        ->get();
+        return response($usersById, 201);
+    }
+
     public function getAll() {
         $users = DB::table('users')->get();
         return response($users, 201);
@@ -55,7 +71,7 @@ class AuthController extends Controller
 
         //store file into document folder
         $file = $request->profilepic->store('public/users');
-        $filePath = "storage/app/$file";
+        $filePath = "/storage/app/$file";
 
         //store your file into database
         $user = User::create($registerData);

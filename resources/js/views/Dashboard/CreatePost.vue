@@ -1,6 +1,6 @@
 <template>
 	<h1 class="title">Maak een zoekertje</h1>
-	<div class="input-wrapper">
+	<form class="input-wrapper">
 		<div class="input-form">
 			<input
 				v-model="data.title"
@@ -64,13 +64,29 @@
 				<span class="label-name">Wat is de uitvoeringsdatum?</span>
 			</label>
 		</div>
-	</div>
+
+		<div class="input-form">
+			<input
+				type="file"
+				ref="image"
+				v-on:change="onChangeFileUpload()"
+				class="input-field"
+				autocomplete="off"
+				placeholder=" "
+			/>
+			<label for="" class="input-label">
+				<span class="label-name">Wat is de uitvoeringsdatum?</span>
+			</label>
+		</div>
+	</form>
 	<Button @click="submitPost" btnText="Plaats je zoekertje" />
 </template>
 
 <script>
 	import InputField from "../../components/InputField";
 	import Button from "../../components/Button";
+	import axios from "axios";
+
 	export default {
 		name: "CreatePost",
 		components: {
@@ -91,6 +107,7 @@
 					date: "",
 					user_id: "",
 					skill_id: 2,
+					image: "dqzdqzd",
 				},
 			};
 		},
@@ -126,7 +143,13 @@
 				const user = getUser.user.id;
 				this.data.user_id = user;
 				const payload = this.data;
+
 				this.$store.dispatch("SUBMITPOST", payload);
+			},
+
+			onChangeFileUpload() {
+				this.data.image = this.$refs.image.files[0];
+				console.log(this.data.image);
 			},
 		},
 	};

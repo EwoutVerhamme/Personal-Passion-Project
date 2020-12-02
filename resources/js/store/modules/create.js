@@ -7,7 +7,8 @@ export default {
       title: "",
       info: "",
       location: "",
-      date: ""
+      date: "",
+      file: "",
     },
       addedSkills: {},
       
@@ -38,7 +39,7 @@ export default {
   },
 
   SUBMITPOST: ({ commit }, payload) => {
-    console.log(payload )
+    console.log(payload)
     return new Promise((resolve, reject) => {
       axios
         .post(`api/ads`, payload)
