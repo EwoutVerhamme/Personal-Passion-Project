@@ -7,21 +7,13 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Skill;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use DB;
 
 
 
 class AuthController extends Controller
 {
-
-    public function getUserByName($name) {
-        $userByName = DB::table('users')
-        ->where('first_name', '=',  $name )
-        ->get();
-
-        return response($userByName, 201);
-    }
-
     public function getById($id) {
         $usersById = DB::table('users')
         ->select('users.id', 'users.first_name', 'users.last_name', 'users.profilepic', 'users.youth_center')
@@ -31,7 +23,7 @@ class AuthController extends Controller
     }
 
     public function getAll() {
-        $users = DB::table('users')->get();
+        $users = DB::table('users')->limit(3)->get();
         return response($users, 201);
     }
 

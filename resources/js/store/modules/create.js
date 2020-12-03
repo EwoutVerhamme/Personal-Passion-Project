@@ -22,9 +22,11 @@ export default {
     getSkillName: state => state.skill_name
   },
   mutations: {
-    setSkill(state, skillId, selectedSkillName){
+    setSkillId(state, skillId){
         state.skill_id = skillId
-        state.skill_name = selectedSkillName;
+      },
+      setSkillName(state, skillName){
+        state.skill_name = skillName
       },
 
       setCurrent(state, data){
@@ -36,10 +38,13 @@ export default {
   },
   actions: {
 
-    SETSKILLS: ({ commit },skillId) => {
-
-        commit('setSkill', skillId)
+    SETSKILLID: ({ commit },skillId) => {
+        commit('setSkillId', skillId)
     },
+
+    SETSKILLNAME: ({ commit },skillName) => {
+      commit('setSkillName', skillName)
+  },
 
     SETCURRENT: ({ commit }, data) => {
       commit('setCurrent', data)

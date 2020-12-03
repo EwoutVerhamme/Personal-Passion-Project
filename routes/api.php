@@ -23,9 +23,9 @@ use App\Http\Controllers\API\AdController;
 |
 */
 
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+    return $request->user();
+});
 
 // Login or Register
 Route::post('register', [AuthController::class, 'register']);
@@ -44,6 +44,9 @@ Route::get("skills", [Skill_userController::class, "index"]);
 Route::get("ads", [AdController::class, "index"]);
 Route::get("ads/{ad_name}", [AdController::class, "getUserWithAds"]);
 Route::post("ads", [AdController::class, "store"]);
+
+// Get all the matches
+Route::get("matches", [Skill_userController::class, "matches"])->middleware('auth:api');
 
 
 // Get the youthcenters 

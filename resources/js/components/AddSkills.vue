@@ -70,7 +70,8 @@
 			setSkills() {
 				const skillId = this.selectedSkillId;
 				const skillName = this.selectedSkillName;
-				this.$store.dispatch("SETSKILLS", skillId, skillName);
+				this.$store.dispatch("SETSKILLID", skillId);
+				this.$store.dispatch("SETSKILLNAME", skillName);
 				this.$router.push("/create");
 			},
 

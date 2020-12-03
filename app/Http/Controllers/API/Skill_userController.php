@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Skill;
 use DB;
@@ -26,6 +27,20 @@ class Skill_userController extends Controller
 
        
         return response()->json(Skill::get(),200);
+    }
+
+    public function matches() {
+       // Get current user 
+       $user = Auth::user();
+       $id = Auth::id();
+       // Get all engagements with that skills
+       $matches = DB::table('skill_users')
+       ->join('users', 'skill_users.user_id', '=', $id)
+    //    ->select('users.first_name', 'users.youth_center')
+       ->get();
+
+       return response()->json($matches,200);
+
     }
 
     public function getUserWithSkill($name) {
