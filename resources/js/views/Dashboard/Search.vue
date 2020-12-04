@@ -69,6 +69,13 @@
 					<p class="content-title">{{ t.first_name }} {{ t.last_name }}</p>
 				</router-link>
 				<div
+					v-if="tabs[current] == 'Materiaal'"
+					class="content-block"
+				>
+					<p class="content-title">Deze functie komt er binnenkort aan!</p>
+				</div>
+
+				<div
 					v-if="tabs[current] == 'Jeugdhuis'"
 					:key="t.id"
 					v-for="t in tab"

@@ -33,13 +33,22 @@ class Skill_userController extends Controller
        // Get current user 
        $user = Auth::user();
        $id = Auth::id();
+       //My skills
+       $mySkill = DB::table('skill_users')
+       ->where('skill_users.user_id', '=',  $id )
+       ->join('skills', 'skills.id', '=', 'skill_users.skill_id')
+       ->join('users', 'skill_users.user_id', '=', 'users.id')
+       ->join('ads', 'ads.skill_id', '=', 'skill_users.skill_id')
+       ->select('ads.id','ads.user_id', 'skills.skill_alias', 'ads.date','ads.location', )
+       ->get();
        // Get all engagements with that skills
-       $matches = DB::table('skill_users')
-       ->join('users', 'skill_users.user_id', '=', $id)
-    //    ->select('users.first_name', 'users.youth_center')
+       $matches = DB::table('ads')
+       ->join('users', 'users.id', '=', 'ads.user_id')
+       ->join('skills', 'skills.id', '=', 'ads.skill_id')
+       ->select( 'ads.id', 'ads.title', 'ads.info','ads.date', 'ads.location', 'ads.image',"users.first_name", 'users.last_name', 'users.profilepic', 'users.youth_center', 'skills.skill_name', 'skills.skill_alias')
        ->get();
 
-       return response()->json($matches,200);
+       return response()->json($mySkill,200);
 
     }
 

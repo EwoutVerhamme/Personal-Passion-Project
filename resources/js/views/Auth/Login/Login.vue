@@ -1,5 +1,5 @@
 <template>
-	<div class="login-wrapper">
+	<div class="login">
 		<div class="register-welcome">
 			<h1 class="register-title">Welkom bij <strong>Kollapp</strong></h1>
 			<h2 class="register-subtitle">Jongeren en jeugdhuizen dichter bijeen</h2>
@@ -8,29 +8,35 @@
 		<form action="" class="register-form">
 			<h2 class="register-form-title">Inloggen</h2>
 			<p v-if="error == true" class="error">Je email/passwoord klopt niet.</p>
-			<!-- <InputField type="text" v-model="email" placeholder="Email" /> -->
-			<input
-				v-model="email"
-				type="text"
-				placeholder="Email"
-				class="register-input"
-			/>
-			<input
-				v-model="password"
-				type="password"
-				placeholder="Wachtwoord"
-				class="register-input"
-			/>
-
-			<div class="register-accept">
-				<input type="radio" class="register-accept_radio" />
-				<p class="register-accept_text">Ingelogd blijven</p>
+			<div class="input-form">
+				<input
+					v-model="email"
+					type="text"
+					class="input-field"
+					autocomplete="off"
+					placeholder=" "
+				/>
+				<label for="" class="input-label">
+					<span class="label-name">Email</span>
+				</label>
+			</div>
+			<div class="input-form">
+				<input
+					v-model="password"
+					type="password"
+					class="input-field"
+					autocomplete="off"
+					placeholder=" "
+				/>
+				<label for="" class="input-label">
+					<span class="label-name">Wachtwoord</span>
+				</label>
 			</div>
 		</form>
 		<div class="button-wrapper">
 			<button @click.prevent="login" class="register-button">Inloggen</button>
 			<router-link to="/register">
-				<p class="login">Nog geen account? <strong>Aanmelden</strong></p>
+				<p class="login-text">Nog geen account? <strong>Aanmelden</strong></p>
 			</router-link>
 		</div>
 	</div>
@@ -75,12 +81,15 @@
 
 
 <style scoped>
-	.login-wrapper {
-		width: 100vw;
-		height: 100%;
+	.login {
+		height: 100vh;
+		width: 95vw;
 		display: grid;
+		margin: 0 auto;
 	}
+
 	.register-welcome {
+		align-self: flex-start;
 		display: flex;
 		justify-content: center;
 		flex-direction: column;
@@ -88,101 +97,101 @@
 		margin-top: 1rem;
 	}
 
+	.register-form {
+		width: 100%;
+		margin: 0 auto;
+		align-self: flex-start;
+	}
+
+	.register-form-title {
+		font-weight: 600;
+		font-size: 1.3rem;
+	}
+
 	.register-title {
 		margin: 0;
-		font-family: "Poppins", sans-serif;
 		font-weight: 300;
 		font-size: 1.8rem;
 	}
 
 	.register-subtitle {
 		margin: 0;
-		font-family: "Poppins", sans-serif;
 		font-weight: 400;
 		font-size: 0.9rem;
 		margin-top: -0.3rem;
 	}
 
 	.register-img {
-		margin-top: 1rem;
-		height: 6rem;
-	}
-
-	.register-form {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-	}
-
-	.register-form-title {
-		font-family: "Poppins", sans-serif;
-		font-weight: 600;
-		font-size: 1.3rem;
-		margin: 1rem 0rem 0rem 0.5rem;
-	}
-	.register-label {
-		margin: 0 auto;
-		width: 90%;
-	}
-
-	.register-input {
-		border: none;
-		border-bottom: 0.1rem solid #434343;
-		width: 95%;
-		margin: 0 auto;
-		margin-top: 1rem;
-	}
-
-	.register-input::placeholder {
-		font-family: "Poppins", sans-serif;
-		font-weight: 300;
-		font-size: 1rem;
-	}
-	.register-accept {
-		display: flex;
-		align-items: center;
+		margin-top: 5rem;
+		height: 17vh;
 	}
 
 	.register-accept_text {
-		font-family: "Poppins", sans-serif;
 		font-weight: 300;
 		font-size: 0.9rem;
 	}
 
 	.register-button {
-		width: 90%;
-		margin: 0 auto;
+		width: 17rem;
 		height: 2.5rem;
 		background-color: #8CE4E3;
 		border: none;
 		border-radius: 0.5rem;
 		color: white;
-		font-family: "Poppins", sans-serif;
 		font-size: 1.2rem;
+		margin: 0 auto;
 	}
 
-	.button-wrapper {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-self: flex-end;
-	}
-
-	.login {
+	.login-text {
 		text-align: center;
 		margin-top: 0.5rem;
-		font-family: "Poppins", sans-serif;
 		font-weight: 300;
 		font-size: 0.9rem;
 		color: #434343;
-		text-align: center;
-	}
-
-	router-link a {
-		text-decoration: none;
 	}
 
 	strong {
 		color: #FF899E;
+	}
+
+	@media screen and (min-width: 500px) {
+		.login {
+			justify-content: center;
+		}
+
+		.register-title {
+			font-size: 3rem;
+		}
+
+		.register-subtitle {
+			margin: 0;
+			font-weight: 400;
+			font-size: 1.3rem;
+			margin-top: -0.3rem;
+		}
+
+		.register-img {
+			margin-top: 5rem;
+			height: 10rem;
+		}
+
+		.register-form-title {
+			font-size: 2rem;
+		}
+
+		.input-form {
+			width: 20rem;
+			margin: 0;
+		}
+
+		.register-button {
+			width: 25rem;
+			height: 3rem;
+			font-size: 1.6rem;
+		}
+
+		.login-text {
+			font-size: 1.3rem;
+		}
 	}
 </style>

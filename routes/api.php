@@ -34,7 +34,7 @@ Route::post('login', [AuthController::class, 'login']);
 //Get the users with skills and ads
 Route::get("users", [AuthController::class, "getAll"]);
 Route::get("user/{id}", [AuthController::class, "getById"]);
-Route::get("users/{skill_name}", [AuthController::class, "getUserWithSkill"]);
+Route::get("users/{name}", [AuthController::class, "getUserWithSkill"]);
 
 
 //Get all the skills

@@ -29,15 +29,14 @@
 	@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap");
 
 	body {
-		padding: 0;
-		margin: 0;
 		height: 100vh;
 		background-color: #FCFEFF;
+		font-family: "Poppins", sans-serif;
 	}
 
-	*,
-	*::before,
-	*::after {
+	* {
+		margin: 0px;
+		padding: 0px;
 		box-sizing: border-box;
 	}
 
@@ -49,19 +48,15 @@
 	}
 
 	.container {
-		padding-bottom: 5rem;
-		display: grid;
 	}
 
 	.navigation {
-		grid-row: 3;
-		align-self: flex-end;
 		overflow: hidden;
 		position: fixed;
 		bottom: 0;
 		width: 100%;
 	}
-	router-link a {
+	a {
 		text-decoration: none;
 	}
 </style>

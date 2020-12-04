@@ -25,9 +25,8 @@
 		display: flex;
 		flex-direction: column;
 		position: relative;
-		width: 95%;
 		margin: 0 auto;
-      font-family: "Poppins", sans-serif;
+    margin-top: .2rem;
 	}
 
 	.input-field {
@@ -56,7 +55,7 @@
 
 .label-name {
   position: absolute;
-  font-size: 0.8rem;
+  font-size: .9rem;
   font-weight: 400;
   bottom: 0;
   left: 0;
@@ -91,5 +90,6 @@
   color: var(--input_color);
   font-size: 0.75rem;
   transform: translateY(0px);
+    font-size: .9rem;
 }
 </style>
