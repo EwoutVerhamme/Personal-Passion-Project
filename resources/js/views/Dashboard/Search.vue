@@ -69,8 +69,8 @@
 					<img width="40" class="content-img" :src="t.profilepic" alt="" />
 					<p class="content-title">{{ t.first_name }} {{ t.last_name }}</p>
 				</router-link>
-				<div v-if="tabs[current] == 'Materiaal'" class="content-block">
-					<p class="content-title">Deze functie komt er binnenkort aan!</p>
+				<div v-if="tabs[current] == 'Materiaal'">
+					<p>Deze functie komt er binnenkort aan!</p>
 				</div>
 
 				<div
@@ -125,9 +125,7 @@
 <script>
 	export default {
 		name: "Search",
-		components: {
-	
-		},
+		components: {},
 
 		data() {
 			return {
@@ -205,8 +203,6 @@
 				fetch(url)
 					.then((response) => response.json())
 					.then((result) => {
-						// this.$emit("youth-centers-fetched", result);
-						// console.log(`${this.slug} fetched`, result);
 						this.loading = false;
 						this.tab = result;
 
@@ -264,7 +260,6 @@
 		border-radius: 20px;
 		width: 18rem;
 		height: 4.5rem;
-		margin: 0 auto;
 		margin-top: 1rem;
 	}
 
@@ -304,7 +299,6 @@
 	}
 
 	.input-field::placeholder {
-		font-family: "Poppins", sans-serif;
 		font-size: 0.9rem;
 	}
 
@@ -400,7 +394,7 @@
 		.search-select_wrapper {
 			margin: 0 auto;
 			margin-top: 2rem;
-			max-width: 40rem;
+			max-width: 35rem;
 			justify-content: space-between;
 		}
 
@@ -412,17 +406,19 @@
 		.input {
 			margin: 0 auto;
 			margin-top: 1rem;
-			max-width: 40rem;
+			max-width: 35rem;
 			justify-content: space-between;
 		}
 		.load-content {
 			margin: 0 auto;
-			max-width: 40rem;
+			margin-top: 2rem;
+			max-width: 37rem;
 		}
 
 		.content-wrapper {
 			display: flex;
 			flex-wrap: wrap;
+			justify-content: space-between;
 		}
 	}
 </style>

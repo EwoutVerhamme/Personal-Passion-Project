@@ -7,18 +7,14 @@
 			</h1>
 			<img :src="profilepic" alt="" class="profile-img" />
 		</div>
-		<div class="matches-wrapper">
-			<div class="matches">
-				<h2 class="subtitle">
-					Mensen zijn op zoek naar jouw <strong>talent!</strong>
-				</h2>
-				<div class="boxes">
-					<Match class="match" />
-					<Match class="match" />
-					<Match class="match" />
-					<Match class="match" />
-					<Match class="match" />
-				</div>
+		<div class="matches">
+			<h2 class="subtitle">
+				Mensen zijn op zoek naar jouw <strong>talent!</strong>
+			</h2>
+			<div class="boxes">
+				<Match class="match" />
+				<Match class="match" />
+				<Match class="match" />
 			</div>
 		</div>
 	</div>
@@ -60,6 +56,7 @@
 <style scoped>
 	.home {
 		grid-row: 1 / span 2;
+		overflow: scroll;
 	}
 	.welcome-user {
 		margin-top: 2rem;
@@ -84,20 +81,13 @@
 		font-weight: 300;
 	}
 
-	.matches-wrapper {
-		display: flex;
-		justify-content: center;
-	}
-
 	.matches {
-		margin: 2rem 0 auto;
-		display: flex;
-		flex-flow: column wrap;
-		max-width: 80rem;
+		margin: 0 auto;
+		margin-top: 2rem;
 	}
 
 	.match {
-		margin-top: 0.5rem;
+		margin: 0.5rem;
 	}
 
 	.boxes {
@@ -118,13 +108,34 @@
 			margin: 0 auto;
 			margin-top: 3rem;
 			max-width: 30rem;
+			display: flex;
+			align-items: center;
+		}
+
+		.welcome-user-title {
+			font-weight: 300;
+			line-height: 3.5rem;
+			font-size: 3.5rem;
+		}
+
+		.profile-img {
+			width: 6rem;
+			height: 6rem;
+		}
+
+		.subtitle {
+			font-size: 1.6rem;
 		}
 
 		.matches {
-			margin: 2rem 0 auto;
 			display: flex;
 			flex-flow: column wrap;
-			max-width: 40rem;
+			justify-content: center;
+			max-width: 46rem;
+		}
+
+		.match {
+			width: 22rem;
 		}
 	}
 </style>

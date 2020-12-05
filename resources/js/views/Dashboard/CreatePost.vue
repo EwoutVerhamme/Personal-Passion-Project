@@ -235,19 +235,19 @@
 
 	@media screen and (min-width: 768px) {
 		.input-form {
-			width: 40rem;
+			width: 35rem;
 		}
 
 		.select-skill {
 			margin: 0 auto;
 			margin-top: 1rem;
-			width: 40rem;
+			width: 35rem;
 		}
 
 		.img-input_wrapper {
 			margin: 0 auto;
 			margin-top: 2rem;
-			width: 40rem;
+			width: 35rem;
 		}
 	}
 </style>

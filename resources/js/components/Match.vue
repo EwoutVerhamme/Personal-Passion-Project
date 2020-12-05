@@ -35,6 +35,7 @@
 		margin-top: 1rem;
 	}
 	.title-wrapper {
+		margin-top: 1rem;
 		display: flex;
 		align-items: center;
 		flex-direction: row;
@@ -47,8 +48,8 @@
 
 	.title-text {
 		margin-left: 1rem;
-		font-family: "Poppins", sans-serif;
 		font-size: 1.2rem;
+		font-weight: 300;
 	}
 	.info-date {
 		margin-left: 1rem;
@@ -66,10 +67,30 @@
 
 	.info-text {
 		margin: 0 0 0 0.5rem;
-		font-family: "Poppins", sans-serif;
+		font-weight: 300;
 	}
 
 	strong {
 		color: #36C9C6;
+	}
+
+	@media screen and (min-width: 768px) {
+		.match-box {
+			width: 25rem;
+			height: 10rem;
+		}
+
+		.profile-pic-box {
+			width: 4rem;
+			height: 4rem;
+		}
+
+		.title-text {
+			font-size: 1.6rem;
+		}
+
+		.info-text {
+			font-size: 1.3rem;
+		}
 	}
 </style>
