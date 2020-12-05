@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="search">
 		<h1 class="title">{{ tabs[current] }} zoeken</h1>
 		<div class="search-select_wrapper">
 			<a
@@ -217,6 +217,10 @@
 
 
 <style scoped>
+	.search {
+		grid-row: 1 / span 2;
+		overflow: scroll;
+	}
 	.title {
 		text-align: center;
 		font-size: 1.8rem;
@@ -386,6 +390,11 @@
 	}
 
 	@media screen and (min-width: 768px) {
+		.search {
+			grid-row: 2;
+			overflow: scroll;
+		}
+
 		.title {
 			margin-top: 2rem;
 			font-size: 2rem;
@@ -394,7 +403,7 @@
 		.search-select_wrapper {
 			margin: 0 auto;
 			margin-top: 2rem;
-			max-width: 35rem;
+			max-width:45rem;
 			justify-content: space-between;
 		}
 
@@ -406,13 +415,13 @@
 		.input {
 			margin: 0 auto;
 			margin-top: 1rem;
-			max-width: 35rem;
+			max-width:45rem;
 			justify-content: space-between;
 		}
 		.load-content {
 			margin: 0 auto;
 			margin-top: 2rem;
-			max-width: 37rem;
+			max-width:40rem;
 		}
 
 		.content-wrapper {

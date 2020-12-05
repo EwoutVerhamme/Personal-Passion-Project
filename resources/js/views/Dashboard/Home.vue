@@ -18,6 +18,7 @@
 			</div>
 		</div>
 	</div>
+
 </template>
 
 <script>
@@ -95,6 +96,7 @@
 		flex-wrap: wrap;
 	}
 
+
 	strong {
 		color: #FF899E;
 	}
@@ -137,5 +139,7 @@
 		.match {
 			width: 22rem;
 		}
+
+
 	}
 </style>

@@ -103,11 +103,14 @@
     margin-top: 1rem;
 	}
 
+.input-field::placeholder {
+  font-size: 1.2rem;
+}
   .input-field:focus ~ .input-label .label-name,
 .input-field:not(:placeholder-shown) ~ .input-label .label-name {
   color: var(--input_color);
   transform: translateY(-10px);
-    font-size: 1rem;
+    font-size: 1.2rem;
 }
 }
 </style>

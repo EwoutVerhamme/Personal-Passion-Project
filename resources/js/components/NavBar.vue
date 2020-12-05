@@ -1,44 +1,46 @@
 <template>
-	<nav class="navigation">
-		<img src="/assets/img/kollapp.svg" alt="" class="logo" />
-		<router-link to="/">
-			<li class="menu-item">Home</li>
-			<img
-				@click="checkCurrentRoute"
-				class="icon"
-				:src="this.tabs.home.currentIcon"
-				alt=""
-			/>
-		</router-link>
+	<div class="navigation-wrapper">
+		<nav class="navigation">
+			<img src="/assets/img/kollapp.svg" alt="" class="logo" />
+			<router-link to="/">
+				<li class="menu-item">Home</li>
+				<img
+					@click="checkCurrentRoute"
+					class="icon"
+					:src="this.tabs.home.currentIcon"
+					alt=""
+				/>
+			</router-link>
 
-		<router-link to="/search">
-			<li class="menu-item">Zoeken</li>
-			<img
-				@click="checkCurrentRoute"
-				class="icon"
-				:src="this.tabs.search.currentIcon"
-				alt=""
-			/>
-		</router-link>
-		<router-link to="/create">
-			<li class="menu-item">Zoekertje aanmaken</li>
-			<img
-				@click="checkCurrentRoute"
-				class="icon"
-				:src="this.tabs.create.currentIcon"
-				alt=""
-			/>
-		</router-link>
-		<router-link to="/profile">
-			<li class="menu-item">Profiel</li>
-			<img
-				@click="checkCurrentRoute"
-				class="icon"
-				:src="this.tabs.profile.currentIcon"
-				alt=""
-			/>
-		</router-link>
-	</nav>
+			<router-link to="/search">
+				<li class="menu-item">Zoeken</li>
+				<img
+					@click="checkCurrentRoute"
+					class="icon"
+					:src="this.tabs.search.currentIcon"
+					alt=""
+				/>
+			</router-link>
+			<router-link to="/create">
+				<li class="menu-item">Zoekertje aanmaken</li>
+				<img
+					@click="checkCurrentRoute"
+					class="icon"
+					:src="this.tabs.create.currentIcon"
+					alt=""
+				/>
+			</router-link>
+			<router-link to="/profile">
+				<li class="menu-item">Profiel</li>
+				<img
+					@click="checkCurrentRoute"
+					class="icon"
+					:src="this.tabs.profile.currentIcon"
+					alt=""
+				/>
+			</router-link>
+		</nav>
+	</div>
 </template>
 
 <script>
@@ -183,8 +185,12 @@
 	}
 
 	@media screen and (min-width: 768px) {
-		.navigation {
+		.navigation-wrapper {
+			border-bottom: 0.1rem solid #f5f5f5;
 			width: 100vw;
+		}
+		.navigation {
+			/* max-width: 70vw; */
 			top: 0;
 			border-radius: 0;
 			box-shadow: none;
@@ -197,7 +203,6 @@
 
 		.logo {
 			display: inline;
-			width: 5rem;
 		}
 
 		.menu-item {

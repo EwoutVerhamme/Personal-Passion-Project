@@ -35,7 +35,7 @@
 		margin-top: 1rem;
 	}
 	.title-wrapper {
-		margin-top: 1rem;
+		margin-top: 0.5rem;
 		display: flex;
 		align-items: center;
 		flex-direction: row;
@@ -50,6 +50,10 @@
 		margin-left: 1rem;
 		font-size: 1.2rem;
 		font-weight: 300;
+	}
+
+	.info {
+		margin-left: 3.5rem;
 	}
 	.info-date {
 		margin-left: 1rem;
@@ -76,21 +80,25 @@
 
 	@media screen and (min-width: 768px) {
 		.match-box {
-			width: 25rem;
-			height: 10rem;
+			width: 22rem;
+			height: 8rem;
 		}
 
 		.profile-pic-box {
-			width: 4rem;
-			height: 4rem;
+			width: 3rem;
+			height: 3rem;
 		}
 
 		.title-text {
-			font-size: 1.6rem;
+			font-size: 1.3rem;
 		}
 
 		.info-text {
-			font-size: 1.3rem;
+			font-size: 1rem;
+		}
+
+		.info {
+			margin-left: 4rem;
 		}
 	}
 </style>

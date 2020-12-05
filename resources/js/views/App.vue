@@ -1,6 +1,10 @@
 <template>
 	<NavBar v-if="isLoggedIn" class="navigation" />
 	<router-view />
+
+	<footer class="footer">
+		<img src="/assets/img/kollapp.svg" alt="" class="footer_logo" />
+	</footer>
 </template>
 
 <script>
@@ -53,6 +57,10 @@
 		align-self: baseline;
 	}
 
+	.footer {
+		display: none;
+	}
+
 	a {
 		text-decoration: none;
 		color: #434343;
@@ -62,7 +70,15 @@
 		.navigation {
 			margin: 0 auto;
 			grid-row: 1;
-			max-width: 70rem;
+			width: 100vw;
+		}
+
+		.footer {
+			grid-row: 3;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			border-top: 0.1rem solid #f5f5f5;
 		}
 	}
 </style>
