@@ -178,12 +178,11 @@
 
 <style scoped>
 	.create-post {
-		display: grid;
-		grid-template-rows: 5rem auto 4rem;
+		grid-row: 2;
+		
 	}
 	.title {
 		text-align: center;
-		font-family: "Poppins", sans-serif;
 		font-size: 1.8rem;
 		color: #FF899E;
 		margin-bottom: 0;
@@ -195,7 +194,6 @@
 
 	.select-skill {
 		margin-left: 0.5rem;
-		font-family: "Poppins", sans-serif;
 	}
 
 	.select-title {
@@ -233,7 +231,6 @@
 		width: fit-content;
 		padding: 0.5rem;
 		border-radius: 0.5rem;
-		font-family: "Poppins", sans-serif;
 		font-size: 0.8rem;
 		margin: 0.25rem;
 	}
@@ -243,7 +240,10 @@
 		margin-left: 0.5rem;
 	}
 
-	router-link p {
-		text-decoration: none;
+	@media screen and (min-width: 768px) {
+		.create-post  {
+			margin: 0 auto;
+			max-width: 40rem;
+		}
 	}
 </style>

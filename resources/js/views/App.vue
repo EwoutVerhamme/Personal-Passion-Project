@@ -60,7 +60,9 @@
 
 	@media screen and (min-width: 768px) {
 		.navigation {
+			margin: 0 auto;
 			grid-row: 1;
+			max-width: 70rem;
 		}
 	}
 </style>

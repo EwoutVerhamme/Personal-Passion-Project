@@ -16,6 +16,8 @@
 					<Match class="match" />
 					<Match class="match" />
 					<Match class="match" />
+					<Match class="match" />
+					<Match class="match" />
 				</div>
 			</div>
 		</div>
@@ -77,6 +79,7 @@
 	}
 
 	.subtitle {
+		margin-left: 0.5rem;
 		font-size: 1rem;
 		font-weight: 300;
 	}
@@ -89,15 +92,12 @@
 	.matches {
 		margin: 2rem 0 auto;
 		display: flex;
-		flex-direction: column;
-		flex-flow: row wrap;
-		width: 95vw;
+		flex-flow: column wrap;
+		max-width: 80rem;
 	}
 
 	.match {
-		margin: 0;
 		margin-top: 0.5rem;
-		margin: 0.5rem;
 	}
 
 	.boxes {
@@ -112,6 +112,19 @@
 	@media screen and (min-width: 768px) {
 		.home {
 			grid-row: 2;
+		}
+
+		.welcome-user {
+			margin: 0 auto;
+			margin-top: 3rem;
+			max-width: 30rem;
+		}
+
+		.matches {
+			margin: 2rem 0 auto;
+			display: flex;
+			flex-flow: column wrap;
+			max-width: 40rem;
 		}
 	}
 </style>

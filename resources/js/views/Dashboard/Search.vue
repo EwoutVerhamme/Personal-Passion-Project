@@ -57,7 +57,7 @@
 				geen {{ tabs[current].toLowerCase() }} gevonden...
 			</p>
 
-			<div>
+			<div class="content-wrapper">
 				<router-link
 					:to="`/user/${t.id}`"
 					v-if="tabs[current] == 'Talent'"
@@ -68,10 +68,7 @@
 					<img width="40" class="content-img" :src="t.profilepic" alt="" />
 					<p class="content-title">{{ t.first_name }} {{ t.last_name }}</p>
 				</router-link>
-				<div
-					v-if="tabs[current] == 'Materiaal'"
-					class="content-block"
-				>
+				<div v-if="tabs[current] == 'Materiaal'" class="content-block">
 					<p class="content-title">Deze functie komt er binnenkort aan!</p>
 				</div>
 
@@ -223,7 +220,6 @@
 <style scoped>
 	.title {
 		text-align: center;
-		font-family: "Poppins", sans-serif;
 		font-size: 1.8rem;
 		color: #FF899E;
 		margin-bottom: 0;
@@ -239,16 +235,13 @@
 		margin-top: 0.5rem;
 	}
 	.search-select_text {
-		font-family: "Poppins", sans-serif;
 		font-size: 0.9rem;
 		margin-bottom: -0.25rem;
 		z-index: 2;
 	}
 
 	.search-subtitle {
-		font-family: "Poppins", sans-serif;
 		font-size: 1.2rem;
-		margin-left: 0.5rem;
 		color: #434343;
 		margin-bottom: -0.6rem;
 	}
@@ -266,7 +259,7 @@
 		align-items: center;
 		box-shadow: 0px 0px 13px 1px rgba(0, 0, 0, 0.09);
 		border-radius: 20px;
-		width: 95%;
+		width: 18rem;
 		height: 4.5rem;
 		margin: 0 auto;
 		margin-top: 1rem;
@@ -274,7 +267,6 @@
 
 	.content-title {
 		margin-left: 1rem;
-		font-family: "Poppins", sans-serif;
 		font-size: 1.2rem;
 		font-weight: 400;
 	}
@@ -283,7 +275,6 @@
 		margin-left: 0.5rem;
 	}
 	.loading {
-		font-family: "Poppins", sans-serif;
 		font-size: 1.2rem;
 		display: flex;
 		justify-content: center;
@@ -344,7 +335,6 @@
 		height: fit-content;
 		margin: 0 auto;
 		margin-top: 1rem;
-		font-family: "Poppins", sans-serif;
 	}
 
 	.engagement-title {
@@ -396,5 +386,40 @@
 	textarea:focus,
 	select:focus {
 		outline: none;
+	}
+
+	@media screen and (min-width: 768px) {
+		.title {
+			margin-top: 2rem;
+			font-size: 2rem;
+		}
+
+		.search-select_wrapper {
+			margin: 0 auto;
+			margin-top: 2rem;
+			max-width: 40rem;
+			justify-content: space-between;
+		}
+
+		.search-select_text {
+			cursor: pointer;
+			font-size: 1.2rem;
+		}
+
+		.input {
+			margin: 0 auto;
+			margin-top: 1rem;
+			max-width: 40rem;
+			justify-content: space-between;
+		}
+		.load-content {
+			margin: 0 auto;
+			max-width: 40rem;
+		}
+
+		.content-wrapper {
+			display: flex;
+			flex-wrap: wrap;
+		}
 	}
 </style>
