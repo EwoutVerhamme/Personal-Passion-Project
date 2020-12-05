@@ -1,6 +1,8 @@
 <template>
-	<div class="navigation">
+	<nav class="navigation">
+		<img src="/assets/img/kollapp.svg" alt="" class="logo" />
 		<router-link to="/">
+			<li class="menu-item">Home</li>
 			<img
 				@click="checkCurrentRoute"
 				class="icon"
@@ -10,6 +12,7 @@
 		</router-link>
 
 		<router-link to="/search">
+			<li class="menu-item">Zoeken</li>
 			<img
 				@click="checkCurrentRoute"
 				class="icon"
@@ -18,6 +21,7 @@
 			/>
 		</router-link>
 		<router-link to="/create">
+			<li class="menu-item">Zoekertje aanmaken</li>
 			<img
 				@click="checkCurrentRoute"
 				class="icon"
@@ -26,6 +30,7 @@
 			/>
 		</router-link>
 		<router-link to="/profile">
+			<li class="menu-item">Profiel</li>
 			<img
 				@click="checkCurrentRoute"
 				class="icon"
@@ -33,7 +38,7 @@
 				alt=""
 			/>
 		</router-link>
-	</div>
+	</nav>
 </template>
 
 <script>
@@ -165,5 +170,38 @@
 	.icon {
 		width: 2.5rem;
 		height: auto;
+	}
+
+	.logo {
+		display: none;
+	}
+
+	.menu-item {
+		display: none;
+		color: #7d7d7d;
+		font-weight: 300;
+	}
+
+	@media screen and (min-width: 768px) {
+		.navigation {
+			width: 100vw;
+			top: 0;
+			border-radius: 0;
+			box-shadow: none;
+			background-color: transparent;
+		}
+
+		.icon {
+			display: none;
+		}
+
+		.logo {
+			display: inline;
+		}
+
+		.menu-item {
+			display: inline;
+			font-size: 1.2rem;
+		}
 	}
 </style>

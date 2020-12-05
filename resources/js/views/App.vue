@@ -1,8 +1,6 @@
 <template>
-	<div class="container">
-		<router-view />
-	</div>
 	<NavBar v-if="isLoggedIn" class="navigation" />
+	<router-view />
 </template>
 
 <script>
@@ -28,35 +26,41 @@
 <style>
 	@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap");
 
-	body {
-		height: 100vh;
-		background-color: #FCFEFF;
-		font-family: "Poppins", sans-serif;
-	}
-
 	* {
 		margin: 0px;
 		padding: 0px;
 		box-sizing: border-box;
 	}
 
-	#app {
-		height: 100%;
-		min-height: -webkit-fill-available;
-		display: grid;
-		grid-template-columns: 100vw;
+	body {
+		height: 100vh;
+		background-color: #FCFEFF;
+		font-family: "Poppins", sans-serif;
+		color: #434343;
 	}
 
-	.container {
+	#app {
+		min-height: -webkit-fill-available;
+		display: grid;
+		grid-template-rows: 4rem auto 4rem;
+		height: 100vh;
+		width: 100vw;
 	}
 
 	.navigation {
-		overflow: hidden;
-		position: fixed;
-		bottom: 0;
-		width: 100%;
+		z-index: 1;
+		grid-row: 3;
+		align-self: baseline;
 	}
+
 	a {
 		text-decoration: none;
+		color: #434343;
+	}
+
+	@media screen and (min-width: 768px) {
+		.navigation {
+			grid-row: 1;
+		}
 	}
 </style>

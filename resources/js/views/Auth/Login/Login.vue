@@ -154,6 +154,10 @@
 		color: #FF899E;
 	}
 
+	.error {
+		color: #FF3F60;
+	}
+
 	@media screen and (min-width: 500px) {
 		.login {
 			justify-content: center;
@@ -180,8 +184,9 @@
 		}
 
 		.input-form {
-			width: 20rem;
+			width: 100%;
 			margin: 0;
+			margin-top: 1rem;
 		}
 
 		.register-button {

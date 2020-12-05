@@ -88,8 +88,27 @@
 .input-field:focus ~ .input-label .label-name,
 .input-field:not(:placeholder-shown) ~ .input-label .label-name {
   color: var(--input_color);
-  font-size: 0.75rem;
   transform: translateY(0px);
     font-size: .9rem;
+}
+
+@media screen and (min-width: 500px) {
+
+  	.input-form {
+		--input_height: 2.5rem;
+		--input_color: #8CE4E3;
+		display: flex;
+		flex-direction: column;
+		position: relative;
+		margin: 0 auto;
+    margin-top: 1rem;
+	}
+
+  .input-field:focus ~ .input-label .label-name,
+.input-field:not(:placeholder-shown) ~ .input-label .label-name {
+  color: var(--input_color);
+  transform: translateY(-10px);
+    font-size: 1.2rem;
+}
 }
 </style>
