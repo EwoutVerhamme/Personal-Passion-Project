@@ -37,7 +37,9 @@
 
 				<div class="skills">
 					<div class="skill">
-						<p class="skill-title">{{ getSkillName }}</p>
+						<p :class="{ skillTitle: isActive }">
+							{{ getSkillName }}
+						</p>
 					</div>
 				</div>
 			</div>
@@ -65,12 +67,14 @@
 					<span class="label-name">Wanneer zal dit plaatsvinden?</span>
 				</label>
 			</div>
-			<input
-				class="img-input"
-				ref="image"
-				type="file"
-				@change="onChangeFileUpload()"
-			/>
+			<div class="img-input_wrapper">
+				<input
+					class="img-input"
+					ref="image"
+					type="file"
+					@change="onChangeFileUpload()"
+				/>
+			</div>
 		</form>
 
 		<div class="button-wrapper">
@@ -106,6 +110,8 @@
 					skill_id: "",
 					image: null,
 				},
+
+				isActive: false,
 			};
 		},
 
@@ -114,9 +120,6 @@
 		},
 
 		computed: {
-			getAddedSkills: function () {
-				return this.$store.getters.getAddedSkills;
-			},
 			getCurrent: function () {
 				return this.$store.getters.getCurrent;
 			},
@@ -160,6 +163,7 @@
 				this.$store
 					.dispatch("SUBMITPOST", data, this.image)
 					.then((success) => {
+						this.$store.dispatch("RESETFIELDS");
 						console.log("succes");
 						this.$router.push("/succes");
 					})
@@ -177,10 +181,6 @@
 
 
 <style scoped>
-	.create-post {
-		grid-row: 2;
-		
-	}
 	.title {
 		text-align: center;
 		font-size: 1.8rem;
@@ -188,28 +188,18 @@
 		margin-bottom: 0;
 	}
 
-	.input {
-		margin-top: 0.5rem;
+	.input-form {
+		width: 95%;
 	}
-
 	.select-skill {
-		margin-left: 0.5rem;
+		width: 95%;
+		margin: 0 auto;
+		margin-top: 1rem;
 	}
 
-	.select-title {
-		font-weight: 600;
-		font-size: 0.9rem;
-		margin-bottom: 0;
-	}
-
-	.select-button {
-		color: #FF899E;
-		margin-top: 0;
-		margin-bottom: 0;
-	}
-
-	.select-img {
-		margin-left: 0.5rem;
+	.img-input_wrapper {
+		width: 95%;
+		margin: 0 auto;
 	}
 
 	.select-button_wrapper {
@@ -217,33 +207,47 @@
 		align-items: center;
 	}
 
-	.skills {
-		margin-left: 0.25rem;
-		display: flex;
-		flex-flow: wrap;
-		width: 95%;
-		margin-top: 1rem;
+	.select-title {
+		font-weight: 600;
+	}
+
+	.select-button {
+		color: #FF899E;
+		font-weight: 600;
+	}
+
+	.select-img {
+		margin-left: 0.5rem;
 	}
 
 	.skill-title {
 		background-color: #8CE4E3;
-		color: white;
 		width: fit-content;
-		padding: 0.5rem;
-		border-radius: 0.5rem;
-		font-size: 0.8rem;
-		margin: 0.25rem;
+		color: white;
+		padding: 5px;
+		border-radius: 8px;
 	}
 
-	.img-input {
+	.button {
 		margin-top: 2rem;
-		margin-left: 0.5rem;
+		width: 15rem;
 	}
 
 	@media screen and (min-width: 768px) {
-		.create-post  {
+		.input-form {
+			width: 40rem;
+		}
+
+		.select-skill {
 			margin: 0 auto;
-			max-width: 40rem;
+			margin-top: 1rem;
+			width: 40rem;
+		}
+
+		.img-input_wrapper {
+			margin: 0 auto;
+			margin-top: 2rem;
+			width: 40rem;
 		}
 	}
 </style>

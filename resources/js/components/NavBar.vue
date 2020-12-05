@@ -197,6 +197,7 @@
 
 		.logo {
 			display: inline;
+			width: 5rem;
 		}
 
 		.menu-item {

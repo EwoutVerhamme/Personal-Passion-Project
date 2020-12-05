@@ -16,7 +16,6 @@ export default {
       
   },
   getters: {
-    getAddedSkills: state => state.addedSkills,
     getCurrent: state => state.data,
     getSkillId: state => state.skill_id,
     getSkillName: state => state.skill_name
@@ -32,6 +31,11 @@ export default {
       setCurrent(state, data){
       state.data = data
       },
+      
+      resetFields(state){
+        state.data = {}
+        state.skill_name = ""
+        },
 
 
       
@@ -49,6 +53,10 @@ export default {
     SETCURRENT: ({ commit }, data) => {
       commit('setCurrent', data)
   },
+
+  RESETFIELDS: ({ commit }) => {
+    commit('resetFields')
+},
 
 
   SUBMITPOST: ({ commit }, data, image) => {

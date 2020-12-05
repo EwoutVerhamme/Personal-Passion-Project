@@ -21,7 +21,7 @@
 <style >
 	.input-form {
 		--input_height: 2.5rem;
-		--input_color: #8CE4E3;
+		--input_color: #434343;
 		display: flex;
 		flex-direction: column;
 		position: relative;
@@ -96,7 +96,6 @@
 
   	.input-form {
 		--input_height: 2.5rem;
-		--input_color: #8CE4E3;
 		display: flex;
 		flex-direction: column;
 		position: relative;
@@ -108,7 +107,7 @@
 .input-field:not(:placeholder-shown) ~ .input-label .label-name {
   color: var(--input_color);
   transform: translateY(-10px);
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 }
 </style>

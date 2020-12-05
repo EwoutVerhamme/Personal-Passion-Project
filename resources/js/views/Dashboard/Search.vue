@@ -3,6 +3,7 @@
 		<h1 class="title">{{ tabs[current] }} zoeken</h1>
 		<div class="search-select_wrapper">
 			<a
+				:tabs="tabs"
 				v-for="(tab, i) in tabs"
 				@click="[(current = i), checkCurrentTab()]"
 				class="search-select_text"
@@ -124,7 +125,9 @@
 <script>
 	export default {
 		name: "Search",
-		components: {},
+		components: {
+	
+		},
 
 		data() {
 			return {
