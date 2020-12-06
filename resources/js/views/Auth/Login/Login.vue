@@ -82,10 +82,9 @@
 
 <style scoped>
 	.login {
-		height: 100vh;
-		width: 95vw;
 		display: grid;
 		margin: 0 auto;
+		grid-row: 1 / span 2;
 	}
 
 	.register-welcome {
