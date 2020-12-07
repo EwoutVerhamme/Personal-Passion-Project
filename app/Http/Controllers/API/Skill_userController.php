@@ -39,7 +39,7 @@ class Skill_userController extends Controller
        ->join('skills', 'skills.id', '=', 'skill_users.skill_id')
        ->join('users', 'skill_users.user_id', '=', 'users.id')
        ->join('ads', 'ads.skill_id', '=', 'skill_users.skill_id')
-       ->select('ads.id','ads.user_id', 'skills.skill_alias', 'ads.date','ads.location', )
+       ->select('skill_users.user_id','ads.creator_name', 'ads.creator_img','ads.id','ads.user_id', 'skills.skill_alias', 'ads.date','ads.location', )
        ->get();
        // Get all engagements with that skills
        $matches = DB::table('ads')

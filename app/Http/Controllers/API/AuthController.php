@@ -31,14 +31,14 @@ class AuthController extends Controller
         $users = DB::table('users')
         ->join('skill_users', 'skill_users.user_id', '=', 'users.id')
         ->join('skills', 'skills.id', '=', 'skill_users.skill_id')
-    ->select('users.first_name', 'users.last_name', 'skills.skill_name', 'skills.skill_alias', 'users.profilepic')
+        ->select('users.id','users.first_name', 'users.last_name', 'users.profilepic')
         ->where('skill_name', 'like', '%' . $name . '%')
         ->orWhere('first_name', 'like', '%' . $name . '%')
         ->orWhere('last_name', 'like', '%' . $name . '%')
+        ->groupBy('users.id')
         ->get();
 
-
-        return response($users, 200);
+    return response($users, 200);
     }
 
 

@@ -102,6 +102,8 @@
 		data() {
 			return {
 				data: {
+					creator_name: "Ewout",
+					creator_img: "",
 					title: "",
 					info: "",
 					location: "",
@@ -150,8 +152,14 @@
 				const getUser = JSON.parse(localStorage.getItem("user"));
 				const user = getUser.user.id;
 				this.data.user_id = user;
+				const creatorName = getUser.user.first_name;
+				this.data.creator_name = creatorName;
+				const creatorImg = getUser.user.profilepic;
+				this.data.creator_img = creatorImg;
 
 				const data = new FormData();
+				data.append("creator_name", this.data.creator_name);
+				data.append("creator_img", this.data.creator_img);
 				data.append("title", this.data.title);
 				data.append("info", this.data.info);
 				data.append("location", this.data.location);

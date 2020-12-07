@@ -198,7 +198,7 @@
 			},
 			makeSearch() {
 				this.found = true;
-				const url = `http://api.kollapp.test/api/${this.slug}/${this.search}`;
+				const url = `/api/${this.slug}/${this.search}`;
 				console.log(url);
 				fetch(url)
 					.then((response) => response.json())

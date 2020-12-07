@@ -4,6 +4,8 @@ export default {
 
   state: {
     data: {
+      creator_name:"",
+      creator_img:"",
       title: "",
       info: "",
       location: "",

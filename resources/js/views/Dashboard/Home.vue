@@ -12,17 +12,46 @@
 				Mensen zijn op zoek naar jouw <strong>talent!</strong>
 			</h2>
 			<div class="boxes">
-				<Match class="match" />
-				<Match class="match" />
-				<Match class="match" />
+				<div class="match-box" v-for="match in matches">
+					<div class="title-wrapper">
+						<img :src="match.creator_img" alt="" class="profile-pic-box" />
+						<p class="title-text">
+							{{ match.creator_name }} zoekt een
+							<strong>{{ match.skill_alias }}</strong>
+						</p>
+					</div>
+					<div class="info">
+						<div class="info-date">
+							<img
+								width="25px"
+								height="25px"
+								src="/assets/img/calendar.png"
+								alt=""
+							/>
+							<p class="info-text">{{ match.date }}</p>
+						</div>
+						<div class="info-youthcenter">
+							<img
+								width="25px"
+								height="25px"
+								src="/assets/img/place.svg"
+								alt=""
+							/>
+							<p class="info-text">{{ match.location }}</p>
+						</div>
+					</div>
+				</div>
+				<p v-if="error == true">
+					Er zijn momenteel geen mensen naar je opzoek...
+				</p>
 			</div>
 		</div>
 	</div>
-
 </template>
 
 <script>
 	import Match from "../../components/Match.vue";
+	import axios from "axios";
 	export default {
 		name: "Home",
 		components: {
@@ -33,6 +62,8 @@
 			return {
 				first_name: "",
 				profilepic: "",
+				matches: {},
+				error: false,
 			};
 		},
 
@@ -43,6 +74,30 @@
 				this.first_name = user.first_name;
 				this.profilepic = user.profilepic;
 			}
+
+			this.getMatches();
+		},
+
+		methods: {
+			getMatches: async function () {
+				const getUser = JSON.parse(localStorage.getItem("user"));
+				const token = getUser.access_token;
+				try {
+					const response = await axios.get("/api/matches", {
+						headers: {
+							Authorization: `Bearer ${token}`,
+						},
+					});
+					if (response.data.length == 0) {
+						this.error = true;
+					} else {
+						this.matches = response.data;
+						this.error = false;
+					}
+				} catch (error) {
+					console.error(error);
+				}
+			},
 		},
 
 		watch: {
@@ -96,7 +151,6 @@
 		flex-wrap: wrap;
 	}
 
-
 	strong {
 		color: #FF899E;
 	}
@@ -139,7 +193,5 @@
 		.match {
 			width: 22rem;
 		}
-
-
 	}
 </style>
