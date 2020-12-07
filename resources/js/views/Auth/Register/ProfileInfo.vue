@@ -42,12 +42,13 @@
 					<span class="label-name">Geboortedatum</span>
 				</label>
 			</div>
-			<div class="input-form">
+			<div class="input-form_select">
+				<p class="select-title">Geslacht</p>
 				<select name="sex" id="sex" v-model="sex">
-					<option value="sex">Sex</option>
-					<option value="men">Man</option>
-					<option value="woman">Vrouw</option>
-					<option value="x">X</option>
+					<option value="Geslacht">Geslacht</option>
+					<option value="Man">Man</option>
+					<option value="Vrouw">Vrouw</option>
+					<option value="X">X</option>
 				</select>
 			</div>
 			<div class="input-form">
@@ -115,7 +116,6 @@
 
 		computed: {
 			registerStatus: function () {
-				console.log(this.$store.getters.registerStatus);
 				return this.$store.getters.registerStatus;
 			},
 		},
@@ -161,6 +161,8 @@
 <style scoped>
 	.profile-info {
 		grid-row: 1 / span 2;
+		width: 95%;
+		margin: 0 auto;
 	}
 	.header {
 		display: flex;
@@ -174,9 +176,17 @@
 		color: #FF899E;
 	}
 
+	.select-title {
+		font-weight: 600;
+	}
+
 	.back {
 		position: absolute;
 		top: 1rem;
 		left: 1rem;
+	}
+
+	.input-form_select {
+		margin-top: 1rem;
 	}
 </style>
