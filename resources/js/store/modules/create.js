@@ -62,7 +62,7 @@ export default {
 
 
   SUBMITPOST: ({ commit }, data, image) => {
-    console.log(data, image)
+
     return new Promise((resolve, reject) => {
       axios
         .post(`api/ads`, data, image)

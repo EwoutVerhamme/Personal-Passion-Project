@@ -1,6 +1,5 @@
 import axios from "axios";
 
-
 export default {
 
   state: {
@@ -9,24 +8,19 @@ export default {
     user : {},
     isLoggedIn: undefined,
 
-    register: {
+    credentials: {
       email: "",
       password: "",
       password_confirmation: "",
-      first_name: "",
-      last_name: "",
-      profilepic:"",
-      birth:"",
-      sex: "",
-      town: "",
-      youth_center: "",
-
     }
+  
+
+  
   },
   getters: {
     isLoggedIn: state => !!state.token,
     authStatus: state => state.status,
-    registerStatus: state => state.register
+    registerStatus: state => state.credentials
   },
   mutations: {
     auth_success(state, token, user){
@@ -45,17 +39,14 @@ export default {
     },
 
     setCredentials(state, credentials){
-      state.register.email = credentials.email,
-      state.register.password = credentials.password,
-      state.register.password_confirmation = credentials.password_confirmation
+      state.credentials.email = credentials.email,
+      state.credentials.password = credentials.password,
+      state.credentials.password_confirmation = credentials.password_confirmation
     },
+
     setUserInfo(state, info){
-      state.register.first_name = info.first_name,
-      state.register.last_name = info.last_name,
-      state.register.birth = info.birth,
-      state.register.sex = info.sex,
-      state.register.town = info.town,
-      state.register.youth_center = info.youth_center
+    state.register = info
+    console.log(state.register)
     },
   },
   actions: {
@@ -107,6 +98,7 @@ export default {
 
     SETUSERINFO: ({commit}, info) => {
       commit('setUserInfo', info)
+      
     },
 
     SETSKILLINFO: ({commit}) => {
@@ -115,20 +107,21 @@ export default {
     
     
 
-    REGISTER: ({ commit }, payload) => {
-      console.log(payload)
+    REGISTER: ({ commit}, userInfo) => {
+    //   for (let d of userInfo.entries()) {
+    //     console.log(d); 
+    //     // Do whatever with d
+    // }
       return new Promise((resolve, reject) => {
         axios
-          .post(`api/register`, payload)
+          .post(`api/register`, userInfo)
           .then(({ data, status }) => {
             if (status === 200) {
-              resolve(payload);
-              console.log
+              resolve(userInfo);
+              console.log(data)
             }
           })
           .catch(error => {
-            commit('auth_error', error)
-            localStorage.removeItem('user')
             reject(error);
           });
       });

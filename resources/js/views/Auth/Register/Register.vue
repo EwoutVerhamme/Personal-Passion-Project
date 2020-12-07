@@ -90,21 +90,22 @@
 
 		methods: {
 			setCredentials() {
-				// if (
-				// 	this.data.email.length > 5 &&
-				// 	this.data.password === this.data.password_confirmation
-				// ) {
-				this.$store
-					.dispatch("SETCREDENTIALS", this.credentials)
-					.then((success) => {
-						this.$router.push("/profile-info");
-					})
-					.catch((error) => {
-						console.log(error);
-					});
-				// } else {
-				// 	this.error = true;
-				// }
+				if (
+					this.credentials.email.length > 8 &&
+					this.credentials.password === this.credentials.password_confirmation &&
+					this.credentials.password.length >= 4
+				) {
+					this.$store
+						.dispatch("SETCREDENTIALS", this.credentials)
+						.then((success) => {
+							this.$router.push("/profile-info");
+						})
+						.catch((error) => {
+							console.log(error);
+						});
+				} else {
+					this.error = true;
+				}
 			},
 		},
 	};

@@ -1,5 +1,5 @@
 <template>
-	<h1>RegisterInterests</h1>
+	<h1>Profile interests</h1>
 </template>
 
 <script>

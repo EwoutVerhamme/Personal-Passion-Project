@@ -46,8 +46,6 @@ class AuthController extends Controller
     {
 
         $data = $request->all();
-
-
         $registerData = $request->validate([
             'email' => 'email|required|unique:users',
             'password' => 'required',
@@ -70,10 +68,6 @@ class AuthController extends Controller
         $user = User::create($registerData);
         $user->profilepic = $filePath;
         $user->save();
-
-
-
-
 
         $accessToken = $user->createToken('authToken')->accessToken;
 

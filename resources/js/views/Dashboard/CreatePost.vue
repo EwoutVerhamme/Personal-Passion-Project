@@ -102,7 +102,7 @@
 		data() {
 			return {
 				data: {
-					creator_name: "Ewout",
+					creator_name: "",
 					creator_img: "",
 					title: "",
 					info: "",

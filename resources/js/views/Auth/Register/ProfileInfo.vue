@@ -8,7 +8,7 @@
 		<form action="" class="create-form">
 			<div class="input-form">
 				<input
-					v-model="info.first_name"
+					v-model="first_name"
 					type="text"
 					class="input-field"
 					autocomplete="off"
@@ -20,7 +20,7 @@
 			</div>
 			<div class="input-form">
 				<input
-					v-model="info.last_name"
+					v-model="last_name"
 					type="text"
 					class="input-field"
 					autocomplete="off"
@@ -32,7 +32,7 @@
 			</div>
 			<div class="input-form">
 				<input
-					v-model="info.birth"
+					v-model="birth"
 					type="text"
 					class="input-field"
 					autocomplete="off"
@@ -43,7 +43,7 @@
 				</label>
 			</div>
 			<div class="input-form">
-				<select name="sex" id="sex" v-model="info.sex">
+				<select name="sex" id="sex" v-model="sex">
 					<option value="sex">Sex</option>
 					<option value="men">Man</option>
 					<option value="woman">Vrouw</option>
@@ -52,7 +52,7 @@
 			</div>
 			<div class="input-form">
 				<input
-					v-model="info.town"
+					v-model="town"
 					type="text"
 					class="input-field"
 					autocomplete="off"
@@ -64,7 +64,7 @@
 			</div>
 			<div class="input-form">
 				<input
-					v-model="info.youth_center"
+					v-model="youth_center"
 					type="text"
 					class="input-field"
 					autocomplete="off"
@@ -74,14 +74,23 @@
 					<span class="label-name">Jouw jeugdhuis</span>
 				</label>
 			</div>
+			<div class="img-input_wrapper">
+				<input
+					class="img-input"
+					ref="image"
+					type="file"
+					@change="onChangeFileUpload()"
+				/>
+			</div>
 		</form>
-		<Button @click.prevent="setUserInfo" btnText="Naar interesses" />
+		<Button @click="setUserInfo" btnText="Naar interesses" />
 	</div>
 </template>
 
 <script>
 	import Back from "../../../components/Back.vue";
 	import Button from "../../../components/Button.vue";
+	import router from "../../../router/index";
 	export default {
 		name: "Register",
 		components: {
@@ -90,14 +99,13 @@
 		},
 		data() {
 			return {
-				info: {
-					first_name: "",
-					last_name: "",
-					birth: "",
-					sex: "",
-					town: "",
-					youth_center: "",
-				},
+				first_name: "",
+				last_name: "",
+				profilepic: "",
+				birth: "",
+				sex: "",
+				town: "",
+				youth_center: "",
 			};
 		},
 
@@ -108,25 +116,42 @@
 		computed: {
 			registerStatus: function () {
 				console.log(this.$store.getters.registerStatus);
+				return this.$store.getters.registerStatus;
 			},
 		},
 		methods: {
 			setUserInfo() {
-				// if (
-				// 	this.data.email.length > 5 &&
-				// 	this.data.password === this.data.password_confirmation
-				// ) {
+				// GET THE EMAIL, PASSWORD AND CONFIRMATION FROM GETTERS
+				const credentials = this.registerStatus;
+				const email = credentials.email;
+				const password = credentials.password;
+				const password_confirmation = credentials.password_confirmation;
+
+				// SETUP THE FULL USER OBJECT
+				const userInfo = new FormData();
+
+				userInfo.append("email", email);
+				userInfo.append("password", password);
+				userInfo.append("password_confirmation", password_confirmation);
+				userInfo.append("first_name", this.first_name);
+				userInfo.append("last_name", this.last_name);
+				userInfo.append("profilepic", this.profilepic);
+				userInfo.append("birth", this.birth);
+				userInfo.append("sex", this.sex);
+				userInfo.append("town", this.town);
+				userInfo.append("youth_center", this.youth_center);
+
 				this.$store
-					.dispatch("SETUSERINFO", this.info)
+					.dispatch("REGISTER", userInfo)
 					.then((success) => {
 						this.$router.push("/profile-interests");
 					})
 					.catch((error) => {
 						console.log(error);
 					});
-				// } else {
-				// 	this.error = true;
-				// }
+			},
+			onChangeFileUpload() {
+				this.profilepic = this.$refs.image.files[0];
 			},
 		},
 	};
