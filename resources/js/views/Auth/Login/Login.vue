@@ -48,7 +48,7 @@
 	import store from "../../../store/index";
 	import InputField from "../../../components/InputField";
 	export default {
-		name: "Register",
+		name: "Login",
 		components: {
 			InputField,
 		},

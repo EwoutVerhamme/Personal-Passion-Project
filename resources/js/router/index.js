@@ -10,8 +10,10 @@ import ProfileInfo from "../views/Auth/Register/ProfileInfo.vue";
 import AddSkills from "../components/AddSkills.vue";
 import EditProfile from "../components/EditProfile.vue";
 import OtherProfile from "../components/OtherProfile.vue";
-import Succes from "../components/Succes.vue"
-import store from "../store/index"
+import Succes from "../components/Succes.vue";
+import ProfileSkills from "../views/Auth/Register/ProfileSkills.vue";
+import ProfileInterests from "../views/Auth/Register/ProfileInterests.vue";
+import store from "../store/index";
 
 const ifNotAuthenticated = (to, from, next) => {
   if (!store.getters.isLoggedIn) {
@@ -75,7 +77,16 @@ beforeEnter: ifAuthenticated,
   path: '/profile-info',
   name: 'ProfileInfo',
   component: ProfileInfo,
-  beforeEnter: ifAuthenticated,
+},
+{
+  path: '/profile-interests',
+  name: 'ProfileInterests',
+  component: ProfileInterests,
+},
+{
+  path: '/profile-skills',
+  name: 'ProfileSkills',
+  component: ProfileSkills,
 },
 {
   path: '/addskills',

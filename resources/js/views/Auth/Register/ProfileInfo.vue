@@ -1,84 +1,132 @@
 <template>
-	<div class="register-title_wrapper">
-		<Back />
-		<h1 class="register-title">Mijn Profiel</h1>
+	<div class="profile-info">
+		<div class="header">
+			<Back class="back" />
+			<h1 class="title">Mijn profiel</h1>
+		</div>
+
+		<form action="" class="create-form">
+			<div class="input-form">
+				<input
+					v-model="info.first_name"
+					type="text"
+					class="input-field"
+					autocomplete="off"
+					placeholder=" "
+				/>
+				<label for="" class="input-label">
+					<span class="label-name">Voornaam</span>
+				</label>
+			</div>
+			<div class="input-form">
+				<input
+					v-model="info.last_name"
+					type="text"
+					class="input-field"
+					autocomplete="off"
+					placeholder=" "
+				/>
+				<label for="" class="input-label">
+					<span class="label-name">Achternaam</span>
+				</label>
+			</div>
+			<div class="input-form">
+				<input
+					v-model="info.birth"
+					type="text"
+					class="input-field"
+					autocomplete="off"
+					placeholder=" "
+				/>
+				<label for="" class="input-label">
+					<span class="label-name">Geboortedatum</span>
+				</label>
+			</div>
+			<div class="input-form">
+				<select name="sex" id="sex" v-model="info.sex">
+					<option value="sex">Sex</option>
+					<option value="men">Man</option>
+					<option value="woman">Vrouw</option>
+					<option value="x">X</option>
+				</select>
+			</div>
+			<div class="input-form">
+				<input
+					v-model="info.town"
+					type="text"
+					class="input-field"
+					autocomplete="off"
+					placeholder=" "
+				/>
+				<label for="" class="input-label">
+					<span class="label-name">Gemeente</span>
+				</label>
+			</div>
+			<div class="input-form">
+				<input
+					v-model="info.youth_center"
+					type="text"
+					class="input-field"
+					autocomplete="off"
+					placeholder=" "
+				/>
+				<label for="" class="input-label">
+					<span class="label-name">Jouw jeugdhuis</span>
+				</label>
+			</div>
+		</form>
+		<Button @click.prevent="setUserInfo" btnText="Naar interesses" />
 	</div>
-	<form action="" class="register-form">
-		<input
-			v-model="first_name"
-			type="text"
-			placeholder="Voornaam"
-			class="register-input"
-		/>
-		<input
-			v-model="last_name"
-			type="text"
-			placeholder="Achternaam"
-			class="register-input"
-		/>
-		<div class="birth">
-			<label for="">
-				<input type="text" placeholder="Dag" class="birth-input" />
-				<input type="text" placeholder="Maand" class="birth-input" />
-				<input type="text" placeholder="Jaar" class="birth-input" />
-			</label>
-		</div>
-
-		<input
-			v-model="sex"
-			type="text"
-			placeholder="Geslacht"
-			class="register-input"
-		/>
-		<input
-			v-model="town"
-			type="text"
-			placeholder="Gemeente"
-			class="register-input"
-		/>
-		<input
-			v-model="youth_center"
-			type="text"
-			placeholder="Jouw jeugdhuis"
-			class="register-input"
-		/>
-
-		<div class="button-wrapper">
-			<button @click="profileInfo" class="register-button">
-				Naar interesses
-			</button>
-		</div>
-	</form>
 </template>
 
 <script>
 	import Back from "../../../components/Back.vue";
+	import Button from "../../../components/Button.vue";
 	export default {
 		name: "Register",
 		components: {
 			Back,
+			Button,
 		},
 		data() {
 			return {
-				first_name: "",
-				last_name: "",
-				birth: "",
-				sex: "",
-				town: "",
-				youth_center: "",
+				info: {
+					first_name: "",
+					last_name: "",
+					birth: "",
+					sex: "",
+					town: "",
+					youth_center: "",
+				},
 			};
 		},
+
+		created() {
+			this.registerStatus;
+		},
+
+		computed: {
+			registerStatus: function () {
+				console.log(this.$store.getters.registerStatus);
+			},
+		},
 		methods: {
-			profileInfo(e) {
-				e.preventDefault();
-				this.$store.dispatch("SetLoginCredentials", {
-					first_name: this.first_name,
-					last_name: this.last_name,
-					birth: this.birth,
-					sex: this.sex,
-					town: this.town,
-					youth_center: this.youth_center,
-				});
+			setUserInfo() {
+				// if (
+				// 	this.data.email.length > 5 &&
+				// 	this.data.password === this.data.password_confirmation
+				// ) {
+				this.$store
+					.dispatch("SETUSERINFO", this.info)
+					.then((success) => {
+						this.$router.push("/profile-interests");
+					})
+					.catch((error) => {
+						console.log(error);
+					});
+				// } else {
+				// 	this.error = true;
+				// }
 			},
 		},
 	};
@@ -86,18 +134,24 @@
 
 
 <style scoped>
-	.register-title_wrapper {
-		margin-top: 1rem;
+	.profile-info {
+		grid-row: 1 / span 2;
+	}
+	.header {
 		display: flex;
-		width: 100%;
 		justify-content: center;
 		align-items: center;
+		margin-top: 1rem;
 	}
-	.back-button {
-		left: 3;
+	.title {
+		text-align: center;
+		font-size: 1.8rem;
+		color: #FF899E;
 	}
 
-	.register-title {
-		text-align: center;
+	.back {
+		position: absolute;
+		top: 1rem;
+		left: 1rem;
 	}
 </style>
