@@ -116,10 +116,7 @@ export default {
         axios
           .post(`api/register`, userInfo)
           .then(({ data, status }) => {
-            if (status === 200) {
-              resolve(userInfo);
-              console.log(data)
-            }
+            resolve(userInfo);
           })
           .catch(error => {
             reject(error);
