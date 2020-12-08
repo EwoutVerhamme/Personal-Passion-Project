@@ -55,7 +55,7 @@
 				{{ tabs[current].toLowerCase() }} ophalen...
 			</p>
 			<p class="loading" v-if="found === false">
-				geen {{ tabs[current].toLowerCase() }} gevonden...
+				Geen {{ tabs[current].toLowerCase() }} gevonden... &#128533;
 			</p>
 
 			<div class="content-wrapper">
@@ -66,11 +66,12 @@
 					v-for="t in tab"
 					class="content-block"
 				>
-					<img width="40" class="content-img" :src="t.profilepic" alt="" />
+					<img class="content-img" :src="t.profilepic" alt="" />
 					<p class="content-title">{{ t.first_name }} {{ t.last_name }}</p>
 				</router-link>
+
 				<div v-if="tabs[current] == 'Materiaal'">
-					<p>Deze functie komt er binnenkort aan!</p>
+					<p class="soon">Er wordt aan deze functie gewerkt! &#128526;</p>
 				</div>
 
 				<div
@@ -79,16 +80,17 @@
 					v-for="t in tab"
 					class="content-block"
 				>
-					<img width="40" class="content-img" :src="t.profilepic" alt="" />
+					<img class="content-img" :src="t.profilepic" alt="" />
 					<p class="content-title">{{ t.name }}</p>
 				</div>
+
 				<div
 					class="engagement-block"
 					v-if="tabs[current] == 'Engagement'"
 					:key="t.id"
 					v-for="t in tab"
 				>
-					<img width="40" class="engagement-img" :src="t.image" alt="" />
+					<img class="engagement-img" :src="t.image" alt="" />
 					<p class="engagement-title">
 						{{ t.first_name }} zoekt een
 						<strong>{{ t.skill_alias }}</strong>
@@ -153,32 +155,30 @@
 			checkCurrentTab() {
 				let slug = "";
 				const tab = this.tabs[this.current].toLowerCase();
+				this.search = "";
 				switch (tab) {
 					case "talent":
 						slug = "users";
 						this.slug = slug;
-						this.search = "";
 						this.makeSearch();
 						break;
 					case "materiaal":
 						console.log("Materiaal");
+						this.loading = false;
 						break;
 					case "engagement":
 						slug = "ads";
 						this.slug = slug;
-						this.search = "";
 						this.makeSearch();
 						break;
 					case "jeugdhuis":
 						slug = "youth_centers";
 						this.slug = slug;
-						this.search = "";
 						this.makeSearch();
 						break;
 					default:
 						slug = "users";
 						this.slug = slug;
-						this.search = "";
 						this.makeSearch();
 				}
 			},
@@ -187,19 +187,17 @@
 				clearTimeout(this.timeout);
 				this.timeout = setTimeout(() => {
 					this.makeSearch();
-				}, 500);
+				}, 600);
 			},
 
 			searchOnTab() {
 				if (this.currentTab) {
-					console.log(this.tabs[current]);
 					this.makeSearch();
 				}
 			},
 			makeSearch() {
 				this.found = true;
 				const url = `/api/${this.slug}/${this.search}`;
-				console.log(url);
 				fetch(url)
 					.then((response) => response.json())
 					.then((result) => {
@@ -218,8 +216,8 @@
 
 <style scoped>
 	.search {
-		grid-row: 1 / span 2;
 		overflow: scroll;
+		grid-row: 1 / span 2;
 	}
 	.title {
 		text-align: center;
@@ -234,10 +232,22 @@
 		width: 100%;
 		justify-content: space-around;
 		border-bottom: solid 0.2rem #D3FFFF;
+		line-height: 2rem;
 		position: relative;
 		z-index: 1;
-		margin-top: 0.5rem;
+		margin-top: 0.95rem;
 	}
+
+	.current {
+		border-bottom: solid 0.2rem #8ce4e3;
+	}
+
+	.soon {
+		font-size: 1rem;
+		text-align: center;
+		margin-top: 9rem;
+	}
+
 	.search-select_text {
 		font-size: 0.9rem;
 		margin-bottom: -0.25rem;
@@ -250,12 +260,17 @@
 		margin-bottom: -0.6rem;
 	}
 
-	.current {
-		border-bottom: solid 0.2rem #8ce4e3;
+	.load-content {
+		margin: 0 auto;
+		margin-top: 2rem;
+		width: 95%;
 	}
 
-	.load-content {
-		margin-top: 2rem;
+	.content-wrapper {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-evenly;
+		margin-top: 1rem;
 	}
 
 	.content-block {
@@ -275,13 +290,18 @@
 	}
 
 	.content-img {
+		width: 3rem;
+		height: auto;
+		clip-path: circle(50% at center);
 		margin-left: 0.5rem;
 	}
 	.loading {
-		font-size: 1.2rem;
+		font-size: 1rem;
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		margin-top: 9rem;
+		text-align: center;
 	}
 	.input {
 		display: flex;
@@ -321,12 +341,6 @@
 		background: url("/assets/img/search.svg") center / contain no-repeat;
 	}
 
-	.content-img {
-		width: 3rem;
-		height: 3rem;
-		border-radius: 50%;
-	}
-
 	.engagement-block {
 		display: grid;
 		grid-template-columns: 0.5rem 0.3fr 1fr 0.5rem;
@@ -350,7 +364,7 @@
 	.engagement-img {
 		width: 3rem;
 		height: 3rem;
-		border-radius: 50%;
+		clip-path: circle(50% at center);
 		grid-row: 2;
 		grid-column: 2;
 		align-self: center;

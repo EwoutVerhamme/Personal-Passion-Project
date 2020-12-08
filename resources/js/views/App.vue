@@ -41,17 +41,14 @@
 		background-color: #FCFEFF;
 		font-family: "Poppins", sans-serif;
 		color: #434343;
-		min-height: 100vh;
-		min-height: -webkit-fill-available;
+		height: 100vh;
 	}
 
 	html {
-		height: -webkit-fill-available;
 	}
 
 	#app {
-		min-height: 100vh;
-		height: -webkit-fill-available;
+		height: 100vh;
 		display: grid;
 		grid-template-rows: 4rem auto 4rem;
 		width: 100vw;
@@ -60,7 +57,8 @@
 	.navigation {
 		z-index: 1;
 		grid-row: 3;
-		align-self: baseline;
+		position: absolute;
+		bottom: 0;
 	}
 
 	.footer {

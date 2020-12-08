@@ -8,7 +8,7 @@
 			<img :src="profilepic" alt="" class="profile-img" />
 		</div>
 		<div class="matches">
-			<h2 class="subtitle">
+			<h2 class="subtitle" v-if="error == false">
 				Mensen zijn op zoek naar jouw <strong>talent!</strong>
 			</h2>
 			<div class="boxes">

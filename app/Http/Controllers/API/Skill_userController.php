@@ -38,15 +38,9 @@ class Skill_userController extends Controller
        ->join('skills', 'skills.id', '=', 'skill_users.skill_id')
        ->join('users', 'skill_users.user_id', '=', 'users.id')
        ->join('ads', 'ads.skill_id', '=', 'skill_users.skill_id')
+       ->where('ads.user_id', '!=',  $id )
        ->select('skill_users.user_id','ads.creator_name', 'ads.creator_img','ads.id','ads.user_id', 'skills.skill_alias', 'ads.date','ads.location', )
        ->get();
-       // Get all engagements with that skills
-       $matches = DB::table('ads')
-       ->join('users', 'users.id', '=', 'ads.user_id')
-       ->join('skills', 'skills.id', '=', 'ads.skill_id')
-       ->select( 'ads.id', 'ads.title', 'ads.info','ads.date', 'ads.location', 'ads.image',"users.first_name", 'users.last_name', 'users.profilepic', 'users.youth_center', 'skills.skill_name', 'skills.skill_alias')
-       ->get();
-
        return response()->json($mySkill,200);
 
     }
