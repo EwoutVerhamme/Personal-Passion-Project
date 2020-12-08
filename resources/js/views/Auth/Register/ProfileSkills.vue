@@ -48,8 +48,9 @@
 		},
 
 		created() {
+			const getUser = JSON.parse(localStorage.getItem("user"));
 			this.skill_id = this.getSkillId;
-			this.user_id = 1;
+			this.user_id = getUser.id;
 		},
 
 		computed: {
@@ -63,6 +64,7 @@
 
 		methods: {
 			addSkills() {
+				console.log(this.skill_id, this.user_id);
 				this.$store
 					.dispatch("SETUSERSKILLS", {
 						skill_id: this.skill_id,
@@ -71,7 +73,6 @@
 					.then((success) => {
 						this.$store.dispatch("AUTOLOGIN");
 						this.$router.push("/");
-						window.reload();
 					})
 					.catch((error) => {
 						console.log(error);
