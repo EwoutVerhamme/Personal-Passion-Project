@@ -503,6 +503,7 @@
 		.engagement-text {
 			margin: 0.2rem;
 		}
+		
 	}
 
 	@media screen and (min-width: 1024px) {

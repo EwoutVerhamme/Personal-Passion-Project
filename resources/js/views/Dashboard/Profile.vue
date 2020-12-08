@@ -14,7 +14,7 @@
 					<p class="profile-location_text">{{ youth_center }}</p>
 				</div>
 				<div class="profile-socials">
-					<img src="/assets/img/profile/fb.svg" alt="" />
+					<img class="profile-social" src="/assets/img/profile/fb.svg" alt="" />
 					<img
 						class="profile-social"
 						src="/assets/img/profile/messenger.svg"
@@ -144,6 +144,11 @@
 		height: 2.5rem;
 		border-radius: 50%;
 	}
+
+	.title {
+		font-weight: 600;
+	}
+
 	.profile {
 		margin: 0 auto;
 		margin-top: 2rem;
@@ -215,14 +220,22 @@
 		margin-top: 5rem;
 		text-align: center;
 		font-size: 1rem;
-		line-height: 1.4rem;
+		line-height: 2rem;
 	}
 
 	@media screen and (min-width: 768px) {
+
 		.profile {
 			width: 35rem;
 			margin-top: 4rem;
 		}
+
+		.button {
+		top: 6rem;
+		right: 4rem;
+		width: 3rem;
+		height: 3rem;
+	}
 
 		.profile-info {
 			margin: 0 auto;
@@ -230,11 +243,58 @@
 			justify-content: space-evenly;
 			align-items: center;
 			width: 30rem;
+			margin-top: 2rem;
 		}
 
 		.profile-photo {
 			width: 7rem;
 			height: 7rem;
 		}
+
+		.profile-name {
+			font-size: 1.6rem;
+			margin: 0.5rem;
+			font-weight: 600;
+		}
+
+		.profile-location {
+			font-size: 1.3rem;
+			font-weight: 300;
+			margin: 0.5rem;
+		}
+
+		.location {
+			width: 1.5rem;
+		}
+
+		.profile-socials {
+			width: 10rem;
+			margin: 0.5rem;
+		}
+
+		.profile-social {
+			width: 2rem;
+		}
+
+		.title {
+			font-size: 1.5rem;
+		}
+
+		.empty {
+			margin-top: 9rem;
+			font-size: 1.4rem;
+		}
+
+		.skill {
+			margin: 0.5rem;
+			background-color: #8CE4E3;
+			padding: 10px;
+			border-radius: 8px;
+			color: white;
+			font-size: 1.4rem;
+		}
+	}
+
+	@media screen and (min-width: 1024px) {
 	}
 </style>

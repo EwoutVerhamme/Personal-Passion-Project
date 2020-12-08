@@ -142,7 +142,7 @@
 
 	.login-text {
 		text-align: center;
-		margin-top: 0.5rem;
+		margin-top: 1rem;
 		font-weight: 300;
 		font-size: 0.9rem;
 		color: #434343;
@@ -150,6 +150,7 @@
 
 	strong {
 		color: #FF899E;
+		font-weight: 600;
 	}
 
 	.error {
@@ -169,12 +170,16 @@
 			margin: 0;
 			font-weight: 400;
 			font-size: 1.3rem;
-			margin-top: -0.3rem;
+			margin-top: 1rem;
 		}
 
 		.register-img {
 			margin-top: 5rem;
-			height: 10rem;
+			height: 8rem;
+		}
+
+		.register-form {
+			margin-top: 2rem;
 		}
 
 		.register-form-title {
@@ -196,5 +201,13 @@
 		.login-text {
 			font-size: 1.3rem;
 		}
+
+		.button-wrapper {
+			margin-top: 4rem;
+		}
+
+	}
+
+	@media screen and (min-width: 1024px) {
 	}
 </style>

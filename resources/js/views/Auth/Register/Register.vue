@@ -35,7 +35,7 @@
 			<div class="input-form">
 				<input
 					v-model="credentials.password_confirmation"
-					type="text"
+					type="password"
 					class="input-field"
 					autocomplete="off"
 					placeholder=" "
@@ -90,11 +90,11 @@
 
 		methods: {
 			setCredentials() {
-				// if (
-				// 	this.credentials.email.length > 8 &&
-				// 	this.credentials.password === this.credentials.password_confirmation &&
-				// 	this.credentials.password.length >= 4
-				// ) {
+				if (
+					this.credentials.email.length > 8 &&
+					this.credentials.password === this.credentials.password_confirmation &&
+					this.credentials.password.length >= 4
+				) {
 				this.$store
 					.dispatch("SETCREDENTIALS", this.credentials)
 					.then((success) => {
@@ -103,9 +103,9 @@
 					.catch((error) => {
 						console.log(error);
 					});
-				// } else {
-				// 	this.error = true;
-				// }
+				} else {
+					this.error = true;
+				}
 			},
 		},
 	};
@@ -117,6 +117,7 @@
 		display: grid;
 		margin: 0 auto;
 		grid-row: 1 / span 2;
+		height: 90vh;
 	}
 
 	.register-welcome {
@@ -140,16 +141,14 @@
 	}
 
 	.register-title {
-		margin: 0;
 		font-weight: 300;
 		font-size: 1.8rem;
 	}
 
 	.register-subtitle {
-		margin: 0;
 		font-weight: 400;
 		font-size: 0.9rem;
-		margin-top: -0.3rem;
+		margin-top: 3rem;
 	}
 
 	.register-img {
@@ -175,7 +174,7 @@
 
 	.login-text {
 		text-align: center;
-		margin-top: 0.5rem;
+		margin-top: 1rem;
 		font-weight: 300;
 		font-size: 0.9rem;
 		color: #434343;
@@ -183,6 +182,7 @@
 
 	strong {
 		color: #FF899E;
+		font-weight: 600;
 	}
 
 	.error {
@@ -202,12 +202,12 @@
 			margin: 0;
 			font-weight: 400;
 			font-size: 1.3rem;
-			margin-top: -0.3rem;
+			margin-top: 1rem;
 		}
 
 		.register-img {
 			margin-top: 5rem;
-			height: 10rem;
+			height: 8rem;
 		}
 
 		.register-form-title {

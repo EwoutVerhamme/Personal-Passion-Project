@@ -252,6 +252,9 @@
 	}
 
 	@media screen and (min-width: 768px) {
+		.create-post {
+			grid-row: 2;
+		}
 		.title {
 			margin-top: 2rem;
 		}
@@ -273,6 +276,9 @@
 	}
 
 	@media screen and (min-width: 1024px) {
+		.create-post {
+			grid-row:  2;
+		}
 		.input-form {
 			width: 45rem;
 		}
