@@ -50,10 +50,10 @@
 	}
 
 	#app {
-		min-height: -webkit-fill-available;
+		min-height: 100vh;
+		height: -webkit-fill-available;
 		display: grid;
 		grid-template-rows: 4rem auto 4rem;
-		height: 100vh;
 		width: 100vw;
 	}
 

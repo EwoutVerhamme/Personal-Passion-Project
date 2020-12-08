@@ -42,6 +42,16 @@ public function getUserWithAds($ad_name) {
     return response($users, 200);
 }
 
+public function getMyAds($id) {
+    $ads = DB::table('ads')
+    ->join('users', 'users.id', '=', 'ads.user_id')
+    ->join('skills', 'skills.id', '=', 'ads.skill_id')
+    ->select( 'ads.id','ads.title', 'ads.info','ads.date', 'ads.location', 'ads.image',"users.first_name", 'users.last_name', 'users.profilepic', 'users.youth_center', 'skills.skill_name', 'skills.skill_alias')
+    ->where('ads.user_id', '=',  $id )
+    ->get();
+    return response($ads, 200);
+}
+
 /**
      * Store a newly created resource in storage.
      *

@@ -41,8 +41,8 @@
 						</div>
 					</div>
 				</div>
-				<p v-if="error == true">
-					Er zijn momenteel geen mensen naar je opzoek...
+				<p class="error" v-if="error == true">
+					Er zijn momenteel geen mensen naar je opzoek... &#128532
 				</p>
 			</div>
 		</div>
@@ -123,6 +123,7 @@
 	.welcome-user-title {
 		font-weight: 300;
 		line-height: 2rem;
+		font-size: 2rem;
 	}
 
 	.profile-img {
@@ -148,6 +149,15 @@
 	.boxes {
 		display: flex;
 		flex-wrap: wrap;
+		justify-content: center;
+	}
+
+	.error {
+		width: 95%;
+		text-align: center;
+		font-size: 1rem;
+		margin-top: 10rem;
+		line-height: 1.3rem;
 	}
 
 	strong {
@@ -163,7 +173,7 @@
 		.welcome-user {
 			margin: 0 auto;
 			margin-top: 3rem;
-			max-width: 30rem;
+			max-width: 25rem;
 			display: flex;
 			align-items: center;
 		}
@@ -171,16 +181,16 @@
 		.welcome-user-title {
 			font-weight: 300;
 			line-height: 3.5rem;
-			font-size: 3.5rem;
+			font-size: 3rem;
 		}
 
 		.profile-img {
-			width: 6rem;
-			height: 6rem;
+			width: 5rem;
+			height: 5rem;
 		}
 
 		.subtitle {
-			font-size: 1.6rem;
+			font-size: 1.2rem;
 		}
 
 		.matches {

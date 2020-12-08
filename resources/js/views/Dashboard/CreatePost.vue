@@ -150,11 +150,11 @@
 
 			submitPost() {
 				const getUser = JSON.parse(localStorage.getItem("user"));
-				const user = getUser.user.id;
+				const user = getUser.id;
 				this.data.user_id = user;
-				const creatorName = getUser.user.first_name;
+				const creatorName = getUser.first_name;
 				this.data.creator_name = creatorName;
-				const creatorImg = getUser.user.profilepic;
+				const creatorImg = getUser.profilepic;
 				this.data.creator_img = creatorImg;
 
 				const data = new FormData();
@@ -189,11 +189,15 @@
 
 
 <style scoped>
+	.create-post {
+		grid-row: 1 / span 2;
+	}
 	.title {
 		text-align: center;
 		font-size: 1.8rem;
 		color: #FF899E;
-		margin-bottom: 0;
+		margin-top: 2rem;
+		font-weight: 600;
 	}
 
 	.input-form {
@@ -208,9 +212,11 @@
 	.img-input_wrapper {
 		width: 95%;
 		margin: 0 auto;
+		margin-top: 2rem;
 	}
 
 	.select-button_wrapper {
+		margin-top: 0.5rem;
 		display: flex;
 		align-items: center;
 	}
@@ -236,12 +242,37 @@
 		border-radius: 8px;
 	}
 
+	.button-wrapper {
+		margin-top: 2rem;
+	}
+
 	.button {
 		margin-top: 2rem;
 		width: 15rem;
 	}
 
 	@media screen and (min-width: 768px) {
+		.title {
+			margin-top: 2rem;
+		}
+		.input-form {
+			max-width: 40rem;
+		}
+
+		.select-skill {
+			margin: 0 auto;
+			margin-top: 1rem;
+			max-width: 40rem;
+		}
+
+		.img-input_wrapper {
+			margin: 0 auto;
+			margin-top: 2rem;
+			max-width: 40rem;
+		}
+	}
+
+	@media screen and (min-width: 1024px) {
 		.input-form {
 			width: 45rem;
 		}

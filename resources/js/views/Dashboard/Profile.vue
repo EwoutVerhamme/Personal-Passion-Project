@@ -1,13 +1,8 @@
 <template>
 	<div class="profile">
 		<div class="profile-info">
-			<div class="img-wrapper">
-				<img class="profile-photo" :src="profilePic" alt="" />
-			</div>
-
-			<!-- <router-link to="/editprofile">
+			<router-link class="button" to="/editprofile">
 				<svg
-					class="button"
 					width="40"
 					height="40"
 					viewBox="0 0 40 40"
@@ -20,7 +15,10 @@
 						fill="white"
 					/>
 				</svg>
-			</router-link> -->
+			</router-link>
+			<div class="img-wrapper">
+				<img class="profile-photo" :src="profilePic" alt="" />
+			</div>
 			<div class="info-wrapper">
 				<h1 class="profile-name">{{ first_name }} {{ last_name }}</h1>
 				<div class="profile-location">
@@ -58,14 +56,46 @@
 		</div>
 		<div class="ads">
 			<h2 class="title">Je zoekertjes</h2>
-			<div class="empty-wrapper">
-				<p class="empty">Het is nog wat stil hier...</p>
+
+			<div class="match-box" v-for="ad in ads">
+				<div class="title-wrapper">
+					<img :src="ad.image" alt="" class="profile-pic-box" />
+					<p class="title-text">
+						Je zoekt een
+						<strong>{{ ad.skill_alias }}</strong>
+					</p>
+				</div>
+				<div class="info">
+					<div class="info-date">
+						<img
+							width="25px"
+							height="25px"
+							src="/assets/img/calendar.png"
+							alt=""
+						/>
+						<p class="info-text">{{ ad.date }}</p>
+					</div>
+					<div class="info-youthcenter">
+						<img
+							width="25px"
+							height="25px"
+							src="/assets/img/place.svg"
+							alt=""
+						/>
+						<p class="info-text">{{ ad.location }}</p>
+					</div>
+				</div>
 			</div>
+			<p v-if="error == true">
+				Het is nog wat stil hier! Maak vlug een
+				<router-link to="/create"><strong>zoekertje</strong></router-link>
+			</p>
 		</div>
 	</div>
 </template>
 
 <script>
+	import axios from "axios";
 	export default {
 		name: "Profile",
 		components: {},
@@ -77,6 +107,8 @@
 				profilePic: "",
 				youth_center: "",
 				skills: [],
+				ads: [],
+				error: false,
 			};
 		},
 
@@ -85,13 +117,28 @@
 		},
 
 		methods: {
-			setProfileInfo() {
+			setProfileInfo: async function () {
+				// Set all the text-data
 				const profile = JSON.parse(localStorage.getItem("user"));
-				console.log(profile);
 				this.first_name = profile.first_name;
 				this.last_name = profile.last_name;
 				this.youth_center = profile.youth_center;
 				this.profilePic = profile.profilepic;
+
+				//Set a user his adds and get ID
+				const id = profile.id;
+				try {
+					const response = await axios.get(`/api/ads/user/${id}`);
+					if (response.data.length == 0) {
+						this.error = true;
+					} else {
+						this.ads = response.data;
+						console.log(this.ads);
+						this.error = false;
+					}
+				} catch (error) {
+					console.error(error);
+				}
 			},
 		},
 	};
@@ -99,10 +146,16 @@
 
 
 <style scoped>
+	.button {
+		position: absolute;
+		top: 1rem;
+		right: 1rem;
+		width: 1rem;
+		height: 1rem;
+	}
 	.profile {
-		/* width: 35rem; */
 		margin: 0 auto;
-		margin-top: 1rem;
+		margin-top: 2rem;
 	}
 
 	.profile-info {
@@ -157,6 +210,7 @@
 
 	.ads {
 		margin-top: 2rem;
+		overflow: scroll;
 	}
 
 	.empty-wrapper {

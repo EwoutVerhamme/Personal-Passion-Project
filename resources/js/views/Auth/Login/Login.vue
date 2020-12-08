@@ -82,7 +82,6 @@
 
 <style scoped>
 	.login {
-		display: grid;
 		margin: 0 auto;
 		grid-row: 1 / span 2;
 	}
