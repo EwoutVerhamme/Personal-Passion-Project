@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Request as Requests;
 use Illuminate\Http\Request;
 use App\Http\Resources\YouthCenterResource;
 use Validator;
+use DB;
 
 class YouthCenterController extends Controller
 {
@@ -28,11 +29,11 @@ class YouthCenterController extends Controller
 
   public function getAll()
     {
-
-        return response()->json(YouthCenter::get(),200);
-
-
-       
+        
+        $youth_centers = DB::table('youth_centers')
+        ->limit(3)
+        ->get();
+        return response($youth_centers, 201);
   }
 
     /**

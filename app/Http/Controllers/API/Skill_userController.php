@@ -12,16 +12,6 @@ use DB;
 class Skill_userController extends Controller
 {
 
-    // public function index() {
-    //     $getAllSkills = DB::table("all_skills")->get();
-    //     return response($getAllSkills, 201);
-    // }
-
-    // public function getSkill($name) {
-    //     return response()->json(AllSkill::where('name', $name)
-    //     ->orWhere('name', 'like', '%' . $name . '%')->get());
-    // }
-
     public function index()
     {
         // SELECT skill_users.user_id, skills.skill_name, users.first_name, users.last_name FROM users INNER JOIN skill_users ON skill_users.user_id = users.id INNER JOIN skills ON skills.id = skill_users.skill_id

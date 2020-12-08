@@ -25,7 +25,8 @@ class AuthController extends Controller
     public function getAll() {
         $id = Auth::id();
         
-        $users = DB::table('users')->limit(3)
+        $users = DB::table('users')
+        ->limit(3)
         ->where('users.id', '!=',  $id )
         ->get();
         return response($users, 201);
