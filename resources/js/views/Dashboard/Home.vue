@@ -151,10 +151,51 @@
 	}
 
 	strong {
+		font-weight: 600;
 		color: #FF899E;
 	}
 
 	@media screen and (min-width: 768px) {
+		.home {
+			grid-row: 2;
+		}
+
+		.welcome-user {
+			margin: 0 auto;
+			margin-top: 3rem;
+			max-width: 30rem;
+			display: flex;
+			align-items: center;
+		}
+
+		.welcome-user-title {
+			font-weight: 300;
+			line-height: 3.5rem;
+			font-size: 3.5rem;
+		}
+
+		.profile-img {
+			width: 6rem;
+			height: 6rem;
+		}
+
+		.subtitle {
+			font-size: 1.6rem;
+		}
+
+		.matches {
+			display: flex;
+			flex-flow: column wrap;
+			justify-content: center;
+			max-width: 46rem;
+		}
+
+		.match {
+			width: 22rem;
+		}
+	}
+
+	@media screen and (min-width: 1024px) {
 		.home {
 			grid-row: 2;
 		}

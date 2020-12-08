@@ -28,6 +28,7 @@
 </script>
 
 <style>
+	@import "../styles/reset.css";
 	@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap");
 
 	* {
@@ -37,10 +38,15 @@
 	}
 
 	body {
-		height: 100vh;
 		background-color: #FCFEFF;
 		font-family: "Poppins", sans-serif;
 		color: #434343;
+		min-height: 100vh;
+		min-height: -webkit-fill-available;
+	}
+
+	html {
+		height: -webkit-fill-available;
 	}
 
 	#app {
