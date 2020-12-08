@@ -70,9 +70,8 @@
 		mounted() {
 			const getUser = JSON.parse(localStorage.getItem("user"));
 			if (localStorage.user) {
-				const user = getUser.user;
-				this.first_name = user.first_name;
-				this.profilepic = user.profilepic;
+				this.first_name = getUser.first_name;
+				this.profilepic = getUser.profilepic;
 			}
 
 			this.getMatches();
@@ -81,7 +80,7 @@
 		methods: {
 			getMatches: async function () {
 				const getUser = JSON.parse(localStorage.getItem("user"));
-				const token = getUser.access_token;
+				const token = localStorage.getItem("token");
 				try {
 					const response = await axios.get("/api/matches", {
 						headers: {

@@ -144,7 +144,7 @@
 				this.$store
 					.dispatch("REGISTER", userInfo)
 					.then((success) => {
-						this.$router.push("/profile-interests");
+						this.$router.push("/profile-skills");
 					})
 					.catch((error) => {
 						console.log(error);

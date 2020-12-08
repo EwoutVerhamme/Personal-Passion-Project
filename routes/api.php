@@ -31,11 +31,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
 
+// POST the skill_users
+Route::post("skill_users", [Skill_userController::class, "store"]);
+
 //Get the users with skills and ads
 Route::get("users", [AuthController::class, "getAll"]);
 Route::get("user/{id}", [AuthController::class, "getById"]);
 Route::get("users/{name}", [AuthController::class, "getUserWithSkill"]);
-
 
 //Get all the skills
 Route::get("skills", [Skill_userController::class, "index"]);

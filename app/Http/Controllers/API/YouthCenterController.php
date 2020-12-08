@@ -43,26 +43,6 @@ class YouthCenterController extends Controller
      */
     public function store(Request $request)
     {
-    //     $data = $request->all();
-        
-
-    //     $validator = Validator::make($data, [
-    //         'name' => 'required|max:90',
-    //     ]);
-
-    //     if ($validator->fails()) {
-    //         return response(['error' => $validator->errors(), 'Validation Error']);
-    //     }
-
-    //     $youthcenter = YouthCenter::create($data);
-
-    //     return response(['youth_center' => new YouthCenterResource($youthcenter), 'message' => 'Created successfully'], 201);
-
-    //     $validator = Validator::make($request->all(), 
-    //     [ 
-    //     'user_id' => 'required',
-    //     'file' => 'required|mimes:doc,docx,pdf,txt|max:2048',
-    //    ]);   
 
     $data = $request->all();
 

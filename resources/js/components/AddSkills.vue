@@ -72,7 +72,7 @@
 				const skillName = this.selectedSkillName;
 				this.$store.dispatch("SETSKILLID", skillId);
 				this.$store.dispatch("SETSKILLNAME", skillName);
-				this.$router.push("/create");
+				this.$router.go(-1);
 			},
 
 			currentSkill() {
@@ -94,7 +94,7 @@
 
 			makeSearch() {
 				this.found = true;
-				const url = `http://api.kollapp.test/api/skills/${this.search}`;
+				const url = `/api/skills/${this.search}`;
 				fetch(url)
 					.then((response) => response.json())
 					.then((result) => {

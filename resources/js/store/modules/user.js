@@ -59,7 +59,7 @@ export default {
             if (status === 200) {
               const token = data.access_token;
               const user = data.user
-              localStorage.setItem('user', JSON.stringify(data));
+              localStorage.setItem('user', JSON.stringify(user));
               localStorage.setItem('token', token);
               commit('auth_success', token, user)
               resolve(payload);
@@ -101,22 +101,34 @@ export default {
       
     },
 
-    SETSKILLINFO: ({commit}) => {
-
+    SETUSERSKILLS: ({commit}, payload )=> {
+      return new Promise((resolve, reject) => {
+        axios
+          .post(`api/skill_users`, payload)
+          .then(({ data, status }) => {
+            resolve(payload);
+            console.log(data)
+          })
+          .catch(error => {
+            reject(error);
+          });
+      });
     },
     
     
 
     REGISTER: ({ commit}, userInfo) => {
-    //   for (let d of userInfo.entries()) {
-    //     console.log(d); 
-    //     // Do whatever with d
-    // }
       return new Promise((resolve, reject) => {
         axios
           .post(`api/register`, userInfo)
           .then(({ data, status }) => {
-            resolve(userInfo);
+            const token = data.access_token;
+              const user = data[0]
+              localStorage.setItem('user', JSON.stringify(user));
+              localStorage.setItem('token', token);
+              commit('auth_success', token, user)
+              resolve(userInfo);
+              console.log(localStorage)
           })
           .catch(error => {
             reject(error);

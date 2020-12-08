@@ -84,7 +84,7 @@
 
 		computed: {
 			registerStatus: function () {
-				console.log(this.$store.getters.registerStatus);
+				return this.$store.getters.registerStatus;
 			},
 		},
 

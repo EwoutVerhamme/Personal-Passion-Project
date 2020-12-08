@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Skill;
+use App\Models\Skill_user;
 use DB;
 
 class Skill_userController extends Controller
@@ -24,8 +25,6 @@ class Skill_userController extends Controller
     public function index()
     {
         // SELECT skill_users.user_id, skills.skill_name, users.first_name, users.last_name FROM users INNER JOIN skill_users ON skill_users.user_id = users.id INNER JOIN skills ON skills.id = skill_users.skill_id
-
-       
         return response()->json(Skill::get(),200);
     }
 
@@ -63,5 +62,23 @@ class Skill_userController extends Controller
         ->get();
 
         return response($users, 200);
+    }
+
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request) {
+
+
+        $data = $request->all();
+
+        $skill_users = Skill_user::create($data);
+        $skill_users->save();
+  
+        return response($skill_users);
     }
 }

@@ -88,10 +88,10 @@
 			setProfileInfo() {
 				const profile = JSON.parse(localStorage.getItem("user"));
 				console.log(profile);
-				this.first_name = profile.user.first_name;
-				this.last_name = profile.user.last_name;
-				this.youth_center = profile.user.youth_center;
-				this.profilePic = profile.user.profilepic;
+				this.first_name = profile.first_name;
+				this.last_name = profile.last_name;
+				this.youth_center = profile.youth_center;
+				this.profilePic = profile.profilepic;
 			},
 		},
 	};
