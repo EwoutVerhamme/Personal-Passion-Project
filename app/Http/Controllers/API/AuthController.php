@@ -23,18 +23,23 @@ class AuthController extends Controller
     }
 
     public function getAll() {
-        $users = DB::table('users')->limit(3)->get();
+        $id = Auth::id();
+        
+        $users = DB::table('users')->limit(3)
+        ->where('users.id', '!=',  $id )
+        ->get();
         return response($users, 201);
     }
 
     public function getUserWithSkill($name) {
+
         $users = DB::table('users')
         ->join('skill_users', 'skill_users.user_id', '=', 'users.id')
         ->join('skills', 'skills.id', '=', 'skill_users.skill_id')
-        ->select('users.id','users.first_name', 'users.last_name', 'users.profilepic')
-        ->where('skill_name', 'like', '%' . $name . '%')
+        ->orWhere('skill_name', 'like', '%' . $name . '%')
         ->orWhere('first_name', 'like', '%' . $name . '%')
         ->orWhere('last_name', 'like', '%' . $name . '%')
+        ->select('users.id','users.first_name', 'users.last_name', 'users.profilepic')
         ->groupBy('users.id')
         ->get();
 

@@ -125,6 +125,7 @@
 </template>
 
 <script>
+	import axios from "axios";
 	export default {
 		name: "Search",
 		components: {},
@@ -195,19 +196,24 @@
 					this.makeSearch();
 				}
 			},
-			makeSearch() {
+			makeSearch: async function () {
+				const token = localStorage.getItem("token");
 				this.found = true;
-				const url = `/api/${this.slug}/${this.search}`;
-				fetch(url)
-					.then((response) => response.json())
-					.then((result) => {
-						this.loading = false;
-						this.tab = result;
-
-						if (result.length == 0) {
-							this.found = false;
-						}
+				try {
+					const response = await axios.get(`/api/${this.slug}/${this.search}`, {
+						headers: {
+							Authorization: `Bearer ${token}`,
+						},
 					});
+					this.loading = false;
+					this.tab = response.data;
+					console.log(this.tab);
+					if (response.length == 0) {
+						this.found = false;
+					}
+				} catch (error) {
+					console.error(error);
+				}
 			},
 		},
 	};

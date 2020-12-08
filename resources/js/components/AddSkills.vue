@@ -1,7 +1,7 @@
 <template>
-	<div>
+	<div class="add-skils">
+		<Back class="back" />
 		<div class="title-wrapper">
-			<Back class="back" />
 			<h1 class="title">Voeg skills toe</h1>
 		</div>
 		<div class="input-field_wrapper">
@@ -30,7 +30,8 @@
 		</div>
 
 		<p class="noskill">
-			Staat je skill er niet tussen? <strong>Voeg hem toe</strong>
+			Staat je skill er niet tussen? <br />
+			<strong>Voeg hem toe</strong>
 		</p>
 
 		<Button @click="setSkills" btnText="Voeg de skills toe" />
@@ -114,23 +115,28 @@
 
 
 <style scoped>
+	.add-skils {
+		width: 95%;
+		grid-row: 1 / span 2;
+		margin: 0 auto;
+	}
+
 	.title-wrapper {
-		width: 100vw;
-		display: grid;
+		width: 95%;
+		display: flex;
+		justify-content: center;
 	}
 	.title {
 		text-align: center;
-		font-family: "Poppins", sans-serif;
 		font-size: 1.8rem;
 		color: #FF899E;
-		margin-bottom: 0;
-		text-align: center;
-		grid-row: 1;
+		margin-top: 2rem;
+		font-weight: 600;
 	}
 
 	.back {
 		position: absolute;
-		top: 1.2rem;
+		top: 2.1rem;
 		left: 0.5rem;
 	}
 
@@ -164,6 +170,7 @@
 		border-bottom: 0.15rem #979797 solid;
 		width: 95%;
 		margin: 0 auto;
+		margin-top: 1rem;
 	}
 
 	.input-field {
@@ -189,5 +196,14 @@
 		bottom: 0;
 		padding-right: 1rem;
 		background: url("/assets/img/search.svg") center / contain no-repeat;
+	}
+
+	.noskill {
+		margin-top: 0.5rem;
+	}
+
+	@media screen and (min-width: 768px) {
+	}
+	@media screen and (min-width: 1024) {
 	}
 </style>

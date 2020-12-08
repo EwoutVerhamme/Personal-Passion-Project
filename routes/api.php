@@ -35,8 +35,8 @@ Route::post('login', [AuthController::class, 'login']);
 Route::post("skill_users", [Skill_userController::class, "store"]);
 
 //Get the users with skills and ads
-Route::get("users", [AuthController::class, "getAll"]);
-Route::get("user/{id}", [AuthController::class, "getById"]);
+Route::get("users", [AuthController::class, "getAll"])->middleware('auth:api');
+Route::get("user/{id}", [AuthController::class, "getById"])->middleware('auth:api');
 Route::get("users/{name}", [AuthController::class, "getUserWithSkill"]);
 
 //Get all the skills
