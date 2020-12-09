@@ -111,13 +111,14 @@
 							Authorization: `Bearer ${token}`,
 						},
 					});
-					if (response.data.length == 0) {
+
+					this.user = response.data.user[0];
+					this.skills = response.data.skills;
+					this.ads = response.data.ads;
+					this.error = false;
+
+					if (this.ads.length == 0) {
 						this.error = true;
-					} else {
-						this.user = response.data.user[0];
-						this.skills = response.data.skills;
-						this.ads = response.data.ads;
-						this.error = false;
 					}
 				} catch (error) {
 					console.error(error);
@@ -146,7 +147,7 @@
 		margin: 0 auto;
 		margin-top: 2rem;
 		width: 95%;
-		grid-row: 2;
+		grid-row: 1 / span 2;
 	}
 
 	.profile-info {

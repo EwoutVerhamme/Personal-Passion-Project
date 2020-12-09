@@ -5,7 +5,7 @@
 			<h2 class="register-subtitle">Jongeren en jeugdhuizen dichter bijeen</h2>
 			<img src="/assets/img/logo.svg" alt="" class="register-img" />
 		</div>
-		<form action="" class="register-form">
+		<form autocomplete="off" action="" class="register-form">
 			<h2 class="register-form-title">Aanmelden</h2>
 			<p v-if="error" class="error">{{ error }}</p>
 			<div class="input-form">
@@ -13,7 +13,6 @@
 					v-model="credentials.email"
 					type="text"
 					class="input-field"
-					autocomplete="off"
 					placeholder=" "
 				/>
 				<label for="" class="input-label">
@@ -25,7 +24,6 @@
 					v-model="credentials.password"
 					type="password"
 					class="input-field"
-					autocomplete="off"
 					placeholder=" "
 				/>
 				<label for="" class="input-label">

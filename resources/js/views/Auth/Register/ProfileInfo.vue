@@ -30,17 +30,34 @@
 					<span class="label-name">Achternaam</span>
 				</label>
 			</div>
-			<div class="input-form">
-				<input
-					v-model="birth"
-					type="text"
-					class="input-field"
-					autocomplete="off"
-					placeholder=" "
-				/>
-				<label for="" class="input-label">
-					<span class="label-name">Geboortedatum</span>
-				</label>
+			<div class="input-form_birth">
+				<p class="select-title">Geef je geboortedatum in</p>
+				<div class="input-field_birth-wrapper">
+					<input
+						v-model="day"
+						maxlength="2"
+						type="text"
+						class="input-field_birth"
+						autocomplete="off"
+						placeholder="Dag"
+					/>
+					<input
+						v-model="month"
+						maxlength="2"
+						type="text"
+						class="input-field_birth"
+						autocomplete="off"
+						placeholder="Maand"
+					/>
+					<input
+						v-model="year"
+						maxlength="4"
+						type="text"
+						class="input-field_birth"
+						autocomplete="off"
+						placeholder="Jaar"
+					/>
+				</div>
 			</div>
 			<div class="input-form_select">
 				<p class="select-title">Geslacht</p>
@@ -74,6 +91,7 @@
 				<label for="" class="input-label">
 					<span class="label-name">Jouw jeugdhuis</span>
 				</label>
+				
 			</div>
 			<div class="img-input_wrapper">
 				<p class="select-title">Upload een profiel foto</p>
@@ -104,6 +122,9 @@
 				first_name: "",
 				last_name: "",
 				profilepic: "",
+				day: "",
+				month: "",
+				year: "",
 				birth: "",
 				sex: "",
 				town: "",
@@ -127,6 +148,9 @@
 				const email = credentials.email;
 				const password = credentials.password;
 				const password_confirmation = credentials.password_confirmation;
+
+				// MAKE THE BIRTH DATE
+				this.birth = `${this.day}/${this.month}/${this.year}`;
 
 				// SETUP THE FULL USER OBJECT
 				const userInfo = new FormData();
@@ -199,6 +223,21 @@
 
 	.img-input {
 		margin-top: 1rem;
+	}
+
+	.input-form_birth {
+		margin-top: 1rem;
+	}
+
+	.input-field_birth-wrapper {
+		display: flex;
+		justify-content: flex-start;
+	}
+
+	.input-field_birth {
+		margin: 0.5rem;
+		width: 5rem;
+		height: 2rem;
 	}
 
 	.sex {

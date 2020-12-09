@@ -5,5 +5,6 @@ import store from './store/index'
 import "animate.css"
 
 
+
 createApp(App).use(store).use(router).mount('#app');
 
