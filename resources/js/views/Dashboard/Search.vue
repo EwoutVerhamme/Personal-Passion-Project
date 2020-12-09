@@ -449,6 +449,7 @@
 			display: flex;
 			flex-wrap: wrap;
 			justify-content: space-between;
+			max-width: 37rem;
 		}
 
 		.engagement-block {
@@ -457,7 +458,7 @@
 			grid-template-rows: 0.5rem 1fr 1fr 0.5rem;
 			box-shadow: 0px 0px 13px 1px rgba(0, 0, 0, 0.09);
 			border-radius: 20px;
-			width: 22rem;
+			width: 18rem;
 			height: fit-content;
 			margin: 0rem;
 			margin-top: 1rem;
@@ -503,7 +504,6 @@
 		.engagement-text {
 			margin: 0.2rem;
 		}
-		
 	}
 
 	@media screen and (min-width: 1024px) {

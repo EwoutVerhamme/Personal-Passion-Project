@@ -7,7 +7,7 @@
 		</div>
 		<form action="" class="register-form">
 			<h2 class="register-form-title">Aanmelden</h2>
-			<p v-if="error == true" class="error">Je wachtwoorden matchen niet...</p>
+			<p v-if="error" class="error">{{ error }}</p>
 			<div class="input-form">
 				<input
 					v-model="credentials.email"
@@ -74,7 +74,7 @@
 					password: "",
 					password_confirmation: "",
 				},
-				error: false,
+				error: null,
 			};
 		},
 
@@ -91,20 +91,19 @@
 		methods: {
 			setCredentials() {
 				if (
-					this.credentials.email.length > 8 &&
 					this.credentials.password === this.credentials.password_confirmation &&
 					this.credentials.password.length >= 4
 				) {
-				this.$store
-					.dispatch("SETCREDENTIALS", this.credentials)
-					.then((success) => {
-						this.$router.push("/profile-info");
-					})
-					.catch((error) => {
-						console.log(error);
-					});
+					this.$store
+						.dispatch("SETCREDENTIALS", this.credentials)
+						.then((success) => {
+							this.$router.push("/profile-info");
+						})
+						.catch((error) => {
+							console.log(error);
+						});
 				} else {
-					this.error = true;
+					this.error = "Je wachtwoorden komen niet overeen.";
 				}
 			},
 		},

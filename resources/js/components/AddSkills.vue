@@ -155,9 +155,9 @@
 		width: fit-content;
 		padding: 0.5rem;
 		border-radius: 0.5rem;
-		font-family: "Poppins", sans-serif;
 		font-size: 0.8rem;
 		margin: 0.25rem;
+		cursor: pointer;
 	}
 
 	.active {
@@ -180,7 +180,6 @@
 	}
 
 	.input-field::placeholder {
-		font-family: "Poppins", sans-serif;
 		font-size: 0.9rem;
 	}
 
@@ -203,6 +202,25 @@
 	}
 
 	@media screen and (min-width: 768px) {
+		.add-skils {
+			width: 40rem;
+			grid-row: 2;
+			margin: 0 auto;
+		}
+
+		.input-field_wrapper {
+			display: flex;
+			border-bottom: 0.15rem #979797 solid;
+			width: 40rem;
+			margin: 0 auto;
+			margin-top: 1rem;
+		}
+
+		.back {
+			position: absolute;
+			top: 6rem;
+			left: 2rem;
+		}
 	}
 	@media screen and (min-width: 1024) {
 	}

@@ -127,8 +127,9 @@
 	}
 
 	.profile-img {
-		width: 4rem;
-		height: 4rem;
+		clip-path: circle(50% at center);
+		width: 6rem;
+		height: auto;
 	}
 
 	.subtitle {
@@ -203,6 +204,11 @@
 		.match {
 			width: 22rem;
 		}
+
+		.error {
+			margin-top: 18rem;
+			font-size: 1.5rem;
+		}
 	}
 
 	@media screen and (min-width: 1024px) {
@@ -242,6 +248,11 @@
 
 		.match {
 			width: 22rem;
+		}
+
+		.error {
+			margin-top: 12rem;
+			font-size: 1.5rem;
 		}
 	}
 </style>

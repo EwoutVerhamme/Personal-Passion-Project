@@ -186,8 +186,9 @@
 	}
 
 	.profile-photo {
-		width: 4rem;
-		height: 4rem;
+		clip-path: circle(50% at center);
+		width: 6rem;
+		height: auto;
 	}
 
 	.skill-wrapper {
@@ -224,18 +225,17 @@
 	}
 
 	@media screen and (min-width: 768px) {
-
 		.profile {
 			width: 35rem;
 			margin-top: 4rem;
 		}
 
 		.button {
-		top: 6rem;
-		right: 4rem;
-		width: 3rem;
-		height: 3rem;
-	}
+			top: 6rem;
+			right: 4rem;
+			width: 3rem;
+			height: 3rem;
+		}
 
 		.profile-info {
 			margin: 0 auto;
