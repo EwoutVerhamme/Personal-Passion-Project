@@ -8,9 +8,9 @@
 		<router-view />
 	</transition>
 
-	<footer class="footer">
+	<!-- <footer class="footer">
 		<img src="/assets/img/kollapp.svg" alt="" class="footer_logo" />
-	</footer>
+	</footer> -->
 </template>
 
 <script>
@@ -56,7 +56,7 @@
 	#app {
 		height: 100vh;
 		display: grid;
-		grid-template-rows: 4rem auto 4rem;
+		grid-template-rows: 4rem auto ;
 		width: 100vw;
 	}
 

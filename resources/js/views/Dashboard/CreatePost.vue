@@ -70,7 +70,7 @@
 		</form>
 
 		<div class="button-wrapper">
-			<button @click="submitPost" class="button">Plaats je zoekertje</button>
+			<Button @click="submitPost" btnText="Plaats je zoekertje" />
 		</div>
 	</div>
 </template>
@@ -263,7 +263,7 @@
 
 	@media screen and (min-width: 1024px) {
 		.create-post {
-			grid-row:  2;
+			grid-row: 2;
 		}
 		.input-form {
 			width: 45rem;

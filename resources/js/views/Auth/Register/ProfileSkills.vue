@@ -99,10 +99,15 @@
 		text-align: center;
 		font-size: 1.8rem;
 		color: #FF899E;
+		font-weight: 600;
 	}
 
 	.select-title {
 		font-weight: 600;
+	}
+
+	.select-skill {
+		margin-top: 1rem;
 	}
 
 	.back {
@@ -113,5 +118,23 @@
 
 	.input-form_select {
 		margin-top: 1rem;
+	}
+
+	.select-button_wrapper {
+		margin-top: 1rem;
+		display: flex;
+		align-items: center;
+	}
+
+	@media screen and (min-width: 768px) {
+		.profile-info {
+			grid-row: 2;
+			width: 35rem;
+			margin: 0 auto;
+		}
+		.back {
+			top: 5rem;
+			left: 2rem;
+		}
 	}
 </style>

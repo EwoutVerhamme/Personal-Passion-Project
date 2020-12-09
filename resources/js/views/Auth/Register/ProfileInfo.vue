@@ -44,7 +44,7 @@
 			</div>
 			<div class="input-form_select">
 				<p class="select-title">Geslacht</p>
-				<select name="sex" id="sex" v-model="sex">
+				<select name="sex" class="sex" v-model="sex">
 					<option value="Geslacht">Geslacht</option>
 					<option value="Man">Man</option>
 					<option value="Vrouw">Vrouw</option>
@@ -76,6 +76,7 @@
 				</label>
 			</div>
 			<div class="img-input_wrapper">
+				<p class="select-title">Upload een profiel foto</p>
 				<input
 					class="img-input"
 					ref="image"
@@ -174,9 +175,11 @@
 		text-align: center;
 		font-size: 1.8rem;
 		color: #FF899E;
+		font-weight: 600;
 	}
 
 	.select-title {
+		font-size: 1.2rem;
 		font-weight: 600;
 	}
 
@@ -188,5 +191,30 @@
 
 	.input-form_select {
 		margin-top: 1rem;
+	}
+
+	.img-input_wrapper {
+		margin-top: 1.5rem;
+	}
+
+	.img-input {
+		margin-top: 1rem;
+	}
+
+	.sex {
+		margin-top: 1rem;
+	}
+
+	@media screen and (min-width: 768px) {
+		.profile-info {
+			grid-row: 2;
+			width: 35rem;
+			margin: 0 auto;
+		}
+
+		.back {
+			top: 5rem;
+			left: 2rem;
+		}
 	}
 </style>

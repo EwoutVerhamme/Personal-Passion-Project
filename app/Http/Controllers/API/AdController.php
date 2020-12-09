@@ -13,16 +13,10 @@ class AdController extends Controller
 {
 public function index() {
 
-    // $users = DB::table('ads')
-    // ->join('users', 'users.id', '=', 'ads.user_id')
-    // ->join('skills', 'skills.id', '=', 'ads.skill_id')
-    // ->select('ads.id','ads.title', 'ads.location', 'ads.date', 'ads.image','users.first_name', 'users.last_name', 'skills.skill_name')
-    // ->get();
-
     $users = DB::table('ads')
     ->join('users', 'users.id', '=', 'ads.user_id')
     ->join('skills', 'skills.id', '=', 'ads.skill_id')
-    ->select( 'ads.id','ads.title', 'ads.info','ads.date', 'ads.location', 'ads.image',"users.first_name", 'users.last_name', 'users.profilepic', 'users.youth_center', 'skills.skill_name', 'skills.skill_alias')
+    ->select( 'ads.id','ads.title', 'ads.creator_img', 'ads.info','ads.date', 'ads.location',"users.first_name", 'users.last_name', 'users.youth_center', 'skills.skill_name', 'skills.skill_alias')
     ->get();
     return response($users, 200);
 }
@@ -33,7 +27,7 @@ public function getUserWithAds($ad_name) {
     $users = DB::table('ads')
     ->join('users', 'users.id', '=', 'ads.user_id')
     ->join('skills', 'skills.id', '=', 'ads.skill_id')
-    ->select( 'ads.id','ads.title', 'ads.info','ads.date', 'ads.location', 'ads.image',"users.first_name", 'users.last_name', 'users.profilepic', 'users.youth_center', 'skills.skill_name', 'skills.skill_alias')
+    ->select( 'ads.id','ads.title', 'ads.info','ads.date', 'ads.location',"users.first_name", 'users.last_name', 'users.profilepic', 'users.youth_center', 'skills.skill_name', 'skills.skill_alias')
     ->orWhere('skill_name', 'like', '%' . $ad_name . '%')
     ->orWhere('first_name', 'like', '%' . $ad_name . '%')
     ->get();

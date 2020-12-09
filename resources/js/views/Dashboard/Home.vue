@@ -147,6 +147,10 @@
 		margin: 0.5rem;
 	}
 
+	.profile-pic-box {
+		clip-path: circle(50% at center);
+	}
+
 	.boxes {
 		display: flex;
 		flex-wrap: wrap;

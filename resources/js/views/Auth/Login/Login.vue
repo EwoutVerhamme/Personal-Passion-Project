@@ -160,6 +160,7 @@
 	@media screen and (min-width: 500px) {
 		.login {
 			justify-content: center;
+			
 		}
 
 		.register-title {

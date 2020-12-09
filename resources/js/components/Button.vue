@@ -15,7 +15,7 @@
 
 <style >
 	.button {
-		width: 90%;
+		width: 15rem;
 		margin: 0 auto;
 		height: 2.5rem;
 		background-color: #8CE4E3;

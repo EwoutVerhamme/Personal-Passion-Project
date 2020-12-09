@@ -26,7 +26,7 @@
 			</div>
 		</div>
 		<div class="skills">
-			<h2 class="title">{{ user.first_name }}'s Skills</h2>
+			<h2 class="title">{{ user.first_name }}'s skills</h2>
 			<div class="skill-wrapper">
 				<div v-for="skill in skills" class="skill">
 					<p class="skill-text">{{ skill.skill_name }}</p>

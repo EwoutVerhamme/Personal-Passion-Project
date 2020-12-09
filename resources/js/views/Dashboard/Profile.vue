@@ -146,6 +146,7 @@
 		margin: 0 auto;
 		margin-top: 2rem;
 		width: 95%;
+		grid-row: 2;
 	}
 
 	.profile-info {
@@ -224,7 +225,7 @@
 	@media screen and (min-width: 768px) {
 		.profile {
 			width: 35rem;
-			margin-top: 4rem;
+			margin-top: 1rem;
 		}
 
 		.button {
