@@ -67,14 +67,6 @@
 					<span class="label-name">Wanneer zal dit plaatsvinden?</span>
 				</label>
 			</div>
-			<div class="img-input_wrapper">
-				<input
-					class="img-input"
-					ref="image"
-					type="file"
-					@change="onChangeFileUpload()"
-				/>
-			</div>
 		</form>
 
 		<div class="button-wrapper">
@@ -110,7 +102,6 @@
 					date: "",
 					user_id: "",
 					skill_id: "",
-					image: null,
 				},
 
 				isActive: false,
@@ -166,10 +157,9 @@
 				data.append("date", this.data.date);
 				data.append("user_id", this.data.user_id);
 				data.append("skill_id", this.data.skill_id);
-				data.append("image", this.data.image);
 				console.log(data);
 				this.$store
-					.dispatch("SUBMITPOST", data, this.image)
+					.dispatch("SUBMITPOST", data)
 					.then((success) => {
 						this.$store.dispatch("RESETFIELDS");
 						console.log("succes");
@@ -178,10 +168,6 @@
 					.catch((error) => {
 						this.error = true;
 					});
-			},
-
-			onChangeFileUpload() {
-				this.data.image = this.$refs.image.files[0];
 			},
 		},
 	};

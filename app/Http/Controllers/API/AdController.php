@@ -66,20 +66,16 @@ public function store(Request $request) {
     $validator = Validator::make($data, [
                 'title' => 'required|max:60',
                 'info' => 'required|max:255',
-                // 'image' => 'required|image:jpeg,png,jpg,gif,svg|max:2048',
+            
             ]);
 
         if ($validator->fails()) {          
       return response()->json(['error'=>$validator->errors()], 401);                        
    }  
-
-
-   $file = $request->image->store('public/ads');
-   $filePath = "/storage/app/$file" ;
       
       //store your file into database
       $ad = Ad::create($data);
-      $ad->image = $filePath;
+
       $ad->save();
 
       return response($ad);

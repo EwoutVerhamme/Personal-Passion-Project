@@ -23,7 +23,6 @@ class CreateAdsTable extends Migration
             $table->string('date');
             $table->string('skill_id');
             $table->string('user_id');
-            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

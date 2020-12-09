@@ -5,13 +5,13 @@
 		</router-link>
 		<div class="profile-info">
 			<div class="img-wrapper">
-				<img class="profile-photo" :src="profilePic" alt="" />
+				<img class="profile-photo" :src="user.profilepic" alt="" />
 			</div>
 			<div class="info-wrapper">
-				<h1 class="profile-name">{{ first_name }} {{ last_name }}</h1>
+				<h1 class="profile-name">{{ user.first_name }} {{ user.last_name }}</h1>
 				<div class="profile-location">
 					<img src="/assets/img/location.svg" alt="" class="location" />
-					<p class="profile-location_text">{{ youth_center }}</p>
+					<p class="profile-location_text">{{ user.youth_center }}</p>
 				</div>
 				<div class="profile-socials">
 					<img class="profile-social" src="/assets/img/profile/fb.svg" alt="" />
@@ -31,14 +31,8 @@
 		<div class="skills">
 			<h2 class="title">Je Skills</h2>
 			<div class="skill-wrapper">
-				<div class="skill">
-					<p class="skill-text">Boekhouden</p>
-				</div>
-				<div class="skill">
-					<p class="skill-text">Deejay</p>
-				</div>
-				<div class="skill">
-					<p class="skill-text">Acteren</p>
+				<div v-for="skill in skills" class="skill">
+					<p class="skill-text">{{ skill.skill_name }}</p>
 				</div>
 			</div>
 		</div>
@@ -47,7 +41,7 @@
 
 			<div class="match-box" v-for="ad in ads">
 				<div class="title-wrapper">
-					<img :src="ad.image" alt="" class="profile-pic-box" />
+					<img :src="ad.creator_img" alt="" class="profile-pic-box" />
 					<p class="title-text">
 						Je zoekt een
 						<strong>{{ ad.skill_alias }}</strong>
@@ -92,10 +86,7 @@
 
 		data() {
 			return {
-				first_name: "",
-				last_name: "",
-				profilePic: "",
-				youth_center: "",
+				user: {},
 				skills: [],
 				ads: [],
 				error: false,
@@ -110,20 +101,22 @@
 			setProfileInfo: async function () {
 				// Set all the text-data
 				const profile = JSON.parse(localStorage.getItem("user"));
-				this.first_name = profile.first_name;
-				this.last_name = profile.last_name;
-				this.youth_center = profile.youth_center;
-				this.profilePic = profile.profilepic;
+				const token = localStorage.getItem("token");
 
 				//Set a user his adds and get ID
 				const id = profile.id;
 				try {
-					const response = await axios.get(`/api/ads/user/${id}`);
+					const response = await axios.get(`/api/user/${id}`, {
+						headers: {
+							Authorization: `Bearer ${token}`,
+						},
+					});
 					if (response.data.length == 0) {
 						this.error = true;
 					} else {
-						this.ads = response.data;
-						console.log(this.ads);
+						this.user = response.data.user[0];
+						this.skills = response.data.skills;
+						this.ads = response.data.ads;
 						this.error = false;
 					}
 				} catch (error) {
@@ -189,6 +182,10 @@
 		clip-path: circle(50% at center);
 		width: 6rem;
 		height: auto;
+	}
+
+	.profile-pic-box {
+		clip-path: circle(50% at center);
 	}
 
 	.skill-wrapper {
