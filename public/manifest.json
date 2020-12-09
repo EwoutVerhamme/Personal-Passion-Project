@@ -1,6 +1,6 @@
 {
-    "short_name": "FirstVuePWA",
-    "name": "First Vue PWA App",
+    "short_name": "Kollapp",
+    "name": "Kollapp",
     "icons": [
         {
             "src": "/192.png",

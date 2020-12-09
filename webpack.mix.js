@@ -2,7 +2,7 @@ const mix = require('laravel-mix');
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
 
 new SWPrecacheWebpackPlugin({
-    cacheId: 'my-pwa-vue-app',
+    cacheId: 'Kollapp',
     filename: 'service-worker-cache.js',
     staticFileGlobs: ['dist/**/*.{js,css}', '/'],
     minify: true,

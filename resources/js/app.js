@@ -1,10 +1,9 @@
 import { createApp } from 'vue'
-import App from './views/App.vue'
-import router from './router/index'
-import store from './store/index'
+import App from './views/app.vue'
+import router from './router'
+import store from './store'
 import "animate.css"
 
 
 
-createApp(App).use(store).use(router).mount('#app');
-
+createApp(App).use(store).use(router).mount('#app')
