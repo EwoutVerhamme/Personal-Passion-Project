@@ -15,7 +15,10 @@ class Skill_userController extends Controller
     public function index()
     {
         // SELECT skill_users.user_id, skills.skill_name, users.first_name, users.last_name FROM users INNER JOIN skill_users ON skill_users.user_id = users.id INNER JOIN skills ON skills.id = skill_users.skill_id
-        return response()->json(Skill::get(),200);
+        $allSkills = DB::table('skills')
+        ->select('skills.id','skills.skill_name', 'skills.skill_alias')
+        ->get();
+        return response($allSkills, 200);
     }
 
     public function matches() {

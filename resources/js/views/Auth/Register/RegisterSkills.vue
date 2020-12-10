@@ -16,12 +16,8 @@
 			</label>
 		</div>
 		<div class="skills">
-			<div class="skill" v-for="(skill, index) in skills" :key="skill.id">
-				<p
-					:class="{ active: isActive === index }"
-					@click="[(current = index), addSkill(index)]"
-					class="skill-title"
-				>
+			<div class="skill" v-for="skill in skills" :key="skill.id">
+				<p @click="addSkill((id = skill.id))" class="skill-title">
 					{{ skill.skill_name }}
 				</p>
 			</div>
@@ -52,12 +48,9 @@
 
 		data() {
 			return {
-				selected: undefined,
-				current: 0,
 				search: "",
 				skills: {},
-				selectedSkillId: "",
-				selectedSkillName: "",
+				addedSkills: [],
 				loading: true,
 				found: true,
 				isActive: undefined,
@@ -69,22 +62,16 @@
 		},
 
 		methods: {
-			setSkills() {
-				const skillId = this.selectedSkillId;
-				const skillName = this.selectedSkillName;
-				this.$store.dispatch("SETSKILLID", skillId);
-				this.$store.dispatch("SETSKILLNAME", skillName);
-				this.$router.go(-1);
-			},
+			addSkill(id) {
+				this.addedSkills.push(id);
 
-			currentSkill() {
-				console.log(this.skills[this.current].toLowerCase());
-			},
-
-			addSkill(index) {
-				this.selectedSkillName = this.skills[this.current].skill_name;
-				this.selectedSkillId = this.skills[this.current].id;
-				this.isActive = index;
+				if (this.addedSkills.indexOf(id) !== -1) {
+					this.addedSkills.splice(id, 1);
+					console.log(this.addedSkills);
+				} else {
+					this.addedSkills.push(id);
+					console.log(this.addedSkills);
+				}
 			},
 
 			onSearch() {

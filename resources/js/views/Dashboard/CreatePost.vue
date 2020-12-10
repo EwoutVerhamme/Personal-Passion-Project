@@ -4,18 +4,6 @@
 		<form action="" class="create-form">
 			<div class="input-form">
 				<input
-					v-model="data.title"
-					type="text"
-					class="input-field"
-					autocomplete="off"
-					placeholder=" "
-				/>
-				<label for="" class="input-label">
-					<span class="label-name">Geef je zoekertje een titel</span>
-				</label>
-			</div>
-			<div class="input-form">
-				<input
 					v-model="data.info"
 					type="text"
 					class="input-field"
@@ -96,7 +84,6 @@
 				data: {
 					creator_name: "",
 					creator_img: "",
-					title: "",
 					info: "",
 					location: "",
 					date: "",
@@ -132,7 +119,6 @@
 
 			setCurrent() {
 				const set = this.getCurrent;
-				this.data.title = set.title;
 				this.data.info = set.info;
 				this.data.location = set.location;
 				this.data.date = set.date;
@@ -151,7 +137,6 @@
 				const data = new FormData();
 				data.append("creator_name", this.data.creator_name);
 				data.append("creator_img", this.data.creator_img);
-				data.append("title", this.data.title);
 				data.append("info", this.data.info);
 				data.append("location", this.data.location);
 				data.append("date", this.data.date);

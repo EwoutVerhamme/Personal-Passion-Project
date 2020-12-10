@@ -34,7 +34,7 @@ class AuthController extends Controller
         ->join('ads', 'users.id', '=', 'ads.user_id')
         ->join('skills', 'skills.id', '=', 'ads.skill_id')
         ->where('ads.user_id', '=', $id)
-        ->select("ads.id", 'ads.creator_img', 'ads.creator_name', 'skills.skill_name', 'skills.skill_alias', 'ads.title', 'ads.info', 'ads.location', 'ads.date', 'ads.skill_id', 'ads.user_id', 'ads.created_at')
+        ->select("ads.id", 'ads.creator_img', 'ads.creator_name', 'skills.skill_name', 'skills.skill_alias',  'ads.info', 'ads.location', 'ads.date', 'ads.skill_id', 'ads.user_id', 'ads.created_at')
         ->get();
 
         return response(["user" => $usersById, 'skills' => $skills, 'ads' => $ads]);

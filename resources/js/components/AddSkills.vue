@@ -54,7 +54,7 @@
 				selected: undefined,
 				current: 0,
 				search: "",
-				skills: {},
+				skills: [],
 				selectedSkillId: "",
 				selectedSkillName: "",
 				loading: true,
@@ -99,10 +99,10 @@
 				fetch(url)
 					.then((response) => response.json())
 					.then((result) => {
-						// this.$emit("youth-centers-fetched", result);
 						console.log("skills-fetched", result);
 						this.loading = false;
 						this.skills = result;
+						console.log(this.skills);
 
 						if (result.length == 0) {
 							this.found = false;

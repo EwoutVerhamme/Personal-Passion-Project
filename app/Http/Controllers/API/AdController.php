@@ -16,7 +16,7 @@ public function index() {
     $users = DB::table('ads')
     ->join('users', 'users.id', '=', 'ads.user_id')
     ->join('skills', 'skills.id', '=', 'ads.skill_id')
-    ->select( 'ads.id','ads.title', 'ads.creator_img', 'ads.info','ads.date', 'ads.location',"users.first_name", 'users.last_name', 'users.youth_center', 'skills.skill_name', 'skills.skill_alias')
+    ->select( 'ads.id', 'ads.creator_img', 'ads.info','ads.date', 'ads.location',"users.first_name", 'users.last_name', 'users.youth_center', 'skills.skill_name', 'skills.skill_alias')
     ->get();
     return response($users, 200);
 }
@@ -27,7 +27,7 @@ public function getUserWithAds($ad_name) {
     $users = DB::table('ads')
     ->join('users', 'users.id', '=', 'ads.user_id')
     ->join('skills', 'skills.id', '=', 'ads.skill_id')
-    ->select( 'ads.id','ads.title', 'ads.info','ads.date', 'ads.location',"users.first_name", 'users.last_name', 'users.profilepic', 'users.youth_center', 'skills.skill_name', 'skills.skill_alias')
+    ->select( 'ads.id', 'ads.info','ads.date', 'ads.location',"users.first_name", 'users.last_name', 'users.profilepic', 'users.youth_center', 'skills.skill_name', 'skills.skill_alias')
     ->orWhere('skill_name', 'like', '%' . $ad_name . '%')
     ->orWhere('first_name', 'like', '%' . $ad_name . '%')
     ->get();
@@ -40,7 +40,7 @@ public function getMyAds($id) {
     $ads = DB::table('ads')
     ->join('users', 'users.id', '=', 'ads.user_id')
     ->join('skills', 'skills.id', '=', 'ads.skill_id')
-    ->select( 'ads.id','ads.title', 'ads.info','ads.date', 'ads.location', 'ads.image',"users.first_name", 'users.last_name', 'users.profilepic', 'users.youth_center', 'skills.skill_name', 'skills.skill_alias')
+    ->select( 'ads.id', 'ads.info','ads.date', 'ads.location', 'ads.image',"users.first_name", 'users.last_name', 'users.profilepic', 'users.youth_center', 'skills.skill_name', 'skills.skill_alias')
     ->where('ads.user_id', '=',  $id )
     ->get();
     return response($ads, 200);
@@ -58,7 +58,6 @@ public function store(Request $request) {
     $data = $request->all();
 
     $validator = Validator::make($data, [
-                'title' => 'required|max:60',
                 'info' => 'required|max:255',
             
             ]);
@@ -69,7 +68,6 @@ public function store(Request $request) {
       
       //store your file into database
       $ad = Ad::create($data);
-
       $ad->save();
 
       return response($ad);
