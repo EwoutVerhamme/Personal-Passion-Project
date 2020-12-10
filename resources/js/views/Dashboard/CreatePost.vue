@@ -108,7 +108,12 @@
 				return this.$store.getters.getSkillId;
 			},
 			getSkillName: function () {
-				return this.$store.getters.getSkillName;
+				if (this.$store.getters.getSkillName !== "") {
+					this.isActive = true;
+					return this.$store.getters.getSkillName;
+				} else {
+					this.isActive = false;
+				}
 			},
 		},
 
@@ -205,7 +210,7 @@
 		margin-left: 0.5rem;
 	}
 
-	.skill-title {
+	.skillTitle {
 		background-color: #8CE4E3;
 		width: fit-content;
 		color: white;

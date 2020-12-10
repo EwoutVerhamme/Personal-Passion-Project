@@ -44,7 +44,7 @@ class AuthController extends Controller
         $id = Auth::id();
         
         $users = DB::table('users')
-        ->limit(3)
+        ->limit(6)
         ->where('users.id', '!=',  $id )
         ->get();
         return response($users, 201);

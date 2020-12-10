@@ -19,7 +19,6 @@ class YouthCenterController extends Controller
      */
     public function index($name)
     {
-
         return response()->json(YouthCenter::where('name', $name)
         ->orWhere('name', 'like', '%' . $name . '%')->get());
 
@@ -28,10 +27,9 @@ class YouthCenterController extends Controller
   }
 
   public function getAll()
-    {
-        
+    { 
         $youth_centers = DB::table('youth_centers')
-        ->limit(3)
+        ->limit(6)
         ->get();
         return response($youth_centers, 201);
   }
