@@ -13,7 +13,7 @@
 </script>
 
 
-<style >
+<style scoped >
 	.button {
 		width: 15rem;
 		margin: 0 auto;

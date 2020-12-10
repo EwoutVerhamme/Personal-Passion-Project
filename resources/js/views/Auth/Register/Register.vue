@@ -14,8 +14,9 @@
 					type="text"
 					class="input-field"
 					placeholder=" "
+					autocomplete=""
 				/>
-				<label for="" class="input-label">
+				<label class="input-label">
 					<span class="label-name">Email</span>
 				</label>
 			</div>
@@ -25,8 +26,9 @@
 					type="password"
 					class="input-field"
 					placeholder=" "
+					autocomplete=""
 				/>
-				<label for="" class="input-label">
+				<label class="input-label">
 					<span class="label-name">Wachtwoord</span>
 				</label>
 			</div>
@@ -35,10 +37,10 @@
 					v-model="credentials.password_confirmation"
 					type="password"
 					class="input-field"
-					autocomplete="off"
+					autocomplete=""
 					placeholder=" "
 				/>
-				<label for="" class="input-label">
+				<label class="input-label">
 					<span class="label-name">Herhaal wachtwoord</span>
 				</label>
 			</div>
@@ -130,6 +132,7 @@
 		width: 100%;
 		margin: 0 auto;
 		align-self: flex-start;
+		margin-top: 2rem;
 	}
 
 	.register-form-title {
@@ -145,11 +148,11 @@
 	.register-subtitle {
 		font-weight: 400;
 		font-size: 0.9rem;
-		margin-top: 3rem;
+		margin-top: 0.5rem;
 	}
 
 	.register-img {
-		margin-top: 5rem;
+		margin-top: 3rem;
 		height: 17vh;
 	}
 

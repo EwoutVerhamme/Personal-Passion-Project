@@ -284,7 +284,7 @@
 		align-items: center;
 		box-shadow: 0px 0px 13px 1px rgba(0, 0, 0, 0.09);
 		border-radius: 20px;
-		width: 18rem;
+		width: 22rem;
 		height: 4.5rem;
 		margin-top: 1rem;
 	}

@@ -12,6 +12,7 @@ import EditProfile from "../components/EditProfile.vue";
 import OtherProfile from "../components/OtherProfile.vue";
 import Succes from "../components/Succes.vue";
 import ProfileSkills from "../views/Auth/Register/ProfileSkills.vue";
+import RegisterSkills from "../views/Auth/Register/RegisterSkills.vue"
 import store from "../store/index";
 
 const ifNotAuthenticated = (to, from, next) => {
@@ -86,6 +87,12 @@ beforeEnter: ifAuthenticated,
   path: '/addskills',
   name: 'AddSkills',
   component: AddSkills,
+
+},
+{
+  path: '/register-skills',
+  name: 'RegisterSkills',
+  component: RegisterSkills,
 
 },
 {

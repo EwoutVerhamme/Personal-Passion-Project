@@ -91,7 +91,6 @@
 				<label for="" class="input-label">
 					<span class="label-name">Jouw jeugdhuis</span>
 				</label>
-				
 			</div>
 			<div class="img-input_wrapper">
 				<p class="select-title">Upload een profiel foto</p>
@@ -188,6 +187,7 @@
 		grid-row: 1 / span 2;
 		width: 95%;
 		margin: 0 auto;
+		flex-direction: column;
 	}
 	.header {
 		display: flex;
@@ -249,6 +249,7 @@
 			grid-row: 2;
 			width: 35rem;
 			margin: 0 auto;
+			flex-direction: column;
 		}
 
 		.back {

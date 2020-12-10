@@ -66,10 +66,7 @@
 				</div>
 			</div>
 			<p class="empty" v-if="error == true">
-				Het is nog wat stil hier... <br />
-				<router-link to="/create"
-					><strong>Maak een zoekertje &#129311;</strong></router-link
-				>
+				Het is nog wat stil hier... &#128164;
 			</p>
 		</div>
 	</div>

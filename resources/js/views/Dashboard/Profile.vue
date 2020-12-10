@@ -111,11 +111,11 @@
 							Authorization: `Bearer ${token}`,
 						},
 					});
-
 					this.user = response.data.user[0];
 					this.skills = response.data.skills;
 					this.ads = response.data.ads;
 					this.error = false;
+					console.log(this.user);
 
 					if (this.ads.length == 0) {
 						this.error = true;
@@ -226,7 +226,8 @@
 	@media screen and (min-width: 768px) {
 		.profile {
 			width: 35rem;
-			margin-top: 1rem;
+			grid-row: 2;
+			margin-top: 0rem;
 		}
 
 		.button {

@@ -1,12 +1,7 @@
 <template>
 	<NavBar v-if="isLoggedIn" class="navigation" />
-	<transition
-		mode="out-in"
-		enter-active-class="animate__animated animate__fadeIn"
-		leave-active-class="animate__animated animate__fadeOut"
-	>
-		<router-view />
-	</transition>
+
+	<router-view />
 
 	<!-- <footer class="footer">
 		<img src="/assets/img/kollapp.svg" alt="" class="footer_logo" />
@@ -56,7 +51,7 @@
 	#app {
 		height: 100vh;
 		display: grid;
-		grid-template-rows: 4rem auto ;
+		grid-template-rows: 4rem auto;
 		width: 100vw;
 	}
 
