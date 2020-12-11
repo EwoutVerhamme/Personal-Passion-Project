@@ -21,6 +21,18 @@ public function index() {
     return response($users, 200);
 }
 
+public function getAdById($id) {
+    $ad = DB::table('ads')
+    ->join('users', 'users.id', '=', 'ads.user_id')
+    ->join('skills', 'skills.id', '=', 'ads.skill_id')
+    ->select( 'ads.id', 'ads.info','ads.date', 'ads.location',"users.first_name", 'users.last_name', 'ads.creator_img', 'users.youth_center', 'skills.skill_name', 'skills.skill_alias')
+    ->where('ads.id', '=', $id )
+    ->get();
+
+
+    return response($ad, 200);
+}
+
 
 public function getUserWithAds($ad_name) {
 

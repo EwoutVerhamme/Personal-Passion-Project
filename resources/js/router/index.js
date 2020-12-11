@@ -116,6 +116,7 @@ beforeEnter: ifAuthenticated,
   name: 'EngagementDetail',
   component: EngagementDetail,
   beforeEnter: ifAuthenticated,
+  props: true,
 
 },
 

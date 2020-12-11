@@ -34,7 +34,7 @@ class Skill_userController extends Controller
        ->where('ads.user_id', '!=',  $id )
        ->select('skill_users.user_id','ads.creator_name', 'ads.creator_img','ads.id','ads.user_id', 'skills.skill_alias', 'ads.date','ads.location', )
        ->get();
-       return response()->json($mySkill,200);
+       return response($mySkill, 200);
 
     }
 

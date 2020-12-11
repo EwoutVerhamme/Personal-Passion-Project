@@ -38,27 +38,15 @@
 		</div>
 		<div class="ads">
 			<h2 class="title">Je zoekertjes</h2>
-
-			<div class="engagement-block" v-for="ad in ads">
-				<img class="engagement-img" :src="ad.creator_img" alt="" />
-				<p class="engagement-title">
-					{{ ad.creator_name }} zoekt een
-					<strong>{{ ad.skill_alias }}</strong>
-				</p>
-
-				<div class="engagement-info">
-					<div class="date-wrapper">
-						<img width="20" height="20" src="/assets/img/calendar.png" alt="" />
-
-						<p class="engagement-text">{{ ad.date }}</p>
-					</div>
-					<div class="location-wrapper">
-						<img width="20" height="20" src="/assets/img/location.svg" alt="" />
-
-						<p class="engagement-text">{{ ad.location }}</p>
-					</div>
-				</div>
-			</div>
+			<router-link :to="`/ad/${ad.id}`" :key="ad.id" v-for="ad in ads">
+				<Engagement
+					:first_name="ad.first_name"
+					:skill_alias="ad.skill_alias"
+					:creator_img="ad.creator_img"
+					:date="ad.date"
+					:location="ad.location"
+				/>
+			</router-link>
 			<p class="empty" v-if="error == true">
 				Het is nog wat stil hier... <br />
 				<router-link to="/create"
@@ -71,9 +59,12 @@
 
 <script>
 	import axios from "axios";
+	import Engagement from "../../components/search/Engagement";
 	export default {
 		name: "Profile",
-		components: {},
+		components: {
+			Engagement,
+		},
 
 		data() {
 			return {

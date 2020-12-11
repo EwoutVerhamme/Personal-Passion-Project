@@ -12,35 +12,20 @@
 				Mensen zijn op zoek naar jouw <strong>talent!</strong>
 			</h2>
 			<div class="boxes">
-				<div class="match-box" v-for="match in matches">
-					<div class="title-wrapper">
-						<img :src="match.creator_img" alt="" class="profile-pic-box" />
-						<p class="title-text">
-							{{ match.creator_name }} zoekt een
-							<strong>{{ match.skill_alias }}</strong>
-						</p>
-					</div>
-					<div class="info">
-						<div class="info-date">
-							<img
-								width="25px"
-								height="25px"
-								src="/assets/img/calendar.png"
-								alt=""
-							/>
-							<p class="info-text">{{ match.date }}</p>
-						</div>
-						<div class="info-youthcenter">
-							<img
-								width="25px"
-								height="25px"
-								src="/assets/img/place.svg"
-								alt=""
-							/>
-							<p class="info-text">{{ match.location }}</p>
-						</div>
-					</div>
-				</div>
+				<router-link
+					:to="`/ad/${ad.id}`"
+					:key="ad.id"
+					v-for="ad in ads"
+				>
+					<Engagement
+					:id="ad.id"
+						:first_name="ad.first_name"
+						:skill_alias="ad.skill_alias"
+						:creator_img="ad.creator_img"
+						:date="ad.date"
+						:location="ad.location"
+					/>
+				</router-link>
 				<p class="error" v-if="error == true">
 					Er zijn momenteel geen mensen naar je opzoek... &#128532
 				</p>
@@ -51,57 +36,47 @@
 
 <script>
 	import Match from "../../components/Match.vue";
+	import Engagement from "../../components/search/Engagement";
 	import axios from "axios";
 	export default {
 		name: "Home",
 		components: {
 			Match,
+			Engagement,
 		},
 
 		data() {
 			return {
 				first_name: "",
 				profilepic: "",
-				matches: {},
+				ads: {},
 				error: false,
 			};
 		},
 
-		mounted() {
+		created() {
+			this.$store.dispatch("GETPERSONALADS");
 			const getUser = JSON.parse(localStorage.getItem("user"));
 			if (localStorage.user) {
 				this.first_name = getUser.first_name;
 				this.profilepic = getUser.profilepic;
 			}
-
-			this.getMatches();
 		},
 
-		methods: {
-			getMatches: async function () {
-				const getUser = JSON.parse(localStorage.getItem("user"));
-				const token = localStorage.getItem("token");
-				try {
-					const response = await axios.get("/api/matches", {
-						headers: {
-							Authorization: `Bearer ${token}`,
-						},
-					});
-					if (response.data.length == 0) {
-						this.error = true;
-					} else {
-						this.matches = response.data;
-						this.error = false;
-					}
-				} catch (error) {
-					console.error(error);
-				}
+		computed: {
+			getPersonalAds: function () {
+				this.ads = this.$store.getters.getPersonalAds;
 			},
 		},
+
+		methods: {},
 
 		watch: {
 			first_name(currentName) {
 				localStorage.name = currentName;
+			},
+			getPersonalAds: function () {
+				this.ads = this.$store.getters.getPersonalAds;
 			},
 		},
 	};
@@ -156,7 +131,6 @@
 		flex-wrap: wrap;
 		justify-content: center;
 	}
-
 
 	.error {
 		width: 95%;

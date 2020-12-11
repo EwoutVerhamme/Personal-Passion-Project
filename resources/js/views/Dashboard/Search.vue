@@ -66,8 +66,11 @@
 					v-for="t in tab"
 					class="content-block"
 				>
-					<img class="content-img" :src="t.profilepic" alt="" />
-					<p class="content-title">{{ t.first_name }} {{ t.last_name }}</p>
+					<Talent
+						:profilepic="t.profilepic"
+						:first_name="t.first_name"
+						:last_name="t.last_name"
+					/>
 				</router-link>
 
 				<div v-if="tabs[current] == 'Materiaal'">
@@ -80,45 +83,26 @@
 					v-for="t in tab"
 					class="content-block"
 				>
-					<img class="content-img" :src="t.profilepic" alt="" />
-					<p class="content-title">{{ t.name }}</p>
+					<YouthCenter :id="t.id" :profilepic="t.profilepic" :name="t.name" />
 				</div>
 
 				<router-link
-					:to="`/ad/${t.id}`"
-					class="engagement-block"
+					:to="{
+						name: 'EngagementDetail',
+						params: { id: t.id },
+					}"
 					v-if="tabs[current] == 'Engagement'"
 					:key="t.id"
 					v-for="t in tab"
+					:id="t.id"
 				>
-					<img class="engagement-img" :src="t.creator_img" alt="" />
-					<p class="engagement-title">
-						{{ t.first_name }} zoekt een
-						<strong>{{ t.skill_alias }}</strong>
-					</p>
-
-					<div class="engagement-info">
-						<div class="date-wrapper">
-							<img
-								width="20"
-								height="20"
-								src="/assets/img/calendar.png"
-								alt=""
-							/>
-
-							<p class="engagement-text">{{ t.date }}</p>
-						</div>
-						<div class="location-wrapper">
-							<img
-								width="20"
-								height="20"
-								src="/assets/img/location.svg"
-								alt=""
-							/>
-
-							<p class="engagement-text">{{ t.location }}</p>
-						</div>
-					</div>
+					<Engagement
+						:first_name="t.first_name"
+						:skill_alias="t.skill_alias"
+						:creator_img="t.creator_img"
+						:date="t.date"
+						:location="t.location"
+					/>
 				</router-link>
 			</div>
 		</div>
@@ -127,9 +111,16 @@
 
 <script>
 	import axios from "axios";
+	import Engagement from "../../components/search/Engagement";
+	import Talent from "../../components/search/Talent";
+	import YouthCenter from "../../components/search/YouthCenter";
 	export default {
 		name: "Search",
-		components: {},
+		components: {
+			Engagement,
+			Talent,
+			YouthCenter,
+		},
 
 		data() {
 			return {
@@ -289,19 +280,6 @@
 		height: 4.5rem;
 		margin-top: 1rem;
 	}
-
-	.content-title {
-		margin-left: 1rem;
-		font-size: 1.2rem;
-		font-weight: 400;
-	}
-
-	.content-img {
-		width: 3rem;
-		height: auto;
-		clip-path: circle(50% at center);
-		margin-left: 0.5rem;
-	}
 	.loading {
 		font-size: 1rem;
 		display: flex;
@@ -346,63 +324,6 @@
 		bottom: 0;
 		padding-right: 1rem;
 		background: url("/assets/img/search.svg") center / contain no-repeat;
-	}
-
-	.engagement-block {
-		display: grid;
-		grid-template-columns: 0.5rem 0.3fr 1fr 0.5rem;
-		grid-template-rows: 0.5rem 1fr 1fr 0.5rem;
-		box-shadow: 0px 0px 13px 1px rgba(0, 0, 0, 0.09);
-		border-radius: 20px;
-		width: 22rem;
-		height: fit-content;
-		margin: 0rem;
-		margin-top: 1rem;
-	}
-
-	.engagement-title {
-		font-size: 1.2rem;
-		grid-column: 3;
-		grid-row: 2;
-		margin: 0;
-		align-self: center;
-	}
-
-	.engagement-img {
-		width: 3rem;
-		height: 3rem;
-		clip-path: circle(50% at center);
-		grid-row: 2;
-		grid-column: 2;
-		align-self: center;
-		justify-self: center;
-		margin: 0;
-	}
-
-	.engagement-info {
-		grid-row: 3;
-		grid-column: 3;
-		display: flex;
-		flex-direction: column;
-		margin: 0;
-	}
-
-	.date-wrapper {
-		display: flex;
-		align-items: center;
-	}
-
-	.location-wrapper {
-		display: flex;
-		align-items: center;
-	}
-
-	.engagement-text {
-		margin: 0.2rem;
-	}
-
-	strong {
-		color: #8ce4e3;
 	}
 
 	input:focus,
@@ -452,59 +373,6 @@
 			justify-content: space-between;
 			max-width: 37rem;
 		}
-
-		.engagement-block {
-			display: grid;
-			grid-template-columns: 0.5rem 0.3fr 1fr 0.5rem;
-			grid-template-rows: 0.5rem 1fr 1fr 0.5rem;
-			box-shadow: 0px 0px 13px 1px rgba(0, 0, 0, 0.09);
-			border-radius: 20px;
-			width: 18rem;
-			height: fit-content;
-			margin: 0rem;
-			margin-top: 1rem;
-		}
-
-		.engagement-title {
-			font-size: 1.2rem;
-			grid-column: 3;
-			grid-row: 2;
-			margin: 0;
-			align-self: center;
-		}
-
-		.engagement-img {
-			width: 3rem;
-			height: 3rem;
-			border-radius: 50%;
-			grid-row: 2;
-			grid-column: 2;
-			align-self: center;
-			justify-self: center;
-			margin: 0;
-		}
-
-		.engagement-info {
-			grid-row: 3;
-			grid-column: 3;
-			display: flex;
-			flex-direction: column;
-			margin: 0;
-		}
-
-		.date-wrapper {
-			display: flex;
-			align-items: center;
-		}
-
-		.location-wrapper {
-			display: flex;
-			align-items: center;
-		}
-
-		.engagement-text {
-			margin: 0.2rem;
-		}
 	}
 
 	@media screen and (min-width: 1024px) {
@@ -546,47 +414,7 @@
 			display: flex;
 			flex-wrap: wrap;
 			justify-content: space-between;
-		}
-
-		.engagement-title {
-			font-size: 1.2rem;
-			grid-column: 3;
-			grid-row: 2;
-			margin: 0;
-			align-self: center;
-		}
-
-		.engagement-img {
-			width: 3rem;
-			height: 3rem;
-			border-radius: 50%;
-			grid-row: 2;
-			grid-column: 2;
-			align-self: center;
-			justify-self: center;
-			margin: 0;
-		}
-
-		.engagement-info {
-			grid-row: 3;
-			grid-column: 3;
-			display: flex;
-			flex-direction: column;
-			margin: 0;
-		}
-
-		.date-wrapper {
-			display: flex;
-			align-items: center;
-		}
-
-		.location-wrapper {
-			display: flex;
-			align-items: center;
-		}
-
-		.engagement-text {
-			margin: 0.2rem;
+			max-width: 45rem;
 		}
 	}
 </style>
