@@ -157,6 +157,7 @@
 		justify-content: center;
 	}
 
+
 	.error {
 		width: 95%;
 		text-align: center;

@@ -18,7 +18,7 @@
 				<p class="select-title">Naar welke skills ben je opzoek?</p>
 				<router-link to="/addskills">
 					<div @click="storeCurrent" class="select-button_wrapper">
-						<p class="select-button">Selecteer skills</p>
+						<p class="select-button">Selecteer skill</p>
 						<img class="select-img" src="/assets/img/select.svg" alt="" />
 					</div>
 				</router-link>
@@ -43,17 +43,34 @@
 					<span class="label-name">Waar zal dit plaatsvinden?</span>
 				</label>
 			</div>
-			<div class="input-form">
-				<input
-					v-model="data.date"
-					type="text"
-					class="input-field"
-					autocomplete="off"
-					placeholder=" "
-				/>
-				<label for="" class="input-label">
-					<span class="label-name">Wanneer zal dit plaatsvinden?</span>
-				</label>
+			<div class="input-form_birth input-form">
+				<p class="select-title">Wanneer zal dit plaatsvinden?</p>
+				<div class="input-field_birth-wrapper">
+					<input
+						v-model="day"
+						maxlength="2"
+						type="text"
+						class="input-field_birth"
+						autocomplete="off"
+						placeholder="Dag"
+					/>
+					<input
+						v-model="month"
+						maxlength="2"
+						type="text"
+						class="input-field_birth"
+						autocomplete="off"
+						placeholder="Maand"
+					/>
+					<input
+						v-model="year"
+						maxlength="4"
+						type="text"
+						class="input-field_birth"
+						autocomplete="off"
+						placeholder="Jaar"
+					/>
+				</div>
 			</div>
 		</form>
 
@@ -86,6 +103,9 @@
 					creator_img: "",
 					info: "",
 					location: "",
+					day: "",
+					month: "",
+					year: "",
 					date: "",
 					user_id: "",
 					skill_id: "",
@@ -138,6 +158,9 @@
 				this.data.creator_name = creatorName;
 				const creatorImg = getUser.profilepic;
 				this.data.creator_img = creatorImg;
+
+				// MAKE THE BIRTH DATE
+				this.data.date = `${this.day}/${this.month}/${this.year}`;
 
 				const data = new FormData();
 				data.append("creator_name", this.data.creator_name);
@@ -216,6 +239,7 @@
 		color: white;
 		padding: 5px;
 		border-radius: 8px;
+		margin-top: 0.5rem;
 	}
 
 	.button-wrapper {
@@ -225,6 +249,24 @@
 	.button {
 		margin-top: 2rem;
 		width: 15rem;
+	}
+	.input-form_birth {
+		margin-top: 1rem;
+	}
+
+	.input-field_birth-wrapper {
+		display: flex;
+		justify-content: flex-start;
+	}
+
+	.input-field_birth {
+		margin: 0.5rem;
+		width: 5rem;
+		height: 2rem;
+	}
+
+	strong {
+		font-weight: 600;
 	}
 
 	@media screen and (min-width: 768px) {

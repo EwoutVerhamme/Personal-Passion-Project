@@ -12,7 +12,8 @@ import EditProfile from "../components/EditProfile.vue";
 import OtherProfile from "../components/OtherProfile.vue";
 import Succes from "../components/Succes.vue";
 import ProfileSkills from "../views/Auth/Register/ProfileSkills.vue";
-import RegisterSkills from "../views/Auth/Register/RegisterSkills.vue"
+import RegisterSkills from "../views/Auth/Register/RegisterSkills.vue";
+import EngagementDetail from "../components/EngagementDetail.vue"
 import store from "../store/index";
 
 const ifNotAuthenticated = (to, from, next) => {
@@ -106,6 +107,14 @@ beforeEnter: ifAuthenticated,
   path: '/user/:id',
   name: 'OtherProfile',
   component: OtherProfile,
+  beforeEnter: ifAuthenticated,
+
+},
+
+{
+  path: '/ad/:id',
+  name: 'EngagementDetail',
+  component: EngagementDetail,
   beforeEnter: ifAuthenticated,
 
 },

@@ -84,7 +84,8 @@
 					<p class="content-title">{{ t.name }}</p>
 				</div>
 
-				<div
+				<router-link
+					:to="`/ad/${t.id}`"
 					class="engagement-block"
 					v-if="tabs[current] == 'Engagement'"
 					:key="t.id"
@@ -118,7 +119,7 @@
 							<p class="engagement-text">{{ t.location }}</p>
 						</div>
 					</div>
-				</div>
+				</router-link>
 			</div>
 		</div>
 	</div>

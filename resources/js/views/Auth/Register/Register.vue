@@ -115,8 +115,8 @@
 	.login {
 		display: grid;
 		margin: 0 auto;
-		grid-row: 1 / span 2;
-		height: 90vh;
+		grid-row: 1 / span 3;
+		height: 100vh;
 	}
 
 	.register-welcome {

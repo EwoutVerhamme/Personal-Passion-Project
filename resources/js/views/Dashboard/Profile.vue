@@ -29,7 +29,7 @@
 			</div>
 		</div>
 		<div class="skills">
-			<h2 class="title">Je Skills</h2>
+			<h2 class="title">Je skills</h2>
 			<div class="skill-wrapper">
 				<div v-for="skill in skills" class="skill">
 					<p class="skill-text">{{ skill.skill_name }}</p>
@@ -39,32 +39,23 @@
 		<div class="ads">
 			<h2 class="title">Je zoekertjes</h2>
 
-			<div class="match-box" v-for="ad in ads">
-				<div class="title-wrapper">
-					<img :src="ad.creator_img" alt="" class="profile-pic-box" />
-					<p class="title-text">
-						Je zoekt een
-						<strong>{{ ad.skill_alias }}</strong>
-					</p>
-				</div>
-				<div class="info">
-					<div class="info-date">
-						<img
-							width="25px"
-							height="25px"
-							src="/assets/img/calendar.png"
-							alt=""
-						/>
-						<p class="info-text">{{ ad.date }}</p>
+			<div class="engagement-block" v-for="ad in ads">
+				<img class="engagement-img" :src="ad.creator_img" alt="" />
+				<p class="engagement-title">
+					{{ ad.creator_name }} zoekt een
+					<strong>{{ ad.skill_alias }}</strong>
+				</p>
+
+				<div class="engagement-info">
+					<div class="date-wrapper">
+						<img width="20" height="20" src="/assets/img/calendar.png" alt="" />
+
+						<p class="engagement-text">{{ ad.date }}</p>
 					</div>
-					<div class="info-youthcenter">
-						<img
-							width="25px"
-							height="25px"
-							src="/assets/img/place.svg"
-							alt=""
-						/>
-						<p class="info-text">{{ ad.location }}</p>
+					<div class="location-wrapper">
+						<img width="20" height="20" src="/assets/img/location.svg" alt="" />
+
+						<p class="engagement-text">{{ ad.location }}</p>
 					</div>
 				</div>
 			</div>
@@ -134,8 +125,8 @@
 		position: absolute;
 		top: 0.5rem;
 		right: 0.5rem;
-		width: 2.5rem;
-		height: 2.5rem;
+		width: 2rem;
+		height: 2rem;
 		border-radius: 50%;
 	}
 
@@ -145,8 +136,8 @@
 
 	.profile {
 		margin: 0 auto;
-		margin-top: 2rem;
 		width: 95%;
+		overflow: scroll;
 		grid-row: 1 / span 2;
 	}
 
@@ -154,7 +145,6 @@
 		display: flex;
 		justify-content: space-evenly;
 		align-items: center;
-		width: 95%;
 		margin-top: 2rem;
 	}
 
@@ -170,6 +160,7 @@
 	.profile-location {
 		display: flex;
 		align-items: center;
+		margin-top: 0.2rem;
 	}
 
 	.profile-socials {
@@ -201,26 +192,73 @@
 	.skill {
 		margin: 0.5rem;
 		background-color: #8CE4E3;
-		padding: 5px;
+		padding: 8px;
 		border-radius: 8px;
 		color: white;
 	}
 
 	.ads {
-		margin-top: 2rem;
-		overflow: scroll;
-	}
-
-	.match-box {
+		display: flex;
+		flex-wrap: wrap;
 		margin-top: 1rem;
-		margin-bottom: 1rem;
 	}
-
 	.empty {
 		margin-top: 5rem;
 		text-align: center;
 		font-size: 1rem;
 		line-height: 2rem;
+	}
+	.engagement-block {
+		display: grid;
+		grid-template-columns: 0.5rem 0.3fr 1fr 0.5rem;
+		grid-template-rows: 0.5rem 1fr 1fr 0.5rem;
+		box-shadow: 0px 0px 13px 1px rgba(0, 0, 0, 0.09);
+		border-radius: 20px;
+		width: 22rem;
+		height: fit-content;
+		margin: 0rem;
+		margin-top: 0.5rem;
+	}
+
+	.engagement-title {
+		font-size: 1.2rem;
+		grid-column: 3;
+		grid-row: 2;
+		margin: 0;
+		align-self: center;
+	}
+
+	.engagement-img {
+		width: 3rem;
+		height: 3rem;
+		clip-path: circle(50% at center);
+		grid-row: 2;
+		grid-column: 2;
+		align-self: center;
+		justify-self: center;
+		margin: 0;
+	}
+
+	.engagement-info {
+		grid-row: 3;
+		grid-column: 3;
+		display: flex;
+		flex-direction: column;
+		margin: 0;
+	}
+
+	.date-wrapper {
+		display: flex;
+		align-items: center;
+	}
+
+	.location-wrapper {
+		display: flex;
+		align-items: center;
+	}
+
+	.engagement-text {
+		margin: 0.2rem;
 	}
 
 	@media screen and (min-width: 768px) {

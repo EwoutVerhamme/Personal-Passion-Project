@@ -82,8 +82,10 @@
 
 <style scoped>
 	.login {
+		display: grid;
 		margin: 0 auto;
-		grid-row: 1 / span 2;
+		grid-row: 1 / span 3;
+		height: 100vh;
 	}
 
 	.register-welcome {
@@ -104,6 +106,7 @@
 	.register-form-title {
 		font-weight: 600;
 		font-size: 1.3rem;
+		margin-top: 1rem;
 	}
 
 	.register-title {
@@ -116,11 +119,11 @@
 		margin: 0;
 		font-weight: 400;
 		font-size: 0.9rem;
-		margin-top: -0.3rem;
+		margin-top: 0.5rem;
 	}
 
 	.register-img {
-		margin-top: 5rem;
+		margin-top: 3rem;
 		height: 17vh;
 	}
 
@@ -148,19 +151,23 @@
 		color: #434343;
 	}
 
+	.button-wrapper {
+		margin-top: 5rem;
+	}
+
 	strong {
 		color: #FF899E;
 		font-weight: 600;
 	}
 
 	.error {
+		margin-top: 0.5rem;
 		color: #FF3F60;
 	}
 
 	@media screen and (min-width: 500px) {
 		.login {
 			justify-content: center;
-			
 		}
 
 		.register-title {
@@ -206,7 +213,6 @@
 		.button-wrapper {
 			margin-top: 4rem;
 		}
-
 	}
 
 	@media screen and (min-width: 1024px) {

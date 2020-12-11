@@ -10,7 +10,7 @@
 				Wil je graag ervaringen/skills delen met andere jongeren of
 				organisaties?
 			</p>
-			<router-link to="/register-skills">
+			<router-link to="/addskills">
 				<div class="select-button_wrapper">
 					<p class="select-button">Selecteer skills</p>
 					<img class="select-img" src="/assets/img/select.svg" alt="" />
