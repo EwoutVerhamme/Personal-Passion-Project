@@ -55,8 +55,8 @@ Route::get("matches", [Skill_userController::class, "matches"])->middleware('aut
 
 // Get the youthcenters 
 Route::get("youth_centers", [YouthCenterController::class, "getAll"]);
+Route::get("youth_center/{id}", [YouthCenterController::class, "getYouthCenterById"]);
 Route::get("youth_centers/{name}", [YouthCenterController::class, "index"]);
-Route::get("youth_centers/{image}", [YouthCenterController::class, "store"]);
 Route::post('youth_centers', [YouthCenterController::class, "store"]);
 
 

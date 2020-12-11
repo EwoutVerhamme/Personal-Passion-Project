@@ -9,20 +9,14 @@ import NotFound from "../components/NotFound.vue";
 import ProfileInfo from "../views/Auth/Register/ProfileInfo.vue";
 import AddSkills from "../components/AddSkills.vue";
 import EditProfile from "../components/EditProfile.vue";
-import OtherProfile from "../components/OtherProfile.vue";
+import ProfileDetail from "../components/Detail/ProfileDetail.vue";
 import Succes from "../components/Succes.vue";
 import ProfileSkills from "../views/Auth/Register/ProfileSkills.vue";
 import RegisterSkills from "../views/Auth/Register/RegisterSkills.vue";
-import EngagementDetail from "../components/EngagementDetail.vue"
+import EngagementDetail from "../components/Detail/EngagementDetail.vue";
+import YouthCenterDetail from "../components/Detail/YouthCenterDetail.vue";
 import store from "../store/index";
 
-const ifNotAuthenticated = (to, from, next) => {
-  if (!store.getters.isLoggedIn) {
-    next()
-    return
-  }
-  next('/')
-}
 
 const ifAuthenticated = (to, from, next) => {
   if (store.getters.isLoggedIn) {
@@ -105,16 +99,25 @@ beforeEnter: ifAuthenticated,
 },
 {
   path: '/user/:id',
-  name: 'OtherProfile',
-  component: OtherProfile,
+  name: 'ProfileDetail',
+  component: ProfileDetail,
   beforeEnter: ifAuthenticated,
 
 },
 
 {
-  path: '/ad/:id',
+  path: '/engagement/:id',
   name: 'EngagementDetail',
   component: EngagementDetail,
+  beforeEnter: ifAuthenticated,
+  props: true,
+
+},
+
+{
+  path: '/youth_center/:id',
+  name: 'YouthCenterDetail',
+  component: YouthCenterDetail,
   beforeEnter: ifAuthenticated,
   props: true,
 

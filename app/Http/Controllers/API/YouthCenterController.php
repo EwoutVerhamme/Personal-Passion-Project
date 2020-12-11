@@ -34,6 +34,14 @@ class YouthCenterController extends Controller
         return response($youth_centers, 201);
   }
 
+  public function getYouthCenterById($id)
+  { 
+      $youthCenterId = DB::table('youth_centers')
+      ->where('youth_centers.id', '=',  $id)
+      ->get();
+      return response($youthCenterId, 201);
+}
+
     /**
      * Store a newly created resource in storage.
      *

@@ -11,7 +11,7 @@
 					placeholder=" "
 				/>
 				<label for="" class="input-label">
-					<span class="label-name">Geef wat extra informatie</span>
+					<span class="label-name">Geef wat info over je zoekertje</span>
 				</label>
 			</div>
 			<div class="select-skill">
@@ -81,7 +81,7 @@
 </template>
 
 <script>
-	import InputField from "../../components/InputField";
+	import InputField from "../../components/input/InputField";
 	import Button from "../../components/Button";
 	import axios from "axios";
 
@@ -103,15 +103,15 @@
 					creator_img: "",
 					info: "",
 					location: "",
-					day: "",
-					month: "",
-					year: "",
 					date: "",
 					user_id: "",
 					skill_id: "",
 				},
 
 				isActive: false,
+				day: "",
+				month: "",
+				year: "",
 			};
 		},
 

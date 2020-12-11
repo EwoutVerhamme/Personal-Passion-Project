@@ -1,6 +1,13 @@
 <template>
 	<div class="input-form">
-		<input type="text" class="input-field" autocomplete="off" placeholder=" " />
+		<input
+			@input="updateValue"
+			:type="type"
+			:value="value"
+			class="input-field"
+			autocomplete="off"
+			placeholder=" "
+		/>
 		<label for="" class="input-label">
 			<span class="label-name">{{ placeholder }}</span>
 		</label>
@@ -11,14 +18,18 @@
 	export default {
 		name: "InputField",
 
-		props: ["placeholder"],
+		props: ["placeholder", "type", "value"],
 
-		methods: {},
+		methods: {
+			updateValue: function (value) {
+				this.$emit("update:value, value");
+			},
+		},
 	};
 </script>
 
 
-<style >
+<style scoped>
 	.input-form {
 		--input_height: 2.5rem;
 		--input_color: #434343;

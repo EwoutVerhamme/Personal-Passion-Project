@@ -77,14 +77,18 @@
 					<p class="soon">Er wordt aan deze functie gewerkt! &#128526;</p>
 				</div>
 
-				<div
+				<router-link
+					:to="{
+						name: 'YouthCenterDetail',
+						params: { id: t.id },
+					}"
 					v-if="tabs[current] == 'Jeugdhuis'"
 					:key="t.id"
 					v-for="t in tab"
 					class="content-block"
 				>
 					<YouthCenter :id="t.id" :profilepic="t.profilepic" :name="t.name" />
-				</div>
+				</router-link>
 
 				<router-link
 					:to="{

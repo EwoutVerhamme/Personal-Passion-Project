@@ -75,7 +75,7 @@
 <script>
 	import axios from "axios";
 	export default {
-		name: "OtherProfile",
+		name: "ProfileDetail",
 		components: {},
 
 		data() {

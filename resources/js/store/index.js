@@ -2,6 +2,7 @@ import { createStore } from 'vuex';
 import user from "./modules/user";
 import create from './modules/create';
 import ads from './modules/ads';
+import youthCenter from "./modules/youthCenter"
 
 
 export default createStore({
@@ -24,5 +25,6 @@ export default createStore({
     user: user,
     create: create,
     ads: ads,
+    youthCenter: youthCenter
   }
 })

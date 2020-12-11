@@ -46,11 +46,10 @@
 	import axios from "axios";
 	import router from "../../../router/index";
 	import store from "../../../store/index";
-	import InputField from "../../../components/InputField";
 	export default {
 		name: "Login",
 		components: {
-			InputField,
+		
 		},
 
 		data() {
