@@ -97,7 +97,6 @@
 					this.skills = response.data.skills;
 					this.ads = response.data.ads;
 					this.error = false;
-					console.log(this.user);
 
 					if (this.ads.length == 0) {
 						this.error = true;

@@ -160,7 +160,6 @@
 						this.makeSearch();
 						break;
 					case "materiaal":
-						console.log("Materiaal");
 						this.loading = false;
 						break;
 					case "engagement":
@@ -203,7 +202,6 @@
 					});
 					this.loading = false;
 					this.tab = response.data;
-					console.log(this.tab);
 					if (response.data.length == 0) {
 						this.found = false;
 					}

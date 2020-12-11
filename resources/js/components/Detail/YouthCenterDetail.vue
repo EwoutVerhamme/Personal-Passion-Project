@@ -2,10 +2,10 @@
 	<div class="profile">
 		<div class="profile-info">
 			<div class="img-wrapper">
-				<img class="profile-photo" :src="youth_center.profilepic" alt="" />
+				<img class="profile-photo" :src="getYouthCenter.profilepic" alt="" />
 			</div>
 			<div class="info-wrapper">
-				<h1 class="profile-name">{{ youth_center.name }}</h1>
+				<h1 class="profile-name">{{ getYouthCenter.name }}</h1>
 				<div class="profile-socials">
 					<img class="profile-social" src="/assets/img/profile/fb.svg" alt="" />
 					<img
@@ -22,7 +22,7 @@
 			</div>
 		</div>
 		<div class="ads">
-			<h2 class="title">{{ youth_center.name }}'s zoekertjes</h2>
+			<h2 class="title">{{ getYouthCenter.name }}'s zoekertjes</h2>
 
 			<div class="match-box" v-for="ad in ads">
 				<div class="title-wrapper">
@@ -68,26 +68,20 @@
 
 		data() {
 			return {
-				youth_center: {},
 				ads: [],
 				error: false,
 			};
 		},
 
-		created: async function () {
-			const token = localStorage.getItem("token");
+		created() {
 			const route = this.$router.currentRoute._rawValue.fullPath;
-			const url = `http://api.kollapp.test/api${route}`;
-			try {
-				const response = await fetch(url);
-				const data = await response.json();
+			this.$store.dispatch("GETYOUTHCENTER", route);
+		},
 
-				this.youth_center = data[0];
-
-				console.log(this.youth_center);
-			} catch (error) {
-				console.log(error);
-			}
+		computed: {
+			getYouthCenter: function () {
+				return this.$store.getters.getYouthCenter;
+			},
 		},
 	};
 </script>

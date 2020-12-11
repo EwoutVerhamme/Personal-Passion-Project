@@ -4,11 +4,12 @@ export default {
 
   state: {
       personalAds: {},
-      addDetail: []
+      adDetail: {}
       
   },
   getters: {
     getPersonalAds: state => state.personalAds,
+    getAdDetail: state => state.adDetail,
   },
 
 
@@ -17,10 +18,15 @@ export default {
         state.personalAds = data
       },
 
+      setAdDetail(state, data){
+        state.adDetail =  data
+      },
+
       
   },
   actions: {
 
+    // Get the personal ads for the loggin-in user.
     GETPERSONALADS: async function ({ commit } ) {
 		const token = localStorage.getItem("token");
 				try {
@@ -45,9 +51,8 @@ export default {
 							Authorization: `Bearer ${token}`,
                         },
                     });
-                    const data = response.data
-                    console.log(data)
-                    commit('setPersonalAds', data)
+                    const data = response.data[0]
+                    commit('setAdDetail', data)
                     
 				} catch (error) {
 					console.error(error);

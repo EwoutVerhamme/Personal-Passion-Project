@@ -65,11 +65,15 @@
 
 		computed: {
 			getPersonalAds: function () {
-				this.ads = this.$store.getters.getPersonalAds;
+				const personalAdd = this.$store.getters.getPersonalAds;
+
+				if (personalAdd.length <= 0) {
+					this.error = true;
+				} else {
+					this.ads = personalAdd;
+				}
 			},
 		},
-
-		methods: {},
 
 		watch: {
 			first_name(currentName) {

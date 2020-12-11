@@ -2,14 +2,10 @@
 	<NavBar v-if="isLoggedIn" class="navigation" />
 
 	<router-view />
-
-	<!-- <footer class="footer">
-		<img src="/assets/img/kollapp.svg" alt="" class="footer_logo" />
-	</footer> -->
 </template>
 
 <script>
-	import NavBar from "../components/NavBar";
+	import NavBar from "../components/navigation/NavBar";
 	export default {
 		name: "App",
 		components: {
