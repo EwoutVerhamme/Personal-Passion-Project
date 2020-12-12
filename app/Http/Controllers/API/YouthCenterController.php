@@ -55,6 +55,9 @@ class YouthCenterController extends Controller
 
     $validator = Validator::make($data, [
                 'name' => 'required|max:90',
+                'bio' => 'required|max:90',
+                'town' => 'required|max:90',
+                'adress' => 'required|max:90',
                 'image' => 'required|image:jpeg,png,jpg,gif,svg|max:2048',
             ]);
 
@@ -66,17 +69,20 @@ class YouthCenterController extends Controller
        
       //store file into document folder
       $file = $request->image->store('public/youth_centers');
-      $filePath = "storage/app/$file" ;
+      $filePath = "/storage/app/$file" ;
       $name = $request->name;
       
       //store your file into database
       $youthCenter = YouthCenter::create($data);
       $youthCenter->name = $name;
-      $youthCenter->profilepic = $filePath;
+      $youthCenter->image = $filePath;
       $youthCenter->save();
 
       return response($youthCenter);
     }
+
+
+    
 
     /**
      * Display the specified resource.

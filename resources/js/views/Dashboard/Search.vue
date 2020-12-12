@@ -87,7 +87,7 @@
 					v-for="t in tab"
 					class="content-block"
 				>
-					<YouthCenter :id="t.id" :profilepic="t.profilepic" :name="t.name" />
+					<YouthCenter :id="t.id" :image="t.image" :name="t.name" />
 				</router-link>
 
 				<router-link

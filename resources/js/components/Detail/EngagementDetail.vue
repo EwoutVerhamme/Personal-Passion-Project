@@ -121,7 +121,6 @@
 					this.canEdit = false;
 				}
 			},
-
 		},
 	};
 </script>
@@ -210,6 +209,7 @@
 	@media screen and (min-width: 768px) {
 		.engagement-detail {
 			grid-row: 2;
+			width: 45rem;
 		}
 
 		.delete {

@@ -1,5 +1,5 @@
 <template>
-	<img class="content-img" :src="profilepic" alt="" />
+	<img class="content-img" :src="image" alt="" />
 	<p class="content-title">{{ name }}</p>
 </template>
 
@@ -7,7 +7,7 @@
 	export default {
 		name: "YouthCenter",
 
-		props: ["id", "profilepic", "name"],
+		props: ["id", "image", "name"],
 	};
 </script>
 
