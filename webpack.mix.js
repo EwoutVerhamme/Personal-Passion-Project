@@ -1,14 +1,14 @@
 const mix = require('laravel-mix');
-// const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
+const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
 
-// new SWPrecacheWebpackPlugin({
-//     cacheId: 'Kollapp',
-//     filename: 'service-worker-cache.js',
-//     staticFileGlobs: ['dist/**/*.{js,css}', '/'],
-//     minify: true,
-//     stripPrefix: 'dist/',
-//     dontCacheBustUrlsMatching: /\.\w{6}\./
-//   })
+new SWPrecacheWebpackPlugin({
+    cacheId: 'Kollapp',
+    filename: 'service-worker-cache.js',
+    staticFileGlobs: ['dist/**/*.{js,css}', '/'],
+    minify: true,
+    stripPrefix: 'dist/',
+    dontCacheBustUrlsMatching: /\.\w{6}\./
+  })
 
 /*
  |--------------------------------------------------------------------------

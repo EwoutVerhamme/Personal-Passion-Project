@@ -8,7 +8,6 @@
     <noscript>To run this application, JavaScript is required to be enabled.</noscript>
     <meta name="theme-color" content="#FFFFFF" />
     </script>
-
     <title>Kollapp</title>
 </head>
 <body>
@@ -16,6 +15,6 @@
     <app></app>
     </div>
 
-    <script src="{{ mix('js/app.js') }}"></script>
+    <script src="{{ mix('js/public.js') }}"></script>
 </body>
 </html>
