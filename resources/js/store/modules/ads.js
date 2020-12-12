@@ -4,12 +4,14 @@ export default {
 
   state: {
       personalAds: {},
-      adDetail: {}
+      adDetail: {},
+      adUserId: ""
       
   },
   getters: {
     getPersonalAds: state => state.personalAds,
     getAdDetail: state => state.adDetail,
+    getAdUserId: state => state.adUserId,
   },
 
 
@@ -20,6 +22,10 @@ export default {
 
       setAdDetail(state, data){
         state.adDetail =  data
+      },
+
+      setadUserId(state, adUserId){
+        state.adUserId =  adUserId
       },
 
       
@@ -54,12 +60,31 @@ export default {
                         },
                     });
                     const data = response.data[0]
+                    const adUserId = data.id
                     commit('setAdDetail', data)
+                    commit('setadUserId', adUserId)
                     
 				} catch (error) {
 					console.error(error);
 				}
-    }
+    },
+
+    DELETEAD: async function ({ commit }, id ) {
+      const token = localStorage.getItem("token");
+          try {
+            const response = await axios.delete(`/api/ad/${id}`, {
+              headers: {
+                Authorization: `Bearer ${token}`,
+                          },
+                      });
+
+                      console.log("zoekertje verwijderd!")
+                      
+          } catch (error) {
+            console.error(error);
+          }
+      }
+  
 
   }
 };

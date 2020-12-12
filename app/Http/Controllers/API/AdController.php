@@ -25,7 +25,7 @@ public function getAdById($id) {
     $ad = DB::table('ads')
     ->join('users', 'users.id', '=', 'ads.user_id')
     ->join('skills', 'skills.id', '=', 'ads.skill_id')
-    ->select( 'ads.id', 'ads.info','ads.date', 'ads.location',"users.first_name", 'users.last_name', 'ads.creator_img', 'users.youth_center', 'skills.skill_name', 'skills.skill_alias')
+    ->select( 'users.id', 'ads.info','ads.date', 'ads.location',"users.first_name", 'users.last_name', 'ads.creator_img', 'users.youth_center', 'skills.skill_name', 'skills.skill_alias')
     ->where('ads.id', '=', $id )
     ->get();
 
@@ -56,6 +56,16 @@ public function getMyAds($id) {
     ->where('ads.user_id', '=',  $id )
     ->get();
     return response($ads, 200);
+}
+
+
+public function deleteAdById($id) {
+    $deleteAd = DB::table('ads')
+    ->where('ads.id', '=', $id )
+    ->delete();
+
+
+    return response([$deleteAd, "Succesfully deleted ad with id $id"]);
 }
 
 /**

@@ -46,6 +46,7 @@ Route::get("skills", [Skill_userController::class, "index"]);
 Route::get("ads", [AdController::class, "index"]);
 Route::get("ads/{ad_name}", [AdController::class, "getUserWithAds"]);
 Route::get("ad/{id}", [AdController::class, "getAdById"]);
+Route::delete("ad/{id}", [AdController::class, "deleteAdById"]);
 Route::get("ads/user/{id}", [AdController::class, "getMyAds"]);
 Route::post("ads", [AdController::class, "store"]);
 

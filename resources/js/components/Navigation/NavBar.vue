@@ -1,9 +1,9 @@
 <template>
 	<div class="navigation-wrapper">
 		<nav class="navigation">
-			<img src="/assets/img/kollapp.svg" alt="" class="logo" />
+			<img src="/assets/img/kollapp.svg" alt="Kollapp Logo" class="logo" />
 			<router-link to="/">
-				<div  class="menu-item_wrapper">
+				<div class="menu-item_wrapper">
 					<li class="menu-item">Home</li>
 					<svg
 						class="icon"
@@ -34,7 +34,7 @@
 			</router-link>
 
 			<router-link to="/search">
-				<div  class="menu-item_wrapper">
+				<div class="menu-item_wrapper">
 					<li class="menu-item">Zoeken</li>
 					<svg
 						class="icon"
@@ -52,7 +52,7 @@
 				</div>
 			</router-link>
 			<router-link to="/create">
-				<div  class="menu-item_wrapper">
+				<div class="menu-item_wrapper">
 					<li class="menu-item">Zoekertje aanmaken</li>
 					<svg
 						class="icon"
@@ -87,7 +87,7 @@
 				</div>
 			</router-link>
 			<router-link to="/profile">
-				<div  class="menu-item_wrapper">
+				<div class="menu-item_wrapper">
 					<li class="menu-item">Profiel</li>
 					<svg
 						class="icon"
@@ -140,7 +140,7 @@
 </script>
 
 
-<style>
+<style scoped>
 	.navigation {
 		width: 100%;
 		height: 4rem;

@@ -1,5 +1,6 @@
 <template>
 	<div class="engagement-detail">
+		<Delete @click="deleteAd" class="delete" v-if="canEdit" />
 		<div class="engagement-head">
 			<img class="engagement-img" :src="getAdDetail.creator_img" alt="" />
 			<p class="engagement-title">
@@ -66,21 +67,23 @@
 
 <script>
 	import Skill from "../Skill";
-
+	import Delete from "../Buttons/Delete";
 	export default {
 		name: "EngagementsDetail",
 
 		components: {
 			Skill,
+			Delete,
 		},
 
 		props: {
-			id: Number,
+			id: 0,
 		},
 
 		data() {
 			return {
-				ad: {},
+				adUserId: "",
+				canEdit: false,
 			};
 		},
 
@@ -89,9 +92,36 @@
 			this.$store.dispatch("GETADDETAIL", id);
 		},
 
+		methods: {
+			deleteAd() {
+				const id = this.$props.id;
+				this.$store.dispatch("DELETEAD", id);
+				this.$router.push("/");
+			},
+		},
+
 		computed: {
 			getAdDetail() {
 				return this.$store.getters.getAdDetail;
+			},
+
+			getAdUserId() {
+				return this.$store.getters.getAdUserId;
+			},
+		},
+
+		watch: {
+			getAdUserId: function () {
+				// Get loggedIn userID
+				const user = JSON.parse(localStorage.getItem("user"));
+				const userId = user.id;
+
+				// Check if ad is from the loggedIn user
+				if (this.getAdUserId === userId) {
+					this.canEdit = true;
+				} else {
+					this.canEdit = false;
+				}
 			},
 		},
 	};
@@ -105,11 +135,17 @@
 		grid-row: 1 / span 2;
 	}
 
+	.delete {
+		position: absolute;
+		top: 0.5rem;
+		right: 0.5rem;
+	}
+
 	.engagement-head {
 		display: grid;
 		grid-template-columns: 1fr 2fr;
 		grid-template-rows: 1fr 1fr;
-		margin: 1rem 0.5rem 0rem 0.5rem;
+		margin: 2.5rem 0.5rem 0rem 0.5rem;
 	}
 
 	.engagement-img {
@@ -175,6 +211,11 @@
 	@media screen and (min-width: 768px) {
 		.engagement-detail {
 			grid-row: 2;
+		}
+
+		.delete {
+			top: 5rem;
+			right: 5rem;
 		}
 
 		.engagement-head {

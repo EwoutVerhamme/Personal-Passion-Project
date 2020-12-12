@@ -250,6 +250,11 @@
 	.engagement-text {
 		margin: 0.2rem;
 	}
+	
+	strong {
+		font-weight: 600;
+		color: #FF899E;
+	}
 
 	@media screen and (min-width: 768px) {
 		.profile {
