@@ -13,7 +13,7 @@
 			</h2>
 			<div class="ads">
 				<router-link
-					:to="`/ad/${ad.id}`"
+					:to="`/engagement/${ad.id}`"
 					:key="ad.id"
 					v-for="ad in ads"
 				>

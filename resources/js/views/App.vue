@@ -47,13 +47,15 @@
 	#app {
 		height: 100vh;
 		display: grid;
-		grid-template-rows: 4rem auto;
+		grid-template-rows: 4rem auto 4.5rem;
 		width: 100vw;
 	}
 
 	.navigation {
 		z-index: 1;
 		position: sticky;
+		grid-row: 3;
+		align-self: flex-end;
 		bottom: 0rem;
 		left: 0rem;
 	}

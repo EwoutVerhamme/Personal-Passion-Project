@@ -1,6 +1,6 @@
 <template>
 	<div class="engagement-detail">
-		<Delete @click="deleteAd" class="delete" :v-if="canEdit" />
+		<Delete @click="deleteAd" class="delete" v-if="canEdit === true" />
 		<div class="engagement-head">
 			<img class="engagement-img" :src="getAdDetail.creator_img" alt="" />
 			<p class="engagement-title">
@@ -113,6 +113,7 @@
 				// Get loggedIn userID
 				const user = JSON.parse(localStorage.getItem("user"));
 				const userId = user.id;
+				console.log(userId);
 
 				// Check if ad is from the loggedIn user
 				if (this.getAdUserId === userId) {

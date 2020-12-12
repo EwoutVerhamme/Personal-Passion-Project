@@ -23,12 +23,8 @@
 					</div>
 				</router-link>
 
-				<div class="skills">
-					<div class="skill">
-						<p :class="{ skillTitle: isActive }">
-							{{ getSkillName }}
-						</p>
-					</div>
+				<div class="skill">
+					<Skill :skill="getSkillName" />
 				</div>
 			</div>
 			<div class="input-form">
@@ -46,43 +42,72 @@
 			<div class="input-form_birth input-form">
 				<p class="select-title">Wanneer zal dit plaatsvinden?</p>
 				<div class="input-field_birth-wrapper">
-					<input
-						v-model="day"
-						maxlength="2"
-						type="text"
-						class="input-field_birth"
-						autocomplete="off"
-						placeholder="Dag"
-					/>
-					<input
-						v-model="month"
-						maxlength="2"
-						type="text"
-						class="input-field_birth"
-						autocomplete="off"
-						placeholder="Maand"
-					/>
-					<input
-						v-model="year"
-						maxlength="4"
-						type="text"
-						class="input-field_birth"
-						autocomplete="off"
-						placeholder="Jaar"
-					/>
+					<select class="date-input" name="day" v-model="day">
+						<option value="" selected disabled hidden>Dag</option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+						<option value="8">8</option>
+						<option value="9">9</option>
+						<option value="10">10</option>
+						<option value="11">11</option>
+						<option value="12">12</option>
+						<option value="13">13</option>
+						<option value="14">14</option>
+						<option value="15">15</option>
+						<option value="16">16</option>
+						<option value="17">17</option>
+						<option value="18">18</option>
+						<option value="19">19</option>
+						<option value="20">20</option>
+						<option value="21">21</option>
+						<option value="22">22</option>
+						<option value="23">23</option>
+						<option value="24">24</option>
+						<option value="25">25</option>
+						<option value="26">26</option>
+						<option value="27">27</option>
+						<option value="28">28</option>
+						<option value="29">29</option>
+						<option value="30">30</option>
+						<option value="31">31</option>
+					</select>
+					<select class="date-input" name="month" v-model="month">
+						<option value="" selected disabled hidden>Maand</option>
+						<option value="januari">Januari</option>
+						<option value="februari">Februari</option>
+						<option value="maart">Maart</option>
+						<option value="april">April</option>
+						<option value="mei">Mei</option>
+						<option value="juni">Juni</option>
+						<option value="juli">Juli</option>
+						<option value="augustus">Augustus</option>
+						<option value="september">September</option>
+						<option value="oktober">Oktober</option>
+						<option value="november">November</option>
+						<option value="december">December</option>
+					</select>
+					<select class="date-input" name="year" v-model="year">
+						<option value="" selected disabled hidden>Jaar</option>
+						<option value="2020">2020</option>
+						<option value="2021">2021</option>
+					</select>
 				</div>
 			</div>
 		</form>
 
-		<div class="button-wrapper">
-			<Button @click="submitPost" btnText="Plaats je zoekertje" />
-		</div>
+		<Button @click="submitPost" btnText="Plaats je zoekertje" />
 	</div>
 </template>
 
 <script>
 	import InputField from "../../components/input/InputField";
 	import Button from "../../components/Buttons/Button";
+	import Skill from "../../components/Skill";
 	import axios from "axios";
 
 	export default {
@@ -90,6 +115,7 @@
 		components: {
 			InputField,
 			Button,
+			Skill,
 		},
 
 		props: {
@@ -160,7 +186,7 @@
 				this.data.creator_img = creatorImg;
 
 				// MAKE THE BIRTH DATE
-				this.data.date = `${this.day}/${this.month}/${this.year}`;
+				this.data.date = `${this.day} ${this.month} ${this.year}`;
 
 				const data = new FormData();
 				data.append("creator_name", this.data.creator_name);
@@ -190,6 +216,9 @@
 <style scoped>
 	.create-post {
 		grid-row: 1 / span 2;
+		display: flex;
+		flex-direction: column;
+		flex-grow: 1;
 	}
 	.title {
 		text-align: center;
@@ -199,19 +228,14 @@
 		font-weight: 600;
 	}
 
-	.input-form {
-		width: 95%;
-	}
-	.select-skill {
-		width: 95%;
-		margin: 0 auto;
+	.create-form {
 		margin-top: 1rem;
 	}
 
-	.img-input_wrapper {
+	.select-skill {
 		width: 95%;
 		margin: 0 auto;
-		margin-top: 2rem;
+		margin-top: 1.5rem;
 	}
 
 	.select-button_wrapper {
@@ -233,40 +257,30 @@
 		margin-left: 0.5rem;
 	}
 
-	.skillTitle {
-		background-color: #8CE4E3;
-		width: fit-content;
-		color: white;
-		padding: 5px;
-		border-radius: 8px;
-		margin-top: 0.5rem;
-	}
-
-	.button-wrapper {
-		margin-top: 2rem;
-	}
-
 	.button {
 		margin-top: 2rem;
-		width: 15rem;
 	}
+
+	.input-form {
+		width: 95%;
+	}
+
 	.input-form_birth {
 		margin-top: 1rem;
 	}
 
 	.input-field_birth-wrapper {
 		display: flex;
-		justify-content: flex-start;
+		justify-content: space-between;
+		width: 95%;
 	}
 
-	.input-field_birth {
-		margin: 0.5rem;
-		width: 5rem;
+	.date-input {
+		margin-top: 0.5rem;
+		width: 5.5rem;
 		height: 2rem;
-	}
-
-	strong {
-		font-weight: 600;
+		border: none;
+		border-bottom: 0.2rem solid #f5f5f5;
 	}
 
 	@media screen and (min-width: 768px) {
