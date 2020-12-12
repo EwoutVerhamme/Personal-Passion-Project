@@ -1,5 +1,5 @@
 <p align="center">
-<img src="./public/assets/img/kollapp.svg" alt="Kollapp Logo" height="50"><br><br>
+<img src="https://i.imgur.com/6HAgq0G.png" alt="Kollapp Logo" height="50"><br><br>
 Jongeren en jeugdhuizen dichter bijeen
 </p>
 
