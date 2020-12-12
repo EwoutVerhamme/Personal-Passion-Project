@@ -1,3 +1,8 @@
+<p align="center">
+<img src="/public/assets/img/kollapp.svg" alt="Kollapp Logo" height="50"><br><br>
+Jongeren en jeugdhuizen dichter bijeen
+</p>
+
 # Personal Passion Project - Kollapp
 
 ## De Klant - Jeugdhuizen
@@ -43,3 +48,20 @@ Een platform die jeugdhuizen zal ondersteunen
 ## Blog-link
 
 [Personal Passion Blog](https://ewoutverhamme.wixsite.com/passionproject)
+
+## Development
+
+To run everything locally, you need to da a few simple steps: 
+
+# Run the development backend
+1. Everything is running on [Laravel Homestead](https://laravel.com/docs/8.x/homestead). Please configure Homestead and [Vagrant](https://www.vagrantup.com/) first). 
+2. Add a PHPMYADMIN to a new route in Laravel Homestead
+3. Clone this repo into your Laravel Homestead code.
+4. Add database credentials in the .env.example file and remove the .example
+5. Run <code>composer intstall</code> to install the PHP dependencies
+4. Run <code>vagrant up</code> (This will run the Homestead environment)
+
+# Run the development frontend
+1. Install dependencies using <code>yarn install</code>
+2. Run <code>yarn hot</code>
+3. Happy coding!
