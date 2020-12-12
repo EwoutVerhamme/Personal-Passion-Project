@@ -53,9 +53,9 @@
 
 	.navigation {
 		z-index: 1;
-		grid-row: 3;
-		position: absolute;
-		bottom: 0;
+		position: sticky;
+		bottom: 0rem;
+		left: 0rem;
 	}
 
 	.footer {

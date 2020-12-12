@@ -5,13 +5,13 @@
 				Welkom <br />
 				<strong>{{ first_name }}!</strong>
 			</h1>
-			<img :src="profilepic" alt="" class="profile-img" />
+			<img :src="profilepic" alt="" class="user-img" />
 		</div>
-		<div class="matches">
+		<div class="ads-wrapper">
 			<h2 class="subtitle" v-if="error == false">
 				Mensen zijn op zoek naar jouw <strong>talent!</strong>
 			</h2>
-			<div class="boxes">
+			<div class="ads">
 				<router-link
 					:to="`/ad/${ad.id}`"
 					:key="ad.id"
@@ -19,7 +19,7 @@
 				>
 					<Engagement
 					:id="ad.id"
-						:first_name="ad.first_name"
+						:first_name="ad.creator_name"
 						:skill_alias="ad.skill_alias"
 						:creator_img="ad.creator_img"
 						:date="ad.date"
@@ -71,6 +71,7 @@
 					this.error = true;
 				} else {
 					this.ads = personalAdd;
+					console.log(personalAdd);
 				}
 			},
 		},
@@ -90,7 +91,7 @@
 <style scoped>
 	.home {
 		grid-row: 1 / span 2;
-		overflow: scroll;
+		padding-bottom: 2rem;
 	}
 	.welcome-user {
 		margin-top: 2rem;
@@ -100,37 +101,29 @@
 	}
 
 	.welcome-user-title {
+		align-self: center;
 		font-weight: 300;
-		line-height: 2rem;
-		font-size: 2rem;
+		line-height: 6vh;
+		font-size: 6vh;
 	}
 
-	.profile-img {
+	.user-img {
 		clip-path: circle(50% at center);
 		width: 6rem;
 		height: auto;
 	}
-
 	.subtitle {
 		margin-left: 0.5rem;
 		font-size: 1rem;
 		font-weight: 300;
 	}
 
-	.matches {
+	.ads-wrapper {
 		margin: 0 auto;
 		margin-top: 2rem;
+		max-width: 45rem;
 	}
-
-	.match {
-		margin: 0.5rem;
-	}
-
-	.profile-pic-box {
-		clip-path: circle(50% at center);
-	}
-
-	.boxes {
+	.ads {
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: center;
@@ -169,23 +162,24 @@
 		}
 
 		.profile-img {
-			width: 5rem;
-			height: 5rem;
+			width: 6rem;
+			height: auto;
+			clip-path: circle(60px at center);
 		}
 
 		.subtitle {
 			font-size: 1.2rem;
 		}
 
-		.matches {
-			display: flex;
-			flex-flow: column wrap;
-			justify-content: center;
-			max-width: 46rem;
+		.ads-wrapper {
 		}
 
-		.match {
-			width: 22rem;
+		.ads {
+			width: 100%;
+			margin: 0;
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-evenly;
 		}
 
 		.error {
