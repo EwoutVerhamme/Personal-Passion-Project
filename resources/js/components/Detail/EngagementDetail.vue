@@ -1,6 +1,6 @@
 <template>
 	<div class="engagement-detail">
-		<Delete @click="deleteAd" class="delete" v-if="canEdit" />
+		<Delete @click="deleteAd" class="delete" :v-if="canEdit" />
 		<div class="engagement-head">
 			<img class="engagement-img" :src="getAdDetail.creator_img" alt="" />
 			<p class="engagement-title">
@@ -30,9 +30,7 @@
 			<div class="info-block">
 				<h2 class="subtitle">Meer info</h2>
 				<p class="info-text">
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-					eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-					minim veniam.
+					{{ getAdDetail.info }}
 				</p>
 			</div>
 
@@ -123,6 +121,7 @@
 					this.canEdit = false;
 				}
 			},
+
 		},
 	};
 </script>

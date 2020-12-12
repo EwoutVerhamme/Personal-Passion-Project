@@ -38,7 +38,7 @@
 		</div>
 		<div class="ads">
 			<h2 class="title">Je zoekertjes</h2>
-			<router-link :to="`/ad/${ad.id}`" :key="ad.id" v-for="ad in ads">
+			<router-link :to="`/engagement/${ad.id}`" :key="ad.id" v-for="ad in ads">
 				<Engagement
 					:first_name="ad.first_name"
 					:skill_alias="ad.skill_alias"
@@ -250,7 +250,7 @@
 	.engagement-text {
 		margin: 0.2rem;
 	}
-	
+
 	strong {
 		font-weight: 600;
 		color: #FF899E;
