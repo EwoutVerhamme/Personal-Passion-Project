@@ -31,8 +31,8 @@
 </template>
 
 <script>
-	import Back from "../../../components/Back.vue";
-	import Button from "../../../components/Button";
+	import Back from "../../../components/Buttons/Back.vue";
+	import Button from "../../../components/Buttons/Button";
 	export default {
 		name: "ProfileSkills",
 		components: {

@@ -39,8 +39,8 @@
 </template>
 
 <script>
-	import Button from "./Button";
-	import Back from "./Back";
+	import Button from "../components/Buttons/Button";
+	import Back from "./Buttons/Back";
 	export default {
 		name: "AddSkills",
 

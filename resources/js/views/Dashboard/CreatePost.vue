@@ -82,7 +82,7 @@
 
 <script>
 	import InputField from "../../components/input/InputField";
-	import Button from "../../components/Button";
+	import Button from "../../components/Buttons/Button";
 	import axios from "axios";
 
 	export default {

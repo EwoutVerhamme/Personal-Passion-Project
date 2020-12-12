@@ -44,8 +44,6 @@
 
 <script>
 	import axios from "axios";
-	import router from "../../../router/index";
-	import store from "../../../store/index";
 	export default {
 		name: "Login",
 		components: {

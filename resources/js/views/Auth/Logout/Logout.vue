@@ -3,7 +3,7 @@
 </template>
 
 <script>
-	import Button from "../../../components/Button";
+	import Button from "../../../components/Buttons/Button";
 	import router from "../../../router/index";
 	import store from "../../../store/index";
 	export default {

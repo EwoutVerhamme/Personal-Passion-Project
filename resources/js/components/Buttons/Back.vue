@@ -16,13 +16,12 @@
 </template>
 
 <script>
-	import router from "../router/index";
 	export default {
 		name: "Back",
 
 		methods: {
 			goBack() {
-				router.go(-1);
+				this.$router.go(-1);
 			},
 		},
 	};

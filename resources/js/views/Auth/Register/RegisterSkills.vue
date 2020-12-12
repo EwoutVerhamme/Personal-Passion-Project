@@ -35,8 +35,8 @@
 </template>
 
 <script>
-	import Button from "../../../components/Button";
-	import Back from "../../../components/Back";
+	import Button from "../../../components/Buttons/Button";
+	import Back from "../../../components/Buttons/Back";
 	import axios from "axios";
 	export default {
 		name: "RegisterSkills",

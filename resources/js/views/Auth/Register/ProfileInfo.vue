@@ -107,8 +107,8 @@
 </template>
 
 <script>
-	import Back from "../../../components/Back.vue";
-	import Button from "../../../components/Button.vue";
+	import Back from "../../../components/Buttons/Back";
+	import Button from "../../../components/Buttons/Button";
 	import router from "../../../router/index";
 	export default {
 		name: "Register",
