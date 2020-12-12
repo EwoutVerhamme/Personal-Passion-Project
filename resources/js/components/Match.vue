@@ -25,7 +25,7 @@
 </script>
 
 
-<style >
+<style scoped>
 	.match-box {
 		background-color: white;
 		box-shadow: 0px 0px 13px 1px rgba(0, 0, 0, 0.09);

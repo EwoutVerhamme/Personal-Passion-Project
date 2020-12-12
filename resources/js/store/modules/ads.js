@@ -28,7 +28,8 @@ export default {
 
     // Get the personal ads for the loggin-in user.
     GETPERSONALADS: async function ({ commit } ) {
-		const token = localStorage.getItem("token");
+    const token = localStorage.getItem("token");
+    
 				try {
 					const response = await axios.get("/api/matches", {
 						headers: {
@@ -40,7 +41,8 @@ export default {
                     
 				} catch (error) {
 					console.error(error);
-				}
+        }
+
     },
 
     GETADDETAIL: async function ({ commit }, id ) {
