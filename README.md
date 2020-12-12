@@ -53,7 +53,7 @@ Een platform die jeugdhuizen zal ondersteunen
 
 To run everything locally, you need to da a few simple steps: 
 
-# Run the development backend
+### Run the development backend
 1. Everything is running on [Laravel Homestead](https://laravel.com/docs/8.x/homestead). Please configure Homestead and [Vagrant](https://www.vagrantup.com/) first). 
 2. Add a PHPMYADMIN route in Laravel Homestead
 3. Add a frontend route in Laravel Homestead
@@ -62,7 +62,7 @@ To run everything locally, you need to da a few simple steps:
 6. Run <code>composer intstall</code> to install the PHP dependencies
 7. Run <code>vagrant up</code> in your Homestead folder. (This will run the Homestead environment with Laravel mix)
 
-# Run the development frontend
+### Run the development frontend
 1. Install dependencies using <code>yarn install</code>
 2. Run <code>yarn hot</code> (This will run the Vue frontend)
 3. Go to your route you defined in Homestead
