@@ -183,7 +183,7 @@
 			top: 0;
 			border-radius: 0;
 			box-shadow: none;
-			background-color: transparent;
+			background-color: white;
 		}
 
 		.icon {

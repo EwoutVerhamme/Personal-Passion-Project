@@ -64,7 +64,6 @@
 					v-if="tabs[current] == 'Talent'"
 					:key="t.id"
 					v-for="t in tab"
-					class="content-block"
 				>
 					<Talent
 						:profilepic="t.profilepic"
@@ -76,19 +75,6 @@
 				<div v-if="tabs[current] == 'Materiaal'">
 					<p class="soon">Er wordt aan deze functie gewerkt! &#128526;</p>
 				</div>
-
-				<router-link
-					:to="{
-						name: 'YouthCenterDetail',
-						params: { id: t.id },
-					}"
-					v-if="tabs[current] == 'Jeugdhuis'"
-					:key="t.id"
-					v-for="t in tab"
-					class="content-block"
-				>
-					<YouthCenter :id="t.id" :image="t.image" :name="t.name" />
-				</router-link>
 
 				<router-link
 					:to="{
@@ -107,6 +93,18 @@
 						:date="t.date"
 						:location="t.location"
 					/>
+				</router-link>
+
+				<router-link
+					:to="{
+						name: 'YouthCenterDetail',
+						params: { id: t.id },
+					}"
+					v-if="tabs[current] == 'Jeugdhuis'"
+					:key="t.id"
+					v-for="t in tab"
+				>
+					<YouthCenter :id="t.id" :image="t.image" :name="t.name" />
 				</router-link>
 			</div>
 		</div>
@@ -216,9 +214,11 @@
 
 <style scoped>
 	.search {
-		overflow: scroll;
 		grid-row: 1 / span 2;
+		padding-bottom: 2rem;
+		overflow: auto;
 	}
+
 	.title {
 		text-align: center;
 		font-size: 1.8rem;
@@ -229,7 +229,6 @@
 
 	.search-select_wrapper {
 		display: flex;
-		width: 100%;
 		justify-content: space-around;
 		border-bottom: solid 0.2rem #D3FFFF;
 		line-height: 2rem;
@@ -240,12 +239,6 @@
 
 	.current {
 		border-bottom: solid 0.2rem #8ce4e3;
-	}
-
-	.soon {
-		font-size: 1rem;
-		text-align: center;
-		margin-top: 9rem;
 	}
 
 	.search-select_text {
@@ -273,15 +266,6 @@
 		margin-top: 1rem;
 	}
 
-	.content-block {
-		display: flex;
-		align-items: center;
-		box-shadow: 0px 0px 13px 1px rgba(0, 0, 0, 0.09);
-		border-radius: 20px;
-		width: 22rem;
-		height: 4.5rem;
-		margin-top: 1rem;
-	}
 	.loading {
 		font-size: 1rem;
 		display: flex;
@@ -337,7 +321,6 @@
 	@media screen and (min-width: 768px) {
 		.search {
 			grid-row: 2;
-			overflow: scroll;
 		}
 
 		.title {
@@ -373,7 +356,7 @@
 			display: flex;
 			flex-wrap: wrap;
 			justify-content: space-between;
-			max-width: 37rem;
+			width: rem;
 		}
 	}
 

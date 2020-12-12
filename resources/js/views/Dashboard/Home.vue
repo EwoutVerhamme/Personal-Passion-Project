@@ -171,9 +171,6 @@
 			font-size: 1.2rem;
 		}
 
-		.ads-wrapper {
-		}
-
 		.ads {
 			width: 100%;
 			margin: 0;

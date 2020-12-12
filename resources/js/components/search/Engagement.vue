@@ -95,4 +95,10 @@
 			width: 19rem;
 		}
 	}
+
+	@media screen and (min-width: 1024px) {
+		.engagement-block {
+			width: 21rem;
+		}
+	}
 </style>

@@ -17,6 +17,7 @@ public function index() {
     ->join('users', 'users.id', '=', 'ads.user_id')
     ->join('skills', 'skills.id', '=', 'ads.skill_id')
     ->select( 'ads.id', 'ads.creator_img', 'ads.info','ads.date', 'ads.location',"users.first_name", 'users.last_name', 'users.youth_center', 'skills.skill_name', 'skills.skill_alias')
+    ->limit(6)
     ->get();
     return response($users, 200);
 }
@@ -41,6 +42,7 @@ public function getUserWithAds($ad_name) {
     ->join('skills', 'skills.id', '=', 'ads.skill_id')
     ->select( 'ads.id', 'ads.info','ads.date', 'ads.location',"users.first_name", 'users.last_name', 'ads.creator_img', 'users.youth_center', 'skills.skill_name', 'skills.skill_alias')
     ->orWhere('skill_name', 'like', '%' . $ad_name . '%')
+    ->orWhere('skill_alias', 'like', '%' . $ad_name . '%')
     ->orWhere('first_name', 'like', '%' . $ad_name . '%')
     ->get();
 
