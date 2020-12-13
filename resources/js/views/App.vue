@@ -1,7 +1,8 @@
 <template>
 	<NavBar v-if="isLoggedIn" class="navigation" />
 
-	<router-view />
+		<router-view />
+
 </template>
 
 <script>

@@ -13,6 +13,9 @@
 				<label for="" class="input-label">
 					<span class="label-name">Geef wat info over je zoekertje</span>
 				</label>
+				<p class="error">
+					{{ errors.info }}
+				</p>
 			</div>
 			<div class="select-skill">
 				<p class="select-title">Naar welke skills ben je opzoek?</p>
@@ -26,6 +29,7 @@
 				<div class="skill">
 					<Skill :skill="getSkillName" />
 				</div>
+				<p class="error">{{ errors.skill }}</p>
 			</div>
 			<div class="input-form">
 				<input
@@ -38,6 +42,7 @@
 				<label for="" class="input-label">
 					<span class="label-name">Waar zal dit plaatsvinden?</span>
 				</label>
+				<p class="error">{{ errors.location }}</p>
 			</div>
 			<div class="input-form_birth input-form">
 				<p class="select-title">Wanneer zal dit plaatsvinden?</p>
@@ -97,10 +102,11 @@
 						<option value="2021">2021</option>
 					</select>
 				</div>
+				<p class="error">{{ errors.date }}</p>
 			</div>
 		</form>
 
-		<Button @click="submitPost" btnText="Plaats je zoekertje" />
+		<Button @click="checkForm" btnText="Plaats je zoekertje" />
 	</div>
 </template>
 
@@ -137,37 +143,23 @@
 				isActive: false,
 
 				date: {
-					day: "Dag",
-					month: "Maand",
-					year: "Jaar",
+					day: "",
+					month: "",
+					year: "",
 				},
+
+				errors: {
+					info: "",
+					skill: "",
+					location: "",
+					date: "",
+				},
+				error: [],
 			};
 		},
 
 		created() {
 			this.setCurrent();
-		},
-
-		computed: {
-			getCurrent: function () {
-				return this.$store.getters.getCurrent;
-			},
-
-			getCurrentDate: function () {
-				return this.$store.getters.getCurrentDate;
-			},
-
-			getSkillId: function () {
-				return this.$store.getters.getSkillId;
-			},
-			getSkillName: function () {
-				if (this.$store.getters.getSkillName !== "") {
-					this.isActive = true;
-					return this.$store.getters.getSkillName;
-				} else {
-					this.isActive = false;
-				}
-			},
 		},
 
 		methods: {
@@ -192,7 +184,42 @@
 				this.date.year = this.date.year;
 			},
 
+			checkForm() {
+				let errors = [];
+				if (!this.data.info) {
+					this.error.push("Error");
+					this.errors.info = "Vul wat meer info in over je zoekertje";
+				}
+				if (!this.getSkillName) {
+					this.error.push("Error");
+					this.errors.skill = "Kies een skill die bij het zoekertje past";
+				}
+				if (!this.data.location) {
+					this.error.push("Error");
+					this.errors.location = "Je moet een locatie opgeven";
+				}
+				console.log(this.date.day);
+
+				if (
+					this.date.day.length == 0 ||
+					this.date.month.length == 0 ||
+					this.date.year.length == 0
+				) {
+					this.error.push("Error");
+					this.errors.date = "Je moet een datum opgeven";
+				} else {
+				}
+
+				if (this.error.length == 0) {
+					this.submitPost();
+				}
+			},
+
 			submitPost() {
+				// Make the birth date and check if it's correct
+				this.data.date = `${this.date.day} ${this.date.month} ${this.date.year}`;
+
+				// Making everything ready to push in database
 				const getUser = JSON.parse(localStorage.getItem("user"));
 				const user = getUser.id;
 				this.data.user_id = user;
@@ -200,9 +227,6 @@
 				this.data.creator_name = creatorName;
 				const creatorImg = getUser.profilepic;
 				this.data.creator_img = creatorImg;
-
-				// MAKE THE BIRTH DATE
-				this.data.date = `${this.date.day} ${this.date.month} ${this.date.year}`;
 
 				const data = new FormData();
 				data.append("creator_name", this.data.creator_name);
@@ -212,7 +236,6 @@
 				data.append("date", this.data.date);
 				data.append("user_id", this.data.user_id);
 				data.append("skill_id", this.data.skill_id);
-				console.log(data);
 				this.$store
 					.dispatch("SUBMITPOST", data)
 					.then((success) => {
@@ -225,11 +248,37 @@
 					});
 			},
 		},
+
+		computed: {
+			getCurrent: function () {
+				return this.$store.getters.getCurrent;
+			},
+
+			getCurrentDate: function () {
+				return this.$store.getters.getCurrentDate;
+			},
+
+			getSkillId: function () {
+				return this.$store.getters.getSkillId;
+			},
+			getSkillName: function () {
+				if (this.$store.getters.getSkillName !== "") {
+					this.isActive = true;
+					return this.$store.getters.getSkillName;
+				} else {
+					this.isActive = false;
+				}
+			},
+		},
 	};
 </script>
 
 
 <style scoped>
+	.error {
+		margin-top: 0.5rem;
+		color: red;
+	}
 	.create-post {
 		grid-row: 1 / span 2;
 		display: flex;

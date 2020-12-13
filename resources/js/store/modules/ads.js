@@ -78,7 +78,6 @@ export default {
                           },
                       });
 
-                      console.log("zoekertje verwijderd!")
                       
           } catch (error) {
             console.error(error);
