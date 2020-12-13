@@ -33,42 +33,6 @@
 				</div>
 			</div>
 		</div>
-		<div class="ads">
-			<h2 class="title">{{ user.first_name }}'s zoekertjes</h2>
-
-			<div class="match-box" v-for="ad in ads">
-				<div class="title-wrapper">
-					<img :src="ad.creator_img" alt="" class="profile-pic-box" />
-					<p class="title-text">
-						{{ user.first_name }} zoekt een
-						<strong>{{ ad.skill_alias }}</strong>
-					</p>
-				</div>
-				<div class="info">
-					<div class="info-date">
-						<img
-							width="25px"
-							height="25px"
-							src="/assets/img/calendar.png"
-							alt=""
-						/>
-						<p class="info-text">{{ ad.date }}</p>
-					</div>
-					<div class="info-youthcenter">
-						<img
-							width="25px"
-							height="25px"
-							src="/assets/img/place.svg"
-							alt=""
-						/>
-						<p class="info-text">{{ ad.location }}</p>
-					</div>
-				</div>
-			</div>
-			<p class="empty" v-if="error == true">
-				Het is nog wat stil hier... &#128164;
-			</p>
-		</div>
 	</div>
 </template>
 
@@ -131,7 +95,6 @@
 	.profile {
 		margin: 0 auto;
 		width: 95%;
-		grid-row: 1 / span 2;
 	}
 
 	.profile-info {

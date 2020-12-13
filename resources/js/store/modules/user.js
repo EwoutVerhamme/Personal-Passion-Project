@@ -12,15 +12,17 @@ export default {
       email: "",
       password: "",
       password_confirmation: "",
-    }
-  
+    },
 
-  
+    profileInfo: {
+      user: {},
+    }
   },
   getters: {
     isLoggedIn: state => !!state.token,
     authStatus: state => state.status,
-    registerStatus: state => state.credentials
+    registerStatus: state => state.credentials,
+    getProfileUser: state => state.profileInfo.user,
   },
   mutations: {
     auth_success(state, token, user){
@@ -46,7 +48,11 @@ export default {
 
     setUserInfo(state, info){
     state.register = info
-    console.log(state.register)
+    },
+
+    setProfileInfo(state, user){
+      state.profileInfo.user = user
+      console.log(state.profileInfo.user)
     },
   },
   actions: {
@@ -98,7 +104,28 @@ export default {
 
     SETUSERINFO: ({commit}, info) => {
       commit('setUserInfo', info)
-      
+    },
+
+    SETPROFILEINFO: async function ({commit}, info){
+      // Set all the text-data
+				const profile = JSON.parse(localStorage.getItem("user"));
+				const token = localStorage.getItem("token");
+
+				//Set a user his adds and get ID
+				const id = profile.id;
+				try {
+					const response = await axios.get(`/api/user/${id}`, {
+						headers: {
+							Authorization: `Bearer ${token}`,
+						},
+					});
+					const user = response.data;
+          commit('setProfileInfo', user)
+
+
+				} catch (error) {
+					console.error(error);
+				}
     },
 
     SETUSERSKILLS: ({commit}, payload )=> {

@@ -95,7 +95,6 @@
 	.profile {
 		margin: 0 auto;
 		width: 95%;
-		grid-row: 1 / span 2;
 	}
 
 	.profile-info {
