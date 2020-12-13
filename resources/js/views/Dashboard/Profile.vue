@@ -34,9 +34,10 @@
 		<div class="skills">
 			<h2 class="title">Je skills</h2>
 			<div class="skill-wrapper">
-				<div v-for="skill in getProfileUser.skills" class="skill">
-					<Skill :skill="skill.skill_name" />
-				</div>
+				<Skill
+					v-for="skill in getProfileUser.skills"
+					:skill="skill.skill_name"
+				/>
 			</div>
 		</div>
 		<div class="ads">
@@ -102,6 +103,7 @@
 	.profile {
 		margin: 0 auto;
 		width: 95%;
+
 		grid-row: 1 / span 2;
 		padding-bottom: 2rem;
 	}
@@ -163,6 +165,10 @@
 
 	.skills {
 		margin-top: 1.5rem;
+	}
+
+	.skill-wrapper {
+		display: flex;
 	}
 
 	.ads {

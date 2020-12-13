@@ -27,8 +27,35 @@
 		</div>
 		<div class="skills">
 			<h2 class="title">'s skills</h2>
-			<div v-for="skill in getProfileUser.skills" class="skill">
-				<Skill :skill="skill.skill_name" />
+			<div class="skill-wrapper">
+				<Skill
+					v-for="skill in getProfileUser.skills"
+					:skill="skill.skill_name"
+				/>
+			</div>
+		</div>
+		<div class="ads">
+			<h2 class="title">Je zoekertjes</h2>
+			<div class="ad-wrapper">
+				<router-link
+					:to="`/engagement/${ad.id}`"
+					:key="ad.id"
+					v-for="ad in getProfileUser.ads"
+				>
+					<Engagement
+						:first_name="ad.creator_name"
+						:skill_alias="ad.skill_alias"
+						:creator_img="ad.creator_img"
+						:date="ad.date"
+						:location="ad.location"
+					/>
+				</router-link>
+				<p class="empty" v-if="error == true">
+					Het is nog wat stil hier... <br />
+					<router-link to="/create"
+						><strong>Maak een zoekertje &#129311;</strong></router-link
+					>
+				</p>
 			</div>
 		</div>
 	</div>
@@ -37,10 +64,12 @@
 <script>
 	import axios from "axios";
 	import Skill from "../Skill";
+	import Engagement from "../search/Engagement";
 	export default {
 		name: "ProfileDetail",
 		components: {
 			Skill,
+			Engagement,
 		},
 
 		data() {
@@ -76,6 +105,7 @@
 	.profile {
 		margin: 0 auto;
 		width: 95%;
+		grid-row: 1 / span 2;
 	}
 
 	.profile-info {
@@ -122,13 +152,8 @@
 		display: flex;
 	}
 
-	.skills {
-		margin-top: 1.5rem;
-	}
-
 	.ads {
-		margin-top: 2rem;
-		overflow: scroll;
+		margin-top: 1rem;
 	}
 
 	.match-box {
@@ -149,7 +174,7 @@
 
 	@media screen and (min-width: 768px) {
 		.profile {
-			width: 35rem;
+			width: 40rem;
 			grid-row: 2 / span 3;
 		}
 
@@ -200,8 +225,21 @@
 			margin-top: 9rem;
 			font-size: 1.4rem;
 		}
+		.ad-wrapper {
+			display: flex;
+			flex-wrap: wrap;
+			width: 40rem;
+			justify-content: space-between;
+		}
 	}
 
 	@media screen and (min-width: 1024px) {
+		.profile {
+			width: 45rem;
+		}
+		.ad-wrapper {
+			width: 100%;
+			padding-bottom: 2rem;
+		}
 	}
 </style>

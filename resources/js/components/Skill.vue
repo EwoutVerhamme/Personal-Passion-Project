@@ -1,7 +1,5 @@
 <template>
-	<div class="skill-wrapper">
-		<p class="skill">{{ skill }}</p>
-	</div>
+	<p class="skill">{{ skill }}</p>
 </template>
 
 <script>
@@ -14,16 +12,13 @@
 
 
 <style scoped >
-	.skill-wrapper {
-	}
-
 	.skill {
 		background-color: #8CE4E3;
 		width: fit-content;
 		color: white;
 		padding: 0.5rem;
 		border-radius: 0.6rem;
-		margin-top: 0.5rem;
+		margin: 0.5rem;
 	}
 
 	@media screen and (min-width: 768px) {
