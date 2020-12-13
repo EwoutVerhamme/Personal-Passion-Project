@@ -73,7 +73,7 @@ export default {
 
     return new Promise((resolve, reject) => {
       axios
-        .post(`api/ads`, data, image)
+        .post(`api/engagements`, data, image)
         .then(({ data, status }) => {
           if (status === 200) {
             console.log(data);
