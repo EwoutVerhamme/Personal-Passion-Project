@@ -111,7 +111,7 @@
 </template>
 
 <script>
-	import InputField from "../../components/input/InputField";
+	// import InputField from "../../components/input/InputField";
 	import Button from "../../components/Buttons/Button";
 	import Skill from "../../components/Skill";
 	import axios from "axios";
@@ -119,7 +119,7 @@
 	export default {
 		name: "CreatePost",
 		components: {
-			InputField,
+			// InputField,
 			Button,
 			Skill,
 		},
