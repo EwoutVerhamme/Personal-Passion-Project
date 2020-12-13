@@ -1,6 +1,6 @@
 <template>
 	<div class="engagement-detail">
-		<Delete @click="deleteAd" class="delete" v-if="canEdit === true" />
+		<Delete @click="deleteAd" class="delete" v-if="canEdit" />
 		<div class="engagement-head">
 			<img class="engagement-img" :src="getAdDetail.creator_img" alt="" />
 			<p class="engagement-title">

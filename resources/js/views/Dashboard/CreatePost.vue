@@ -42,7 +42,7 @@
 			<div class="input-form_birth input-form">
 				<p class="select-title">Wanneer zal dit plaatsvinden?</p>
 				<div class="input-field_birth-wrapper">
-					<select class="date-input" name="day" v-model="day">
+					<select class="date-input" name="day" v-model="date.day">
 						<option value="" selected disabled hidden>Dag</option>
 						<option value="1">1</option>
 						<option value="2">2</option>
@@ -76,7 +76,7 @@
 						<option value="30">30</option>
 						<option value="31">31</option>
 					</select>
-					<select class="date-input" name="month" v-model="month">
+					<select class="date-input" name="month" v-model="date.month">
 						<option value="" selected disabled hidden>Maand</option>
 						<option value="januari">Januari</option>
 						<option value="februari">Februari</option>
@@ -91,7 +91,7 @@
 						<option value="november">November</option>
 						<option value="december">December</option>
 					</select>
-					<select class="date-input" name="year" v-model="year">
+					<select class="date-input" name="year" v-model="date.year">
 						<option value="" selected disabled hidden>Jaar</option>
 						<option value="2020">2020</option>
 						<option value="2021">2021</option>
@@ -135,9 +135,12 @@
 				},
 
 				isActive: false,
-				day: "",
-				month: "",
-				year: "",
+
+				date: {
+					day: "Dag",
+					month: "Maand",
+					year: "Jaar",
+				},
 			};
 		},
 
@@ -148,6 +151,10 @@
 		computed: {
 			getCurrent: function () {
 				return this.$store.getters.getCurrent;
+			},
+
+			getCurrentDate: function () {
+				return this.$store.getters.getCurrentDate;
 			},
 
 			getSkillId: function () {
@@ -165,15 +172,24 @@
 
 		methods: {
 			storeCurrent() {
-				this.$store.dispatch("SETCURRENT", this.data);
+				this.$store.dispatch("SETCURRENT", {
+					data: this.data,
+					date: this.date,
+				});
 			},
 
 			setCurrent() {
 				const set = this.getCurrent;
+				const date = this.getCurrentDate;
 				this.data.info = set.info;
 				this.data.location = set.location;
 				this.data.date = set.date;
 				this.data.skill_id = this.getSkillId;
+
+				// Set the date
+				this.date.day = this.date.day;
+				this.date.month = this.date.month;
+				this.date.year = this.date.year;
 			},
 
 			submitPost() {
@@ -186,7 +202,7 @@
 				this.data.creator_img = creatorImg;
 
 				// MAKE THE BIRTH DATE
-				this.data.date = `${this.day} ${this.month} ${this.year}`;
+				this.data.date = `${this.date.day} ${this.date.month} ${this.date.year}`;
 
 				const data = new FormData();
 				data.append("creator_name", this.data.creator_name);

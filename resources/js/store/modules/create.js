@@ -13,12 +13,19 @@ export default {
       file: "",
     },
 
-      skill_id: "",
-     skill_name: "",
+    date: {
+      day:"",
+      month:"",
+      year:""
+    },
+
+    skill_id: "",
+    skill_name: "",
       
   },
   getters: {
     getCurrent: state => state.data,
+    getCurrentDate: state => state.date,
     getSkillId: state => state.skill_id,
     getSkillName: state => state.skill_name
   },
@@ -30,8 +37,9 @@ export default {
         state.skill_name = skillName
       },
 
-      setCurrent(state, data){
-      state.data = data
+      setCurrent(state, {data, date}){
+      state.data = data,
+      state.date = date
       },
       
       resetFields(state){
@@ -52,8 +60,8 @@ export default {
       commit('setSkillName', skillName)
   },
 
-    SETCURRENT: ({ commit }, data) => {
-      commit('setCurrent', data)
+    SETCURRENT: ({ commit }, data ,date) => {
+      commit('setCurrent', data, date)
   },
 
   RESETFIELDS: ({ commit }) => {
