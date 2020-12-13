@@ -51,7 +51,7 @@ Route::get("ads/user/{id}", [AdController::class, "getMyAds"]);
 Route::post("ads", [AdController::class, "store"]);
 
 // Get all the matches
-Route::get("matches", [Skill_userController::class, "matches"])->middleware('auth:api');
+Route::get("matches", [Skill_userController::class, "matches"]);
 
 
 // Get the youthcenters 
