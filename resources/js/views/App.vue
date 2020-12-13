@@ -1,12 +1,11 @@
 <template>
 	<NavBar v-if="isLoggedIn" class="navigation" />
 
-		<router-view />
-
+	<router-view />
 </template>
 
 <script>
-	import NavBar from "../components/navigation/NavBar";
+	import NavBar from "../components/Navigation/NavBar";
 	export default {
 		name: "App",
 		components: {
