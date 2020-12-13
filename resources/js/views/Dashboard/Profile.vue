@@ -3,21 +3,17 @@
 		<router-link to="/editprofile">
 			<img class="button" src="/assets/img/profile/edit.svg" alt="" />
 		</router-link>
-		<div class="profile-info">
-			<img
-				class="profile-img"
-				:src="getProfileUser.user[0].profilepic"
-				alt=""
-			/>
+		<div class="profile-info" v-for="user in getProfileUser.user">
+			<img class="profile-img" :src="user.profilepic" alt="" />
 			<div class="info-wrapper">
 				<h1 class="profile-name">
-					{{ getProfileUser.user[0].first_name }}
-					{{ getProfileUser.user[0].last_name }}
+					{{ user.first_name }}
+					{{ user.last_name }}
 				</h1>
 				<div class="profile-location">
 					<img src="/assets/img/location.svg" alt="" class="location" />
 					<p class="profile-location_text">
-						{{ getProfileUser.user[0].youth_center }}
+						{{ user.youth_center }}
 					</p>
 				</div>
 				<div class="profile-socials">
@@ -83,15 +79,14 @@
 
 		data() {
 			return {
-				user: {},
-				skills: {},
-				ads: {},
 				error: false,
 			};
 		},
 
 		created() {
-			this.$store.dispatch("SETPROFILEINFO");
+			const profile = JSON.parse(localStorage.getItem("user"));
+			const id = profile.id;
+			this.$store.dispatch("SETPROFILEINFO", id);
 		},
 
 		computed: {
@@ -107,6 +102,9 @@
 	.profile {
 		margin: 0 auto;
 		width: 95%;
+		overflow: auto;
+		grid-row: 1 / span 2;
+		padding-bottom: 2rem;
 	}
 
 	.button {
@@ -179,6 +177,7 @@
 	@media screen and (min-width: 768px) {
 		.profile {
 			width: 40rem;
+			grid-row: 2 / span 3;
 		}
 
 		.button {
@@ -214,6 +213,10 @@
 	}
 
 	@media screen and (min-width: 1024px) {
+		.profile {
+			width: 45rem;
+		}
+
 		.ad-wrapper {
 			display: flex;
 			flex-wrap: wrap;

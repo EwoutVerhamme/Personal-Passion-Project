@@ -306,10 +306,6 @@
 			max-width: 40rem;
 		}
 
-		.input-form_birth {
-			width: 14rem;
-		}
-
 		.input-field_birth-wrapper {
 			display: flex;
 			justify-content: space-between;

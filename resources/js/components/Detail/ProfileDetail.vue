@@ -1,6 +1,6 @@
 <template>
 	<div class="profile">
-		<div class="profile-info">
+		<div class="profile-info" v-for="user in getProfileUser.user">
 			<div class="img-wrapper">
 				<img class="profile-photo" :src="user.profilepic" alt="" />
 			</div>
@@ -26,11 +26,9 @@
 			</div>
 		</div>
 		<div class="skills">
-			<h2 class="title">{{ user.first_name }}'s skills</h2>
-			<div class="skill-wrapper">
-				<div v-for="skill in skills" class="skill">
-					<p class="skill-text">{{ skill.skill_name }}</p>
-				</div>
+			<h2 class="title">'s skills</h2>
+			<div v-for="skill in getProfileUser.skills" class="skill">
+				<Skill :skill="skill.skill_name" />
 			</div>
 		</div>
 	</div>
@@ -38,49 +36,32 @@
 
 <script>
 	import axios from "axios";
+	import Skill from "../Skill";
 	export default {
 		name: "ProfileDetail",
-		components: {},
+		components: {
+			Skill,
+		},
 
 		data() {
 			return {
-				user: {},
-				skills: [],
-				ads: [],
+				first_name: "",
 				error: false,
 			};
 		},
 
 		created() {
-			this.setProfileInfo();
+			//Set a user his adds and get ID
+			const route = this.$router.currentRoute._rawValue.fullPath;
+			const n = route.lastIndexOf("/");
+			const id = route.substring(n + 1);
+
+			this.$store.dispatch("SETPROFILEINFO", id);
 		},
 
-		methods: {
-			setProfileInfo: async function () {
-				// Set all the text-data
-				const profile = JSON.parse(localStorage.getItem("user"));
-				const token = localStorage.getItem("token");
-
-				//Set a user his adds and get ID
-				const route = this.$router.currentRoute._rawValue.fullPath;
-				const url = `http://api.kollapp.test/api${route}`;
-				try {
-					const response = await axios.get(url, {
-						headers: {
-							Authorization: `Bearer ${token}`,
-						},
-					});
-
-					this.user = response.data.user[0];
-					this.skills = response.data.skills;
-					this.ads = response.data.ads;
-					this.error = false;
-					if (response.data.ads.length == 0) {
-						this.error = true;
-					}
-				} catch (error) {
-					console.error(error);
-				}
+		computed: {
+			getProfileUser: function () {
+				return this.$store.getters.getProfileUser;
 			},
 		},
 	};
@@ -142,15 +123,7 @@
 	}
 
 	.skills {
-		margin-top: 2rem;
-	}
-
-	.skill {
-		margin: 0.5rem;
-		background-color: #8CE4E3;
-		padding: 5px;
-		border-radius: 8px;
-		color: white;
+		margin-top: 1.5rem;
 	}
 
 	.ads {
@@ -177,7 +150,7 @@
 	@media screen and (min-width: 768px) {
 		.profile {
 			width: 35rem;
-			margin-top: 4rem;
+			grid-row: 2 / span 3;
 		}
 
 		.profile-info {
@@ -225,15 +198,6 @@
 
 		.empty {
 			margin-top: 9rem;
-			font-size: 1.4rem;
-		}
-
-		.skill {
-			margin: 0.5rem;
-			background-color: #8CE4E3;
-			padding: 10px;
-			border-radius: 8px;
-			color: white;
 			font-size: 1.4rem;
 		}
 	}

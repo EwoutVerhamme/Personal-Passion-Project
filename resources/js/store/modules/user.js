@@ -52,7 +52,6 @@ export default {
 
     setProfileInfo(state, user){
       state.profileInfo.user = user
-      console.log(state.profileInfo.user)
     },
   },
   actions: {
@@ -106,20 +105,15 @@ export default {
       commit('setUserInfo', info)
     },
 
-    SETPROFILEINFO: async function ({commit}, info){
-      // Set all the text-data
-				const profile = JSON.parse(localStorage.getItem("user"));
+    SETPROFILEINFO: async function ({commit}, id){
 				const token = localStorage.getItem("token");
-
-				//Set a user his adds and get ID
-				const id = profile.id;
 				try {
 					const response = await axios.get(`/api/user/${id}`, {
 						headers: {
 							Authorization: `Bearer ${token}`,
 						},
 					});
-					const user = response.data;
+          const user = response.data;
           commit('setProfileInfo', user)
 
 
