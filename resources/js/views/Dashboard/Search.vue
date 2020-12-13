@@ -161,7 +161,7 @@
 						this.loading = false;
 						break;
 					case "engagement":
-						slug = "ads";
+						slug = "engagements";
 						this.slug = slug;
 						this.makeSearch();
 						break;
@@ -361,7 +361,6 @@
 	}
 
 	@media screen and (min-width: 1024px) {
-
 		.title {
 			margin-top: 2rem;
 			font-size: 2rem;

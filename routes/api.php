@@ -43,12 +43,12 @@ Route::get("users/{name}", [AuthController::class, "getUserWithSkill"]);
 Route::get("skills", [Skill_userController::class, "index"]);
 
 //Get all the adds
-Route::get("ads", [AdController::class, "index"]);
-Route::get("ads/{ad_name}", [AdController::class, "getUserWithAds"]);
-Route::get("ad/{id}", [AdController::class, "getAdById"]);
-Route::delete("ad/{id}", [AdController::class, "deleteAdById"]);
-Route::get("ads/user/{id}", [AdController::class, "getMyAds"]);
-Route::post("ads", [AdController::class, "store"]);
+Route::get("engagements", [AdController::class, "index"]);
+Route::get("engagements/{ad_name}", [AdController::class, "getUserWithAds"]);
+Route::get("engagement/{id}", [AdController::class, "getAdById"]);
+Route::delete("engagement/{id}", [AdController::class, "deleteAdById"]);
+Route::get("engagements/user/{id}", [AdController::class, "getMyAds"]);
+Route::post("engagements", [AdController::class, "store"]);
 
 // Get all the matches
 Route::get("matches", [Skill_userController::class, "matches"]);

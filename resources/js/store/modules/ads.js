@@ -54,7 +54,7 @@ export default {
     GETADDETAIL: async function ({ commit }, id ) {
     const token = localStorage.getItem("token");
 				try {
-					const response = await axios.get(`/api/ad/${id}`, {
+					const response = await axios.get(`/api/engagement/${id}`, {
 						headers: {
 							Authorization: `Bearer ${token}`,
                         },
@@ -69,10 +69,10 @@ export default {
 				}
     },
 
-    DELETEAD: async function ({ commit }, id ) {
+    DELETEAD: async function ( id ) {
       const token = localStorage.getItem("token");
           try {
-            const response = await axios.delete(`/api/ad/${id}`, {
+            const response = await axios.delete(`/api/engagement/${id}`, {
               headers: {
                 Authorization: `Bearer ${token}`,
                           },
