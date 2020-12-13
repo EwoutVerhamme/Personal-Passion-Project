@@ -320,7 +320,7 @@
 
 	@media screen and (min-width: 768px) {
 		.search {
-			grid-row: 2;
+			grid-row: 2 / span 3;
 		}
 
 		.title {
@@ -361,10 +361,6 @@
 	}
 
 	@media screen and (min-width: 1024px) {
-		.search {
-			grid-row: 2;
-			overflow: scroll;
-		}
 
 		.title {
 			margin-top: 2rem;

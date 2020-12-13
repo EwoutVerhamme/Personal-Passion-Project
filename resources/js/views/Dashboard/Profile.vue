@@ -102,7 +102,6 @@
 	.profile {
 		margin: 0 auto;
 		width: 95%;
-		overflow: auto;
 		grid-row: 1 / span 2;
 		padding-bottom: 2rem;
 	}
