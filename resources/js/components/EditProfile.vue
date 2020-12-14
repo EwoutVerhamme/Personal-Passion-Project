@@ -39,8 +39,9 @@
 					autocomplete="off"
 				/>
 			</div>
+			<p class="error">{{ error }}</p>
 		</form>
-		<Button @click="editProfile" btnText="Profiel wijzigen" />
+		<Button @click="checkform" btnText="Profiel wijzigen" />
 	</div>
 </template>
 
@@ -63,6 +64,7 @@
 					town: "",
 					youth_center: "",
 				},
+				error: "",
 			};
 		},
 
@@ -84,9 +86,34 @@
 			}
 		},
 		methods: {
+			checkform() {
+				let errors = [];
+				if (!this.data.first_name) {
+					this.error = "Gelieve een naam in te vullen";
+					errors.push("error");
+				}
+				if (!this.data.last_name) {
+					this.error = "Gelieve een achternaam in te vullen";
+					errors.push("error");
+				}
+				if (!this.data.town) {
+					this.error = "Gelieve een gemeente in te vullen";
+					errors.push("error");
+				}
+				if (!this.data.youth_center) {
+					this.error = "Gelieve een jeugdhuis in te vullen";
+					errors.push("error");
+				}
+
+				if (errors.length === 0) {
+					this.editProfile();
+				}
+			},
+
 			editProfile() {
 				const data = this.data;
 				this.$store.dispatch("SETNEWPROFILEINFO", data);
+				this.$router.push("/profile");
 			},
 		},
 
