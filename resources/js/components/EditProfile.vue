@@ -114,7 +114,6 @@
 				const data = this.data;
 				this.$store.dispatch("SETNEWPROFILEINFO", data);
 				this.$router.push("/profile");
-
 			},
 		},
 
@@ -186,6 +185,12 @@
 
 		.title {
 			margin-top: 2rem;
+		}
+
+		.logout {
+			position: absolute;
+			top: 6rem;
+			right: 3rem;
 		}
 	}
 </style>
