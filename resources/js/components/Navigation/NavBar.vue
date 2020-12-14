@@ -1,7 +1,7 @@
 <template>
 	<div class="navigation-wrapper">
 		<nav class="navigation">
-			<img src="assets/img/kollapp.svg" alt="Kollapp Logo" class="logo" />
+			<img src="/public/assets/img/kollapp.svg" alt="Kollapp Logo" class="logo" />
 			<router-link to="/">
 				<div class="menu-item_wrapper">
 					<li class="menu-item">Home</li>
