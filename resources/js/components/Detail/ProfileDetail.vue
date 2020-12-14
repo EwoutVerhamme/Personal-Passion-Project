@@ -26,7 +26,7 @@
 			</div>
 		</div>
 		<div class="skills">
-			<h2 class="title">'s skills</h2>
+			<h2 class="title">{{ getUserName }}'s skills</h2>
 			<div class="skill-wrapper">
 				<Skill
 					v-for="skill in getProfileUser.skills"
@@ -50,11 +50,8 @@
 						:location="ad.location"
 					/>
 				</router-link>
-				<p class="empty" v-if="error == true">
-					Het is nog wat stil hier... <br />
-					<router-link to="/create"
-						><strong>Maak een zoekertje &#129311;</strong></router-link
-					>
+				<p class="empty" v-if="getError === true">
+					Het is nog wat stil hier... 😴 <br />
 				</p>
 			</div>
 		</div>
@@ -90,7 +87,32 @@
 
 		computed: {
 			getProfileUser: function () {
+				console.log(this.$store.getters.getProfileUser);
 				return this.$store.getters.getProfileUser;
+			},
+
+			getUserName: function () {
+				if (this.$store.getters.getProfileUser.user) {
+					return this.$store.getters.getProfileUser.user[0].first_name;
+				}
+			},
+
+			getError: function () {
+				let error;
+				const ads = this.$store.getters.getProfileUser.ads;
+
+				try {
+					if (ads) {
+						if (this.$store.getters.getProfileUser.ads.length === 0) {
+							error = true;
+						} else {
+							error = false;
+						}
+						return error;
+					}
+				} catch (error) {
+					console.log(error);
+				}
 			},
 		},
 	};
@@ -118,6 +140,8 @@
 
 	.profile-name {
 		font-size: 1.4rem;
+		font-weight: 600;
+		color: #FF899E;
 	}
 
 	.info-wrapper {
@@ -128,6 +152,11 @@
 	.profile-location {
 		display: flex;
 		align-items: center;
+		margin-top: 0.2rem;
+	}
+
+	.profile-location_text {
+		margin-left: 0.5rem;
 	}
 
 	.profile-socials {

@@ -100,7 +100,7 @@
 				let error;
 				const getProfileUser = this.$store.getters.getProfileUser;
 
-				if (getProfileUser.length <= 0) {
+				if (getProfileUser.length === 0) {
 					error = true;
 				} else {
 					error = false;

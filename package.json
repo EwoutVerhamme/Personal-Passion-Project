@@ -9,6 +9,7 @@
         "postinstall": "npm run prod"
     },
     "devDependencies": {
+        "@nuxtjs/vuetify": "^1.11.2",
         "@vue/compiler-sfc": "^3.0.3",
         "axios": "^0.19",
         "cross-env": "^7.0",
