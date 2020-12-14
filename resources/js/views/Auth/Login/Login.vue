@@ -96,7 +96,7 @@
 
 	.register-form-title {
 		font-weight: 600;
-		font-size: 1.3rem;
+		font-size: 1.7rem;
 		margin-top: 1rem;
 	}
 

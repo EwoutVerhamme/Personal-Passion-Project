@@ -110,7 +110,7 @@
 
 	.user-img {
 		clip-path: circle(50% at center);
-		width: 6rem;
+		width: 4rem;
 		height: auto;
 	}
 	.subtitle {
@@ -163,7 +163,7 @@
 			font-size: 3rem;
 		}
 
-		.profile-img {
+		.user-img {
 			width: 6rem;
 			height: auto;
 			clip-path: circle(60px at center);
@@ -204,11 +204,6 @@
 			font-weight: 300;
 			line-height: 3.5rem;
 			font-size: 3.5rem;
-		}
-
-		.profile-img {
-			width: 6rem;
-			height: 6rem;
 		}
 
 		.subtitle {

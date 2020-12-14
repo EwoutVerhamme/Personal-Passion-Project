@@ -72,6 +72,8 @@
 	.select-title {
 		font-weight: 600;
 		margin-top: 0.5rem;
+		font-size: 1.3rem;
+		font-weight: 500;
 	}
 
 	.input-form {
@@ -81,6 +83,8 @@
 	.input-field {
 		margin-top: 0.4rem;
 		width: 95%;
+		height: 1.4rem;
+		font-size: 1.2rem;
 		border: none;
 		border-bottom: 0.2rem solid #f5f5f5;
 		background-color: transparent;

@@ -7,28 +7,24 @@
 
 		<form action="" class="create-form">
 			<div class="input-form">
+				<p class="select-title">Voornaam</p>
 				<input
 					v-model="first_name"
 					type="text"
 					class="input-field"
 					autocomplete="off"
-					placeholder=" "
+					placeholder=""
 				/>
-				<label for="" class="input-label">
-					<span class="label-name">Voornaam</span>
-				</label>
 			</div>
 			<div class="input-form">
+				<p class="select-title">Achternaam</p>
 				<input
 					v-model="last_name"
 					type="text"
 					class="input-field"
 					autocomplete="off"
-					placeholder=" "
+					placeholder=""
 				/>
-				<label for="" class="input-label">
-					<span class="label-name">Achternaam</span>
-				</label>
 			</div>
 			<div class="input-form_birth">
 				<p class="select-title">Geef je geboortedatum in</p>
@@ -69,28 +65,24 @@
 				</select>
 			</div>
 			<div class="input-form">
+				<p class="select-title">Gemeente</p>
 				<input
 					v-model="town"
 					type="text"
 					class="input-field"
 					autocomplete="off"
-					placeholder=" "
+					placeholder=""
 				/>
-				<label for="" class="input-label">
-					<span class="label-name">Gemeente</span>
-				</label>
 			</div>
 			<div class="input-form">
+				<p class="select-title">Jeugdhuis</p>
 				<input
 					v-model="youth_center"
 					type="text"
 					class="input-field"
 					autocomplete="off"
-					placeholder=" "
+					placeholder=""
 				/>
-				<label for="" class="input-label">
-					<span class="label-name">Jouw jeugdhuis</span>
-				</label>
 			</div>
 			<div class="img-input_wrapper">
 				<p class="select-title">Upload een profiel foto</p>

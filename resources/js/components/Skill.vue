@@ -17,15 +17,15 @@
 		background-color: #8CE4E3;
 		width: fit-content;
 		color: white;
-		padding: 0.4rem;
 		border-radius: 0.6rem;
 		margin: 0.5rem 0rem 1rem 0rem;
-	}
-
-	@media screen and (min-width: 768px) {
-		.skill {
-			font-size: 1.3rem;
-			padding: 0.6rem;
-		}
+		font-size: 1.3rem;
+		width: fit-content;
+		padding-left: 1rem;
+		padding-right: 1rem;
+		height: 2.5rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
 </style>

@@ -9,40 +9,34 @@
 			<h2 class="register-form-title">Aanmelden</h2>
 			<p v-if="error" class="error">{{ error }}</p>
 			<div class="input-form">
+				<p class="select-title">Email</p>
 				<input
 					v-model="credentials.email"
 					type="text"
 					class="input-field"
-					placeholder=" "
-					autocomplete=""
+					autocomplete="off"
+					placeholder=""
 				/>
-				<label class="input-label">
-					<span class="label-name">Email</span>
-				</label>
 			</div>
 			<div class="input-form">
+				<p class="select-title">Wachtwoord</p>
 				<input
 					v-model="credentials.password"
 					type="password"
 					class="input-field"
-					placeholder=" "
-					autocomplete=""
+					autocomplete="off"
+					placeholder=""
 				/>
-				<label class="input-label">
-					<span class="label-name">Wachtwoord</span>
-				</label>
 			</div>
 			<div class="input-form">
+				<p class="select-title">Herhaal wachtwoord</p>
 				<input
 					v-model="credentials.password_confirmation"
 					type="password"
 					class="input-field"
-					autocomplete=""
-					placeholder=" "
+					autocomplete="off"
+					placeholder=""
 				/>
-				<label class="input-label">
-					<span class="label-name">Herhaal wachtwoord</span>
-				</label>
 			</div>
 		</form>
 		<div class="button-wrapper">
@@ -62,8 +56,7 @@
 	import store from "../../../store/index";
 	export default {
 		name: "Register",
-		components: {
-		},
+		components: {},
 
 		data() {
 			return {
@@ -130,12 +123,12 @@
 		width: 100%;
 		margin: 0 auto;
 		align-self: flex-start;
-		margin-top: 2rem;
+		margin-top: 1rem;
 	}
 
 	.register-form-title {
 		font-weight: 600;
-		font-size: 1.3rem;
+		font-size: 1.7rem;
 	}
 
 	.register-title {
