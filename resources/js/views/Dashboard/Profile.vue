@@ -184,9 +184,6 @@
 		display: flex;
 	}
 
-	.ads {
-		margin-top: 1.5rem;
-	}
 
 	.strong {
 		font-weight: 600;

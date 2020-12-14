@@ -82,6 +82,7 @@
 			return {
 				adUserId: "",
 				canEdit: false,
+				engagementId: "",
 			};
 		},
 
@@ -92,9 +93,16 @@
 
 		methods: {
 			deleteAd() {
-				const id = this.$props.id;
-				this.$store.dispatch("DELETEAD", id);
-				this.$router.push("/");
+				// Get last number from route (PROPS didn't work :()
+				// console.log(this.href.substring(this.href.lastIndexOf('/') + 1));
+				const id = this.$router.currentRoute._rawValue.params.id;
+				console.log(id);
+				try {
+					this.$store.dispatch("DELETEAD", id);
+					this.$router.push("/");
+				} catch (error) {
+					console.log(error);
+				}
 			},
 		},
 

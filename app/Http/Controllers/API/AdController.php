@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\API;
 
+use Illuminate\Support\Facades\Request as Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Ad;
-use DB;
-use Illuminate\Support\Facades\Request as Requests;
 use Validator;
+use DB;
 
 class AdController extends Controller
 {
@@ -65,8 +66,11 @@ public function getMyAds($id) {
 
 
 public function deleteAdById($id) {
+    $userId = Auth::id();
+
     $deleteAd = DB::table('ads')
     ->where('ads.id', '=', $id )
+    ->where('ads.user_id', '=', $userId )
     ->delete();
 
 

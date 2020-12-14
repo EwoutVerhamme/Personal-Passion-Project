@@ -46,6 +46,8 @@ class AuthController extends Controller
         $users = DB::table('users')
         ->limit(6)
         ->where('users.id', '!=',  $id )
+        ->select('users.id','users.first_name', 'users.last_name', 'users.profilepic')
+        ->groupBy('users.id')
         ->get();
         return response($users, 201);
     }

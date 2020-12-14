@@ -68,22 +68,25 @@ export default {
 					console.error(error);
 				}
     },
-
-    DELETEAD: async function ( id ) {
+    DELETEAD: ({commit}, id )=> {
       const token = localStorage.getItem("token");
-          try {
-            const response = await axios.delete(`/api/engagement/${id}`, {
-              headers: {
-                Authorization: `Bearer ${token}`,
-                          },
-                      });
-
-                      
-          } catch (error) {
-            console.error(error);
-          }
-      }
-  
-
+      return new Promise((resolve, reject) => {
+        axios
+          .delete(`/api/engagement/delete/${id}`, {
+						headers: {
+							Authorization: `Bearer ${token}`,
+						},
+					})
+          .then(({ data, status }) => {
+            if(status === 200) {
+              resolve(data);
+            }
+           
+          })
+          .catch(error => {
+            reject(error);
+          });
+      });
+    },
   }
 };

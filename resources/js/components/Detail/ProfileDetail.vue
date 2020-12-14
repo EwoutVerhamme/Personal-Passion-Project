@@ -50,10 +50,10 @@
 						:location="ad.location"
 					/>
 				</router-link>
-				<p class="empty" v-if="getError === true">
-					Het is nog wat stil hier... 😴 <br />
-				</p>
 			</div>
+			<p class="empty" v-if="getError === true">
+				Het is nog wat stil hier... 😴 <br />
+			</p>
 		</div>
 	</div>
 </template>

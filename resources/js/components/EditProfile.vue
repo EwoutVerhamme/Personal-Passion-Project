@@ -114,6 +114,7 @@
 				const data = this.data;
 				this.$store.dispatch("SETNEWPROFILEINFO", data);
 				this.$router.push("/profile");
+
 			},
 		},
 
@@ -179,6 +180,8 @@
 	@media screen and (min-width: 768px) {
 		.edit-profile {
 			grid-row: 2;
+			width: 40rem;
+			margin: 0 auto;
 		}
 
 		.title {

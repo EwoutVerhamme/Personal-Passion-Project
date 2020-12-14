@@ -15,7 +15,7 @@ export default {
     },
 
     profileInfo: {
-      user: {},
+      user: [],
     }
   },
   getters: {
@@ -134,9 +134,12 @@ export default {
 						},
 					})
           .then(({ data, status }) => {
-            resolve(status);
-            const user = data;
-            commit('setProfileInfo', user)
+            if(status === 200) {
+              resolve(id);
+              const user = data;
+              commit('setProfileInfo', user)
+            }
+           
           })
           .catch(error => {
             reject(error);

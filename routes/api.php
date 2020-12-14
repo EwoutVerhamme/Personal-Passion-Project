@@ -38,7 +38,7 @@ Route::post("skill_users", [Skill_userController::class, "store"]);
 //Get the users with skills and ads
 Route::get("users", [AuthController::class, "getAll"])->middleware('auth:api');
 Route::get("user/{id}", [AuthController::class, "getById"])->middleware('auth:api');
-Route::get("users/{name}", [AuthController::class, "getUserWithSkill"]);
+Route::get("users/{name}", [AuthController::class, "getUserWithSkill"])->middleware('auth:api');
 // PATCH user info
 Route::patch('user/update', [AuthController::class, "update"])->middleware('auth:api');
 
@@ -49,7 +49,7 @@ Route::get("skills", [Skill_userController::class, "index"]);
 Route::get("engagements", [AdController::class, "index"]);
 Route::get("engagements/{ad_name}", [AdController::class, "getUserWithAds"]);
 Route::get("engagement/{id}", [AdController::class, "getAdById"]);
-Route::delete("engagement/{id}", [AdController::class, "deleteAdById"]);
+Route::delete("engagement/delete/{id}", [AdController::class, "deleteAdById"])->middleware('auth:api');
 Route::get("engagements/user/{id}", [AdController::class, "getMyAds"]);
 Route::post("engagements", [AdController::class, "store"]);
 

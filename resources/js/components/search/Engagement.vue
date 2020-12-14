@@ -51,7 +51,7 @@
 	}
 
 	.engagement-img {
-		max-width: 4rem;
+		width: 4.5rem;
 		height: auto;
 		clip-path: circle(50% at center);
 		grid-row: 2 / span 3;

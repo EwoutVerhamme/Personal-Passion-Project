@@ -1,12 +1,14 @@
 <template>
 	<div class="home">
-		<div class="welcome-user">
+<Suspense :delay="500">
+		<div class="welcome-user" v-for="user in getProfileUser.user">
 			<h1 class="welcome-user-title">
 				Welkom <br />
-				<strong>{{ first_name }}!</strong>
+				<strong>{{ user.first_name }}!</strong>
 			</h1>
-			<img :src="profilepic" alt="" class="user-img" />
+			<img :src="user.profilepic" alt="" class="user-img" />
 		</div>
+   </Suspense>
 		<div class="ads-wrapper">
 			<h2 class="subtitle" v-if="getError === false">
 				Mensen zijn op zoek naar jouw <strong>talent!</strong>
@@ -55,25 +57,14 @@
 
 		created() {
 			this.$store.dispatch("GETPERSONALADS");
-			const getUser = JSON.parse(localStorage.getItem("user"));
-			if (localStorage.user) {
-				this.first_name = getUser.first_name;
-				this.profilepic = getUser.profilepic;
-			}
+
+			const profile = JSON.parse(localStorage.getItem("user"));
+			const id = profile.id;
+
+			this.$store.dispatch("SETPROFILEINFO", id);
 		},
 
 		computed: {
-			// getPersonalAds: function () {
-			// 	const personalAdd = this.$store.getters.getPersonalAds;
-
-			// 	if (personalAdd.length < 1) {
-			// 		this.error = true;
-			// 	} else {
-			// 		this.ads = personalAdd;
-			// 		console.log(personalAdd);
-			// 	}
-			// },
-
 			getError: function () {
 				let error;
 				const personalAdd = this.$store.getters.getPersonalAds;
@@ -86,16 +77,14 @@
 				}
 				return error;
 			},
+
+			getProfileUser: function () {
+				return this.$store.getters.getProfileUser;
+			},
 		},
 
 		watch: {
-			first_name(currentName) {
-				localStorage.name = currentName;
-			},
-
-			// getError: function () {
-			// 	return this.$store.getters.getPersonalAds;
-			// },
+			getProfileUser() {},
 		},
 	};
 </script>
