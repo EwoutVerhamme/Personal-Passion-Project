@@ -26,7 +26,7 @@
 						:location="ad.location"
 					/>
 				</router-link>
-				<p class="error"  v-if="getError  === true">
+				<p class="error"   v-if="getError  === true">
 					Er zijn momenteel geen mensen naar je opzoek... &#128532
 				</p>
 			</div>
@@ -105,7 +105,6 @@
 <style scoped>
 	.home {
 		grid-row: 1 / span 2;
-		padding-bottom: 2rem;
 	}
 	.welcome-user {
 		margin-top: 2rem;
@@ -141,6 +140,7 @@
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: center;
+		padding-bottom: 2rem;
 	}
 
 	.error {
