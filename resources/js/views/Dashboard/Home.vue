@@ -8,7 +8,7 @@
 			<img :src="profilepic" alt="" class="user-img" />
 		</div>
 		<div class="ads-wrapper">
-			<h2 class="subtitle" :v-if="getError === false">
+			<h2 class="subtitle" v-if="getError === false">
 				Mensen zijn op zoek naar jouw <strong>talent!</strong>
 			</h2>
 			<div class="ads">
@@ -26,7 +26,7 @@
 						:location="ad.location"
 					/>
 				</router-link>
-				<p class="error" :v-if="getError  === true">
+				<p class="error"  v-if="getError  === true">
 					Er zijn momenteel geen mensen naar je opzoek... &#128532
 				</p>
 			</div>
@@ -79,7 +79,7 @@
 				let error;
 				const personalAdd = this.$store.getters.getPersonalAds;
 
-				if (personalAdd.length < 1) {
+				if (personalAdd.length <= 0) {
 					error = true;
 				} else {
 					this.ads = personalAdd;
@@ -93,6 +93,10 @@
 			first_name(currentName) {
 				localStorage.name = currentName;
 			},
+
+			// getError: function () {
+			// 	return this.$store.getters.getPersonalAds;
+			// },
 		},
 	};
 </script>
