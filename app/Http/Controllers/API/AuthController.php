@@ -19,7 +19,7 @@ class AuthController extends Controller
         $usersById = DB::table('users')
         ->join('skill_users', 'skill_users.user_id', '=', 'users.id')
         ->where('users.id', '=', $id)
-        ->select('users.id', 'users.first_name', 'users.last_name', 'users.youth_center', 'users.profilepic')
+        ->select('users.id', 'users.first_name', 'users.last_name', 'users.youth_center', 'users.profilepic','users.town')
         ->groupBy('users.id')
         ->get();
 
@@ -112,5 +112,27 @@ class AuthController extends Controller
         $accessToken = auth()->user()->createToken('authToken')->accessToken;
 
         return response(['user' => auth()->user(), 'access_token' => $accessToken]);
+    }
+
+        /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\YouthCenter  $youthCenter
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, User $user)
+    {
+        $id = Auth::id();
+
+        $user = User::where("users.id", $id)->update([
+            "first_name" => $request->first_name,
+            "last_name" => $request->last_name,
+            "town" => $request->town,
+            "youth_center" => $request->youth_center,
+        ]);
+
+
+        return response( $user, 200);
     }
 }

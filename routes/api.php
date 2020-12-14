@@ -31,6 +31,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
 
+
 // POST the skill_users
 Route::post("skill_users", [Skill_userController::class, "store"]);
 
@@ -38,6 +39,8 @@ Route::post("skill_users", [Skill_userController::class, "store"]);
 Route::get("users", [AuthController::class, "getAll"])->middleware('auth:api');
 Route::get("user/{id}", [AuthController::class, "getById"])->middleware('auth:api');
 Route::get("users/{name}", [AuthController::class, "getUserWithSkill"]);
+// PATCH user info
+Route::patch('user/update', [AuthController::class, "update"])->middleware('auth:api');
 
 //Get all the skills
 Route::get("skills", [Skill_userController::class, "index"]);

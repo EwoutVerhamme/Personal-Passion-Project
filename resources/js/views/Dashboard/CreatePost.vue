@@ -335,6 +335,7 @@
 		height: 2rem;
 		border: none;
 		border-bottom: 0.2rem solid #f5f5f5;
+		background-color: transparent;
 	}
 
 	@media screen and (min-width: 768px) {

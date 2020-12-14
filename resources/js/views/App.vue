@@ -83,6 +83,7 @@
 		width: 95%;
 		border: none;
 		border-bottom: 0.2rem solid #f5f5f5;
+		background-color: transparent;
 	}
 
 	textarea:focus,

@@ -105,21 +105,64 @@ export default {
       commit('setUserInfo', info)
     },
 
-    SETPROFILEINFO: async function ({commit}, id){
-				const token = localStorage.getItem("token");
-				try {
-					const response = await axios.get(`/api/user/${id}`, {
+    // SETPROFILEINFO: async function ({commit}, id){
+    //   return new Promise((resolve, reject) => {
+		// 		const token = localStorage.getItem("token");
+		// 		try {
+		// 			const response = await axios.get(`/api/user/${id}`, {
+		// 				headers: {
+		// 					Authorization: `Bearer ${token}`,
+		// 				},
+		// 			});
+    //       const user = response.data;
+    //       commit('setProfileInfo', user)
+
+
+		// 		} catch (error) {
+		// 			console.error(error);
+    //     }
+    //           });
+    // },
+
+    SETPROFILEINFO: ({commit}, id )=> {
+      const token = localStorage.getItem("token");
+      return new Promise((resolve, reject) => {
+        axios
+          .get(`/api/user/${id}`, {
 						headers: {
 							Authorization: `Bearer ${token}`,
 						},
-					});
-          const user = response.data;
-          commit('setProfileInfo', user)
+					})
+          .then(({ data, status }) => {
+            resolve(status);
+            const user = data;
+            commit('setProfileInfo', user)
+          })
+          .catch(error => {
+            reject(error);
+          });
+      });
+    },
 
-
-				} catch (error) {
-					console.error(error);
-				}
+    SETNEWPROFILEINFO: ({commit}, data)=> {
+      console.log(data)
+      return new Promise((resolve, reject) => {
+        const token = localStorage.getItem("token");
+        axios
+          .patch(`/api/user/update`, data, {
+						headers: {
+							Authorization: `Bearer ${token}`,
+						},
+					})
+          .then(({ data, status }) => {
+            resolve(status);
+            const user = data;
+            commit('setProfileInfo', user)
+          })
+          .catch(error => {
+            reject(error);
+          });
+      });
     },
 
     SETUSERSKILLS: ({commit}, payload )=> {
