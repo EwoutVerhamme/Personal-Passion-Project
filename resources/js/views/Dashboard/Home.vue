@@ -93,9 +93,6 @@
 			first_name(currentName) {
 				localStorage.name = currentName;
 			},
-			getPersonalAds: function () {
-				return this.$store.getters.getPersonalAds;
-			},
 		},
 	};
 </script>
