@@ -25,6 +25,7 @@ class Skill_userController extends Controller
        // Get current user 
        $user = Auth::user();
        $id = Auth::id();
+       
        //My skills
        $mySkill = DB::table('skill_users')
        ->where('skill_users.user_id', '=',  $id )

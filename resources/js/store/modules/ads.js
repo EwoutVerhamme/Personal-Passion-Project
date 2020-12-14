@@ -35,7 +35,7 @@ export default {
     // Get the personal ads for the loggin-in user.
     GETPERSONALADS: async function ({ commit } ) {
     const token = localStorage.getItem("token");
-    
+    console.log(token)
 				try {
 					const response = await axios.get("/api/matches", {
 						headers: {
@@ -43,6 +43,7 @@ export default {
                         },
                     });
                     const data = response.data
+                    console.log(data)
                     commit('setPersonalAds', data)
                     
 				} catch (error) {
