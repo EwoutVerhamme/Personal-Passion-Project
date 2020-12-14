@@ -1,6 +1,7 @@
 <template>
 	<div class="edit-profile">
 		<h1 class="title">Wijzig je profiel</h1>
+		
 		<Logout class="logout" />
 	</div>
 </template>
