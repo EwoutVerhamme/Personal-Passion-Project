@@ -1,5 +1,5 @@
 <template>
-	<p :class="{ skill: active }">{{ skill }}</p>
+	<p class="skill">{{ skill }}</p>
 </template>
 
 <script>
@@ -8,24 +8,6 @@
 		name: "Skill",
 
 		props: ["skill"],
-
-		data() {
-			return {
-				active: false,
-			};
-		},
-
-		computed: {
-			getSkillLength: function () {
-				return this.$store.getters.getSkillName === ""
-					? (this.active = false)
-					: (this.active = true);
-			},
-		},
-
-		watch: {
-			getSkillLength() {},
-		},
 	};
 </script>
 

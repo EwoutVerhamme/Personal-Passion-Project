@@ -8,7 +8,7 @@
 			<img :src="profilepic" alt="" class="user-img" />
 		</div>
 		<div class="ads-wrapper">
-			<h2 class="subtitle" v-if="error == false">
+			<h2 class="subtitle" :v-if="getError === false">
 				Mensen zijn op zoek naar jouw <strong>talent!</strong>
 			</h2>
 			<div class="ads">
@@ -26,7 +26,7 @@
 						:location="ad.location"
 					/>
 				</router-link>
-				<p class="error" v-if="error == true">
+				<p class="error" :v-if="getError  === true">
 					Er zijn momenteel geen mensen naar je opzoek... &#128532
 				</p>
 			</div>
@@ -64,15 +64,28 @@
 		},
 
 		computed: {
-			getPersonalAds: function () {
+			// getPersonalAds: function () {
+			// 	const personalAdd = this.$store.getters.getPersonalAds;
+
+			// 	if (personalAdd.length < 1) {
+			// 		this.error = true;
+			// 	} else {
+			// 		this.ads = personalAdd;
+			// 		console.log(personalAdd);
+			// 	}
+			// },
+
+			getError: function () {
+				let error;
 				const personalAdd = this.$store.getters.getPersonalAds;
 
-				if (personalAdd.length <= 0) {
-					this.error = true;
+				if (personalAdd.length < 1) {
+					error = true;
 				} else {
 					this.ads = personalAdd;
-					console.log(personalAdd);
+					error = false;
 				}
+				return error;
 			},
 		},
 
@@ -81,7 +94,7 @@
 				localStorage.name = currentName;
 			},
 			getPersonalAds: function () {
-				this.ads = this.$store.getters.getPersonalAds;
+				return this.$store.getters.getPersonalAds;
 			},
 		},
 	};

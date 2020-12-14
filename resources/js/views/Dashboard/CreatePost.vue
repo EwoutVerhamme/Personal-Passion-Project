@@ -2,20 +2,17 @@
 	<div class="create-post">
 		<h1 class="title">Maak een zoekertje</h1>
 		<form action="" class="create-form">
-			<div class="input-form">
+			<div class="form__group field">
 				<input
 					v-model="data.info"
-					type="text"
-					class="input-field"
-					autocomplete="off"
-					placeholder=" "
+					type="input"
+					class="form__field"
+					placeholder="Name"
+					name="name"
+					id="name"
+					required
 				/>
-				<label for="" class="input-label">
-					<span class="label-name">Geef wat info over je zoekertje</span>
-				</label>
-				<p class="error">
-					{{ errors.info }}
-				</p>
+				<label for="name" class="form__label">Name</label>
 			</div>
 			<div class="select-skill">
 				<p class="select-title">Naar welke skills ben je opzoek?</p>

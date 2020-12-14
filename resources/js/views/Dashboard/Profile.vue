@@ -35,6 +35,7 @@
 			<h2 class="title">Je skills</h2>
 			<div class="skill-wrapper">
 				<Skill
+					class="active"
 					v-for="skill in getProfileUser.skills"
 					:skill="skill.skill_name"
 				/>
@@ -214,6 +215,15 @@
 			flex-wrap: wrap;
 			width: 40rem;
 			justify-content: space-between;
+		}
+
+		.active {
+			background-color: #8CE4E3;
+			width: fit-content;
+			color: white;
+			padding: 0.3rem;
+			border-radius: 0.6rem;
+			margin: 0.5rem;
 		}
 	}
 
