@@ -2,17 +2,16 @@
 	<div class="create-post">
 		<h1 class="title">Maak een zoekertje</h1>
 		<form action="" class="create-form">
-			<div class="form__group field">
+			<div class="input-form">
+				<p class="select-title">Geef wat meet uitleg</p>
 				<input
 					v-model="data.info"
-					type="input"
-					class="form__field"
-					placeholder="Name"
-					name="name"
-					id="name"
-					required
+					type="text"
+					class="input-field"
+					autocomplete="off"
+					placeholder="Ik ben opzoek..."
 				/>
-				<label for="name" class="form__label">Name</label>
+				<p class="error">{{ errors.location }}</p>
 			</div>
 			<div class="select-skill">
 				<p class="select-title">Naar welke skills ben je opzoek?</p>
@@ -29,16 +28,14 @@
 				<p class="error">{{ errors.skill }}</p>
 			</div>
 			<div class="input-form">
+				<p class="select-title">Waar zal dit plaatsvinden?</p>
 				<input
 					v-model="data.location"
 					type="text"
 					class="input-field"
 					autocomplete="off"
-					placeholder=" "
+					placeholder="Waar zal dit plaatsvinden?"
 				/>
-				<label for="" class="input-label">
-					<span class="label-name">Waar zal dit plaatsvinden?</span>
-				</label>
 				<p class="error">{{ errors.location }}</p>
 			</div>
 			<div class="input-form_birth input-form">
@@ -102,8 +99,7 @@
 				<p class="error">{{ errors.date }}</p>
 			</div>
 		</form>
-
-		<Button @click="checkForm" btnText="Plaats je zoekertje" />
+		<Button @click="checkForm" submit="" btnText="Plaats je zoekertje" />
 	</div>
 </template>
 
@@ -304,10 +300,6 @@
 		margin-top: 0.5rem;
 		display: flex;
 		align-items: center;
-	}
-
-	.select-title {
-		font-weight: 600;
 	}
 
 	.select-button {

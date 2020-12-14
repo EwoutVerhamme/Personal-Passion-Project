@@ -17,9 +17,9 @@
 		background-color: #8CE4E3;
 		width: fit-content;
 		color: white;
-		padding: 0.3rem;
+		padding: 0.4rem;
 		border-radius: 0.6rem;
-		margin: 0.5rem;
+		margin: 0.5rem 0rem 1rem 0rem;
 	}
 
 	@media screen and (min-width: 768px) {

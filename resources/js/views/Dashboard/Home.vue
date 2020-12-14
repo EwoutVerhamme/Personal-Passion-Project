@@ -37,7 +37,6 @@
 <script>
 	import Match from "../../components/Match.vue";
 	import Engagement from "../../components/search/Engagement";
-	import axios from "axios";
 	export default {
 		name: "Home",
 		components: {

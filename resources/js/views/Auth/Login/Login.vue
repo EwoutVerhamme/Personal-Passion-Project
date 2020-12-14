@@ -9,18 +9,17 @@
 			<h2 class="register-form-title">Inloggen</h2>
 			<p v-if="error == true" class="error">Je email/passwoord klopt niet.</p>
 			<div class="input-form">
+				<p class="select-title">Email</p>
 				<input
 					v-model="email"
 					type="text"
 					class="input-field"
 					autocomplete="off"
-					placeholder=" "
+					placeholder=""
 				/>
-				<label for="" class="input-label">
-					<span class="label-name">Email</span>
-				</label>
 			</div>
 			<div class="input-form">
+				<p class="select-title">Wachtwoord</p>
 				<input
 					v-model="password"
 					type="password"
@@ -28,9 +27,6 @@
 					autocomplete="off"
 					placeholder=" "
 				/>
-				<label for="" class="input-label">
-					<span class="label-name">Wachtwoord</span>
-				</label>
 			</div>
 		</form>
 		<div class="button-wrapper">
@@ -46,9 +42,7 @@
 	import axios from "axios";
 	export default {
 		name: "Login",
-		components: {
-		
-		},
+		components: {},
 
 		data() {
 			return {

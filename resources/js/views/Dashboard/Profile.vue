@@ -95,6 +95,18 @@
 			getProfileUser: function () {
 				return this.$store.getters.getProfileUser;
 			},
+
+			getError: function () {
+				let error;
+				const getProfileUser = this.$store.getters.getProfileUser;
+
+				if (getProfileUser.length <= 0) {
+					error = true;
+				} else {
+					error = false;
+				}
+				return error;
+			},
 		},
 	};
 </script>

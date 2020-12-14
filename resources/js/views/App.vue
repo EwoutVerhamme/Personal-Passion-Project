@@ -69,6 +69,27 @@
 		color: #434343;
 	}
 
+	.select-title {
+		font-weight: 600;
+		margin-top: 0.5rem;
+	}
+
+	.input-form {
+		margin: 0 auto;
+	}
+
+	.input-field {
+		margin-top: 0.4rem;
+		width: 95%;
+		border: none;
+		border-bottom: 0.2rem solid #f5f5f5;
+	}
+
+	textarea:focus,
+	input:focus {
+		outline: none;
+	}
+
 	@media screen and (min-width: 768px) {
 		.navigation {
 			margin: 0 auto;
