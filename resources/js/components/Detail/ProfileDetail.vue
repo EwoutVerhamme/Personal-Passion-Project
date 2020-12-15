@@ -1,5 +1,6 @@
 <template>
 	<div class="profile">
+		<Back class="back" />
 		<div class="profile-info" v-for="user in getProfileUser.user">
 			<div class="img-wrapper">
 				<img class="profile-photo" :src="user.profilepic" alt="" />
@@ -35,7 +36,7 @@
 			</div>
 		</div>
 		<div class="ads">
-			<h2 class="title">Je zoekertjes</h2>
+			<h2 class="title">{{ getUserName }}'s zoekertjes</h2>
 			<div class="ad-wrapper">
 				<router-link
 					:to="`/engagement/${ad.id}`"
@@ -62,11 +63,13 @@
 	import axios from "axios";
 	import Skill from "../Skill";
 	import Engagement from "../search/Engagement";
+	import Back from "../Buttons/Back";
 	export default {
 		name: "ProfileDetail",
 		components: {
 			Skill,
 			Engagement,
+			Back,
 		},
 
 		data() {
@@ -122,6 +125,13 @@
 <style scoped>
 	.title {
 		font-weight: 600;
+		font-size: 1.2rem;
+	}
+
+	.back {
+		position: absolute;
+		top: 0.5rem;
+		left: 0.5rem;
 	}
 
 	.profile {
@@ -188,6 +198,10 @@
 	.match-box {
 		margin-top: 1rem;
 		margin-bottom: 1rem;
+	}
+
+	.skills {
+		margin-top: 2rem;
 	}
 
 	.empty {

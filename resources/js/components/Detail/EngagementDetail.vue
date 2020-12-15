@@ -161,6 +161,7 @@
 		align-self: center;
 		width: 5rem;
 		height: auto;
+		clip-path: circle(50% at center);
 	}
 
 	.engagement-title {

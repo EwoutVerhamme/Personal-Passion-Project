@@ -93,7 +93,7 @@
 				return error;
 			},
 
-			// Get the profile 
+			// Get the profile
 			getProfileUser: function () {
 				return this.$store.getters.getProfileUser;
 			},
@@ -147,6 +147,7 @@
 		text-align: center;
 		font-size: 1rem;
 		line-height: 1.3rem;
+		margin-top: 4rem;
 	}
 
 	strong {

@@ -54,7 +54,7 @@
 	}
 	.fade-enter-active,
 	.fade-leave-active {
-		transition: all 0.5s ease;
+		transition: all 0.3s ease;
 	}
 
 	#app {

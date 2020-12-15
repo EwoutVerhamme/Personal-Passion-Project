@@ -106,10 +106,8 @@
 
 <style scoped>
 	.login {
-		display: grid;
 		margin: 0 auto;
-		grid-row: 1 / span 3;
-		height: 100vh;
+		grid-row: 1 / span 2;
 	}
 
 	.register-welcome {
@@ -135,7 +133,7 @@
 
 	.register-title {
 		font-weight: 300;
-		font-size: 1.8rem;
+		font-size: 2rem;
 	}
 
 	.register-subtitle {
@@ -146,7 +144,7 @@
 
 	.register-img {
 		margin-top: 3rem;
-		height: 17vh;
+		height: 15vh;
 	}
 
 	.register-accept_text {
