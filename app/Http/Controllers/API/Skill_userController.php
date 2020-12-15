@@ -36,8 +36,19 @@ class Skill_userController extends Controller
        ->select('skill_users.user_id','ads.creator_name', 'ads.creator_img','ads.id','ads.user_id', 'skills.skill_alias', 'ads.date','ads.location', )
        ->get();
        return response($mySkill, 200);
-
     }
+
+    public function alternative() {
+        $id = Auth::id();
+
+        //My skills
+        $myAlternativeSkill = DB::table('ads')
+        ->join('skills', 'skills.id', '=', 'ads.skill_id')
+        ->where('ads.user_id', '!=',  $id )
+        ->orderBy('ads.skill_id', 'asc')
+        ->get();
+        return response($myAlternativeSkill, 200);
+     }
 
     public function getUserWithSkill($name) {
         $users = DB::table('users')

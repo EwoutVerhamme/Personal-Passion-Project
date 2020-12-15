@@ -65,7 +65,7 @@
 				</select>
 			</div>
 			<div class="input-form">
-				<p class="select-title">Gemeente</p>
+				<p class="select-title">Woonplaats</p>
 				<input
 					v-model="town"
 					type="text"

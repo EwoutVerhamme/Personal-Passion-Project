@@ -46,9 +46,9 @@
 					/>
 				</div>
 			</div>
-			<div class="ads">
+			<div class="engagements">
 				<h2 class="title">Je zoekertjes</h2>
-				<div class="ad-wrapper">
+				<div class="engagements-wrapper">
 					<router-link
 						:to="`/engagement/${ad.id}`"
 						:key="ad.id"
@@ -88,6 +88,7 @@
 		data() {
 			return {
 				error: false,
+				loading: false,
 			};
 		},
 
@@ -106,7 +107,7 @@
 				let error;
 				const getProfileUser = this.$store.getters.getProfileUser;
 				console.log(getProfileUser);
-				if (getProfileUser.ads<= 0) {
+				if (getProfileUser.ads <= 0) {
 					error = true;
 				} else {
 					error = false;
@@ -229,7 +230,7 @@
 			font-size: 1.7rem;
 		}
 
-		.ad-wrapper {
+		.engagements-wrapper {
 			display: flex;
 			flex-wrap: wrap;
 			width: 40rem;
@@ -251,7 +252,7 @@
 			width: 45rem;
 		}
 
-		.ad-wrapper {
+		.engagements-wrapper {
 			display: flex;
 			flex-wrap: wrap;
 			width: 45rem;

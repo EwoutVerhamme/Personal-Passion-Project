@@ -3,13 +3,15 @@ import axios from "axios";
 export default {
 
   state: {
-      personalAds: {},
+      personalAds: [],
+      personalAdsAlternative: [],
       adDetail: {},
       adUserId: ""
       
   },
   getters: {
     getPersonalAds: state => state.personalAds,
+    getPersonalAdsAlternative: state => state.personalAdsAlternative,
     getAdDetail: state => state.adDetail,
     getAdUserId: state => state.adUserId,
   },
@@ -18,6 +20,10 @@ export default {
   mutations: {
     setPersonalAds(state, data){
         state.personalAds = data
+      },
+
+      setPersonalAdsAlternative(state, data){
+        state.personalAdsAlternative = data
       },
 
       setAdDetail(state, data){
@@ -50,6 +56,24 @@ export default {
         }
 
     },
+
+    GETALTERNATIVE: async function ({ commit } ) {
+      const token = localStorage.getItem("token");
+          try {
+            const response = await axios.get("/api/matches/alternative", {
+              headers: {
+                Authorization: `Bearer ${token}`,
+                          },
+                      });
+                      const data = response.data
+   
+                      commit('setPersonalAdsAlternative', data)
+                      
+          } catch (error) {
+            console.error(error);
+          }
+  
+      },
 
     GETADDETAIL: async function ({ commit }, id ) {
     const token = localStorage.getItem("token");

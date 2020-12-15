@@ -1,26 +1,29 @@
 <template>
 	<div class="home">
-<Suspense :delay="500">
-		<div class="welcome-user" v-for="user in getProfileUser.user">
-			<h1 class="welcome-user-title">
-				Welkom <br />
-				<strong>{{ user.first_name }}!</strong>
-			</h1>
-			<img :src="user.profilepic" alt="" class="user-img" />
-		</div>
-   </Suspense>
-		<div class="ads-wrapper">
+		<Suspense :delay="500">
+			<div class="welcome-user" v-for="user in getProfileUser.user">
+				<h1 class="welcome-user-title">
+					Welkom <br />
+					<strong>{{ user.first_name }}!</strong>
+				</h1>
+				<img :src="user.profilepic" alt="" class="user-img" />
+			</div>
+		</Suspense>
+		<div class="engagements-wrapper">
 			<h2 class="subtitle" v-if="getError === false">
 				Mensen zijn op zoek naar jouw <strong>talent!</strong>
 			</h2>
-			<div class="ads">
+			<p class="error" v-if="getError === true">
+				{{ title }}
+			</p>
+			<div class="engagements">
 				<router-link
 					:to="`/engagement/${ad.id}`"
 					:key="ad.id"
 					v-for="ad in ads"
 				>
 					<Engagement
-					:id="ad.id"
+						:id="ad.id"
 						:first_name="ad.creator_name"
 						:skill_alias="ad.skill_alias"
 						:creator_img="ad.creator_img"
@@ -28,7 +31,7 @@
 						:location="ad.location"
 					/>
 				</router-link>
-				<p class="error"   v-if="getError  === true">
+				<p class="error" v-if="getError === true">
 					Er zijn momenteel geen mensen naar je opzoek... &#128532
 				</p>
 			</div>
@@ -50,8 +53,10 @@
 			return {
 				first_name: "",
 				profilepic: "",
-				ads: {},
-				error: false,
+				user: [],
+				ads: [],
+				errorMessage: "",
+				title: "",
 			};
 		},
 
@@ -68,11 +73,21 @@
 			getError: function () {
 				let error;
 				const personalAdd = this.$store.getters.getPersonalAds;
+				const personalAdsAlternative = this.$store.getters
+					.getPersonalAdsAlternative;
 
-				if (personalAdd.length <= 0) {
+				if (personalAdd.length === 0) {
+					// Preventing from doing too many requests
+					for (let i = 0; i > 1; i++) {
+						this.$store.dispatch("GETALTERNATIVE");
+					}
 					error = true;
+					this.ads = personalAdsAlternative;
 				} else {
+					this.title =
+						"We hebben geen matches gevonden met jouw skills, maar dit zijn veelgezochte skills";
 					this.ads = personalAdd;
+					this.errorMessage = "";
 					error = false;
 				}
 				return error;
@@ -81,10 +96,6 @@
 			getProfileUser: function () {
 				return this.$store.getters.getProfileUser;
 			},
-		},
-
-		watch: {
-			getProfileUser() {},
 		},
 	};
 </script>
@@ -119,12 +130,12 @@
 		font-weight: 300;
 	}
 
-	.ads-wrapper {
+	.engagements-wrapper {
 		margin: 0 auto;
-		margin-top: 2rem;
-		max-width: 45rem;
+		margin-top: 1rem;
 	}
-	.ads {
+
+	.engagements {
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: center;
@@ -132,7 +143,6 @@
 	}
 
 	.error {
-		width: 95%;
 		text-align: center;
 		font-size: 1rem;
 		margin-top: 10rem;
@@ -173,7 +183,13 @@
 			font-size: 1.2rem;
 		}
 
-		.ads {
+		.engagements-wrapper {
+			width: 40rem;
+			margin: 0 auto;
+			margin-top: 3rem;
+		}
+
+		.engagements {
 			width: 100%;
 			margin: 0;
 			display: flex;
@@ -208,17 +224,6 @@
 
 		.subtitle {
 			font-size: 1.6rem;
-		}
-
-		.matches {
-			display: flex;
-			flex-flow: column wrap;
-			justify-content: center;
-			max-width: 46rem;
-		}
-
-		.match {
-			width: 22rem;
 		}
 
 		.error {

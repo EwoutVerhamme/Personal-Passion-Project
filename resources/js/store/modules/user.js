@@ -5,7 +5,7 @@ export default {
   state: {
     status: '',
     token: localStorage.getItem('acces_token') || '',
-    user : {},
+    user : [],
     isLoggedIn: undefined,
 
     credentials: {
@@ -14,15 +14,13 @@ export default {
       password_confirmation: "",
     },
 
-    profileInfo: {
-      user: [],
-    }
+    profileInfo: []
   },
   getters: {
     isLoggedIn: state => !!state.token,
     authStatus: state => state.status,
     registerStatus: state => state.credentials,
-    getProfileUser: state => state.profileInfo.user,
+    getProfileUser: state => state.profileInfo,
   },
   mutations: {
     auth_success(state, token, user){
@@ -50,8 +48,8 @@ export default {
     state.register = info
     },
 
-    setProfileInfo(state, user){
-      state.profileInfo.user = user
+    setProfileInfo(state, data){
+      state.profileInfo = data
     },
   },
   actions: {
@@ -105,28 +103,9 @@ export default {
       commit('setUserInfo', info)
     },
 
-    // SETPROFILEINFO: async function ({commit}, id){
-    //   return new Promise((resolve, reject) => {
-		// 		const token = localStorage.getItem("token");
-		// 		try {
-		// 			const response = await axios.get(`/api/user/${id}`, {
-		// 				headers: {
-		// 					Authorization: `Bearer ${token}`,
-		// 				},
-		// 			});
-    //       const user = response.data;
-    //       commit('setProfileInfo', user)
-
-
-		// 		} catch (error) {
-		// 			console.error(error);
-    //     }
-    //           });
-    // },
 
     SETPROFILEINFO: ({commit}, id )=> {
       const token = localStorage.getItem("token");
-      return new Promise((resolve, reject) => {
         axios
           .get(`/api/user/${id}`, {
 						headers: {
@@ -134,17 +113,8 @@ export default {
 						},
 					})
           .then(({ data, status }) => {
-            if(status === 200) {
-              resolve(id);
-              const user = data;
-              commit('setProfileInfo', user)
-            }
-           
+            commit('setProfileInfo', data)
           })
-          .catch(error => {
-            reject(error);
-          });
-      });
     },
 
     SETNEWPROFILEINFO: ({commit}, data)=> {
