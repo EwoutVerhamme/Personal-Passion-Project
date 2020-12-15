@@ -314,6 +314,7 @@
 	.select-button {
 		color: #FF899E;
 		font-weight: 600;
+		font-size: 1.2rem;
 	}
 
 	.select-img {
@@ -345,6 +346,12 @@
 		border: none;
 		border-bottom: 0.2rem solid #f5f5f5;
 		background-color: transparent;
+	}
+
+	.select-title {
+		font-size: 1.2rem;
+		font-weight: 600;
+		margin-top: 2rem;
 	}
 
 	@media screen and (min-width: 768px) {

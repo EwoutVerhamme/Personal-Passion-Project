@@ -29,36 +29,89 @@
 			<div class="input-form_birth">
 				<p class="select-title">Geef je geboortedatum in</p>
 				<div class="input-field_birth-wrapper">
-					<input
-						v-model="day"
-						maxlength="2"
-						type="text"
-						class="input-field_birth"
-						autocomplete="off"
-						placeholder="Dag"
-					/>
-					<input
-						v-model="month"
-						maxlength="2"
-						type="text"
-						class="input-field_birth"
-						autocomplete="off"
-						placeholder="Maand"
-					/>
-					<input
-						v-model="year"
-						maxlength="4"
-						type="text"
-						class="input-field_birth"
-						autocomplete="off"
-						placeholder="Jaar"
-					/>
+					<select class="date-input" name="day" v-model="day">
+						<option value="" selected disabled hidden>Dag</option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+						<option value="8">8</option>
+						<option value="9">9</option>
+						<option value="10">10</option>
+						<option value="11">11</option>
+						<option value="12">12</option>
+						<option value="13">13</option>
+						<option value="14">14</option>
+						<option value="15">15</option>
+						<option value="16">16</option>
+						<option value="17">17</option>
+						<option value="18">18</option>
+						<option value="19">19</option>
+						<option value="20">20</option>
+						<option value="21">21</option>
+						<option value="22">22</option>
+						<option value="23">23</option>
+						<option value="24">24</option>
+						<option value="25">25</option>
+						<option value="26">26</option>
+						<option value="27">27</option>
+						<option value="28">28</option>
+						<option value="29">29</option>
+						<option value="30">30</option>
+						<option value="31">31</option>
+					</select>
+					<select class="date-input" name="month" v-model="month">
+						<option value="" selected disabled hidden>Maand</option>
+						<option value="januari">Januari</option>
+						<option value="februari">Februari</option>
+						<option value="maart">Maart</option>
+						<option value="april">April</option>
+						<option value="mei">Mei</option>
+						<option value="juni">Juni</option>
+						<option value="juli">Juli</option>
+						<option value="augustus">Augustus</option>
+						<option value="september">September</option>
+						<option value="oktober">Oktober</option>
+						<option value="november">November</option>
+						<option value="december">December</option>
+					</select>
+					<select class="date-input" name="year" v-model="year">
+						<option value="" selected disabled hidden>Jaar</option>
+						<option value="1980">1980</option>
+						<option value="1981">1981</option>
+						<option value="1982">1982</option>
+						<option value="1983">1983</option>
+						<option value="1984">1984</option>
+						<option value="1985">1985</option>
+						<option value="1986">1986</option>
+						<option value="1987">1987</option>
+						<option value="1988">1988</option>
+						<option value="1989">1989</option>
+						<option value="1990">1990</option>
+						<option value="1991">1991</option>
+						<option value="1992">1992</option>
+						<option value="1993">1993</option>
+						<option value="1994">1994</option>
+						<option value="1995">1995</option>
+						<option value="1996">1996</option>
+						<option value="1997">1997</option>
+						<option value="1998">1998</option>
+						<option value="1999">1999</option>
+						<option value="2000">2000</option>
+						<option value="2001">2001</option>
+						<option value="2002">2002</option>
+						<option value="2003">2003</option>
+						<option value="2004">2004</option>
+					</select>
 				</div>
 			</div>
 			<div class="input-form_select">
 				<p class="select-title">Geslacht</p>
 				<select name="sex" class="sex" v-model="sex">
-					<option value="Geslacht">Geslacht</option>
+					<option value="" selected disabled hidden>Geslacht</option>
 					<option value="Man">Man</option>
 					<option value="Vrouw">Vrouw</option>
 					<option value="X">X</option>
@@ -199,12 +252,17 @@
 	.select-title {
 		font-size: 1.2rem;
 		font-weight: 600;
+		margin-top: 1rem;
 	}
 
 	.back {
 		position: absolute;
 		top: 1rem;
 		left: 1rem;
+	}
+
+	.create-form {
+		margin-top: 2rem;
 	}
 
 	.input-form_select {
@@ -225,17 +283,26 @@
 
 	.input-field_birth-wrapper {
 		display: flex;
-		justify-content: flex-start;
+		justify-content: space-between;
+		width: 95%;
 	}
 
-	.input-field_birth {
-		margin: 0.5rem;
-		width: 5rem;
+	.date-input {
+		margin-top: 0.5rem;
+		width: 5.5rem;
 		height: 2rem;
+		border: none;
+		border-bottom: 0.2rem solid #f5f5f5;
+		background-color: transparent;
 	}
 
 	.sex {
-		margin-top: 1rem;
+		margin-top: 0.5rem;
+		width: 5.5rem;
+		height: 2rem;
+		border: none;
+		border-bottom: 0.2rem solid #f5f5f5;
+		background-color: transparent;
 	}
 
 	@media screen and (min-width: 768px) {
@@ -249,6 +316,11 @@
 		.back {
 			top: 5rem;
 			left: 2rem;
+		}
+		.input-field_birth-wrapper {
+			display: flex;
+			justify-content: space-between;
+			width: 20rem;
 		}
 	}
 </style>

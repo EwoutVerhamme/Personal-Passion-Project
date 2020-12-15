@@ -145,6 +145,9 @@
 
 	.button-wrapper {
 		margin-top: 5rem;
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
 	}
 
 	strong {

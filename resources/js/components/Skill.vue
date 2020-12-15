@@ -19,10 +19,10 @@
 		color: white;
 		border-radius: 0.6rem;
 		margin: 0.5rem 1rem 0rem 0rem;
-		font-size: 1.3rem;
+		font-size: 1.2rem;
 		width: fit-content;
-		padding-left: 1rem;
-		padding-right: 1rem;
+		padding-left: 0.7rem;
+		padding-right: 0.7rem;
 		height: 2.5rem;
 		display: flex;
 		justify-content: center;

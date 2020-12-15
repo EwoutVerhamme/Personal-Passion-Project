@@ -173,6 +173,13 @@
 		color: #434343;
 	}
 
+	.button-wrapper {
+		margin-top: 5rem;
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+	}
+
 	strong {
 		color: #FF899E;
 		font-weight: 600;
