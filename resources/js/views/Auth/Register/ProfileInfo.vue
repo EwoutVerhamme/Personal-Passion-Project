@@ -15,6 +15,7 @@
 					autocomplete="off"
 					placeholder=""
 				/>
+				<p class="error">{{ error.first_name }}</p>
 			</div>
 			<div class="input-form">
 				<p class="select-title">Achternaam</p>
@@ -25,6 +26,7 @@
 					autocomplete="off"
 					placeholder=""
 				/>
+				<p class="error">{{ error.last_name }}</p>
 			</div>
 			<div class="input-form_birth">
 				<p class="select-title">Geef je geboortedatum in</p>
@@ -116,6 +118,7 @@
 					<option value="Vrouw">Vrouw</option>
 					<option value="X">X</option>
 				</select>
+				<p class="error">{{ error.sex }}</p>
 			</div>
 			<div class="input-form">
 				<p class="select-title">Woonplaats</p>
@@ -126,6 +129,7 @@
 					autocomplete="off"
 					placeholder=""
 				/>
+				<p class="error">{{ error.town }}</p>
 			</div>
 			<div class="input-form">
 				<p class="select-title">Jeugdhuis</p>
@@ -136,6 +140,7 @@
 					autocomplete="off"
 					placeholder=""
 				/>
+				<p class="error">{{ error.youth_center }}</p>
 			</div>
 			<div class="img-input_wrapper">
 				<p class="select-title">Upload een profiel foto</p>
@@ -145,9 +150,10 @@
 					type="file"
 					@change="onChangeFileUpload()"
 				/>
+				<p class="error">{{ error.profilepic }}</p>
 			</div>
 		</form>
-		<Button @click="setUserInfo" btnText="Naar interesses" />
+		<Button @click="checkErrors" btnText="Naar interesses" />
 	</div>
 </template>
 
@@ -173,6 +179,19 @@
 				sex: "",
 				town: "",
 				youth_center: "",
+
+				error: {
+					first_name: "",
+					last_name: "",
+					profilepic: "",
+					day: "",
+					month: "",
+					year: "",
+					birth: "",
+					sex: "",
+					town: "",
+					youth_center: "",
+				},
 			};
 		},
 
@@ -186,6 +205,39 @@
 			},
 		},
 		methods: {
+			checkErrors() {
+				let error = [];
+
+				if (!this.first_name) {
+					error.push("Error");
+					this.error.first_name = "Gelieve een voornaam in te vullen";
+				}
+				if (!this.last_name) {
+					error.push("Error");
+					this.error.last_name = "Gelieve een voornaam in te vullen";
+				}
+				if (!this.profilepic) {
+					error.push("Error");
+					this.error.profilepic = "Gelieve een profielfoto up te loaden";
+				}
+				if (!this.sex) {
+					error.push("Error");
+					this.error.sex = "Gelieve een geslacht aan te duiden";
+				}
+				if (!this.town) {
+					error.push("Error");
+					this.error.town = "Gelieve een gemeente of stad in te vullen";
+				}
+				if (!this.youth_center) {
+					error.push("Error");
+					this.error.youth_center = "Gelieve een jeugdhuis in te vullen";
+				}
+
+				if (error.length === 0) {
+					this.setUserInfo();
+				}
+			},
+
 			setUserInfo() {
 				// GET THE EMAIL, PASSWORD AND CONFIRMATION FROM GETTERS
 				const credentials = this.registerStatus;
@@ -247,6 +299,11 @@
 		font-size: 1.8rem;
 		color: #FF899E;
 		font-weight: 600;
+	}
+
+	.error {
+		margin-top: 0.5rem;
+		color: #FF3F60;
 	}
 
 	.select-title {
