@@ -37,8 +37,9 @@
 		grid-template-rows: 0.5rem 1fr 1fr 0.5rem;
 		box-shadow: 0px 0px 13px 1px rgba(0, 0, 0, 0.09);
 		border-radius: 20px;
-		width: 95%;
-		height: fit-content;
+		width: 95vw;
+		height: 8rem;
+		margin: 0 auto;
 		margin: 1rem 0.5rem 0rem 0.5rem;
 	}
 

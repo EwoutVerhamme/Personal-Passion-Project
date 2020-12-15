@@ -264,6 +264,7 @@
 		flex-wrap: wrap;
 		justify-content: space-evenly;
 		margin-top: 1rem;
+		width: 100%;
 	}
 
 	.loading {
