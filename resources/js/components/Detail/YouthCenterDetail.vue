@@ -2,7 +2,11 @@
 	<div class="profile">
 		<div class="profile-info">
 			<div class="img-wrapper">
-				<img class="profile-photo" :src="getYouthCenter.profilepic" alt="" />
+				<img
+					class="profile-photo"
+					:src="getYouthCenter.image"
+					:alt="getYouthCenter.name"
+				/>
 			</div>
 			<div class="info-wrapper">
 				<h1 class="profile-name">{{ getYouthCenter.name }}</h1>
@@ -53,9 +57,7 @@
 					</div>
 				</div>
 			</div>
-			<p class="empty" v-if="error == true">
-				Het is nog wat stil hier... &#128164;
-			</p>
+			<p class="empty">Het is nog wat stil hier... &#128164;</p>
 		</div>
 	</div>
 </template>
