@@ -3,7 +3,7 @@
 		<h1 class="title">Maak een zoekertje</h1>
 		<form action="" class="create-form">
 			<div class="input-form">
-				<p class="select-title">Geef wat meet uitleg</p>
+				<p class="select-title">Geef wat meer uitleg</p>
 				<input
 					v-model="data.info"
 					type="text"
@@ -11,7 +11,7 @@
 					autocomplete="off"
 					placeholder="Ik ben opzoek..."
 				/>
-				<p class="error">{{ errors.location }}</p>
+				<p class="error">{{ errors.info }}</p>
 			</div>
 			<div class="select-skill">
 				<p class="select-title">Naar welke skills ben je opzoek?</p>
@@ -111,7 +111,6 @@
 	export default {
 		name: "CreatePost",
 		components: {
-			// InputField,
 			Button,
 			Skill,
 		},

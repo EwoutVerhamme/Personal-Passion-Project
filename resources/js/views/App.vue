@@ -1,7 +1,10 @@
 <template>
 	<NavBar v-if="isLoggedIn" class="navigation" />
-
-	<router-view />
+	<router-view v-slot="{ Component }">
+		<transition name="fade" mode="out-in">
+			<component :is="Component" />
+		</transition>
+	</router-view>
 </template>
 
 <script>
@@ -42,6 +45,16 @@
 	}
 
 	html {
+	}
+
+	.fade-enter,
+	.fade-leave-to {
+		opacity: 0;
+		transform: translateX(2rem);
+	}
+	.fade-enter-active,
+	.fade-leave-active {
+		transition: all 0.5s ease;
 	}
 
 	#app {

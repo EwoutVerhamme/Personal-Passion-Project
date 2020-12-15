@@ -1,79 +1,73 @@
 <template>
-	<Suspense delay="300">
-		<div class="profile">
-			<router-link to="/editprofile">
-				<img class="button" src="/assets/img/profile/edit.svg" alt="" />
-			</router-link>
-			<div class="profile-info" v-for="user in getProfileUser.user">
-				<img class="profile-img" :src="user.profilepic" alt="" />
-				<div class="info-wrapper">
-					<h1 class="profile-name">
-						{{ user.first_name }}
-						{{ user.last_name }}
-					</h1>
-					<div class="profile-location">
-						<img src="/assets/img/location.svg" alt="" class="location" />
-						<p class="profile-location_text">
-							{{ user.youth_center }}
-						</p>
-					</div>
-					<div class="profile-socials">
-						<img
-							class="profile-social"
-							src="/assets/img/profile/fb.svg"
-							alt=""
-						/>
-						<img
-							class="profile-social"
-							src="/assets/img/profile/messenger.svg"
-							alt=""
-						/>
-						<img
-							class="profile-social"
-							src="/assets/img/profile/twitter.svg"
-							alt=""
-						/>
-					</div>
+	<div class="profile">
+		<router-link to="/editprofile">
+			<img class="button" src="/assets/img/profile/edit.svg" alt="" />
+		</router-link>
+		<div class="profile-info" v-for="user in getProfileUser.user">
+			<img class="profile-img" :src="user.profilepic" alt="" />
+			<div class="info-wrapper">
+				<h1 class="profile-name">
+					{{ user.first_name }}
+					{{ user.last_name }}
+				</h1>
+				<div class="profile-location">
+					<img src="/assets/img/location.svg" alt="" class="location" />
+					<p class="profile-location_text">
+						{{ user.youth_center }}
+					</p>
 				</div>
-			</div>
-			<div class="skills">
-				<h2 class="title">Je skills</h2>
-				<div class="skill-wrapper">
-					<Skill
-						class="active"
-						v-for="skill in getProfileUser.skills"
-						:skill="skill.skill_name"
+				<div class="profile-socials">
+					<img class="profile-social" src="/assets/img/profile/fb.svg" alt="" />
+					<img
+						class="profile-social"
+						src="/assets/img/profile/messenger.svg"
+						alt=""
+					/>
+					<img
+						class="profile-social"
+						src="/assets/img/profile/twitter.svg"
+						alt=""
 					/>
 				</div>
 			</div>
-			<div class="engagements">
-				<h2 class="title">Je zoekertjes</h2>
-				<div class="engagements-wrapper">
-					<router-link
-						:to="`/engagement/${ad.id}`"
-						:key="ad.id"
-						v-for="ad in getProfileUser.ads"
-					>
-						<Engagement
-							:first_name="ad.creator_name"
-							:skill_alias="ad.skill_alias"
-							:creator_img="ad.creator_img"
-							:date="ad.date"
-							:location="ad.location"
-						/>
-					</router-link>
-					<div class="empty-wrapper">
-						<p class="empty" v-if="error === true">
-							Het is nog wat stil hier... <br />
-							<router-link to="/create"
-								><strong>Maak een zoekertje &#129311;</strong></router-link
-							>
-						</p>
-					</div>
+		</div>
+		<div class="skills">
+			<h2 class="title">Je skills</h2>
+			<div class="skill-wrapper">
+				<Skill
+					class="active"
+					v-for="skill in getProfileUser.skills"
+					:skill="skill.skill_name"
+				/>
+			</div>
+		</div>
+		<div class="engagements">
+			<h2 class="title">Je zoekertjes</h2>
+			<div class="engagements-wrapper">
+				<router-link
+					:to="`/engagement/${ad.id}`"
+					:key="ad.id"
+					v-for="ad in getProfileUser.ads"
+				>
+					<Engagement
+						:first_name="ad.creator_name"
+						:skill_alias="ad.skill_alias"
+						:creator_img="ad.creator_img"
+						:date="ad.date"
+						:location="ad.location"
+					/>
+				</router-link>
+				<div class="empty-wrapper">
+					<p class="empty" v-if="error === true">
+						Het is nog wat stil hier... <br />
+						<router-link to="/create"
+							><strong>Maak een zoekertje &#129311;</strong></router-link
+						>
+					</p>
 				</div>
 			</div>
 		</div>
-	</Suspense>
+	</div>
 </template>
 
 <script>
