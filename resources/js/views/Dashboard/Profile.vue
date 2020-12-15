@@ -57,14 +57,14 @@
 						:location="ad.location"
 					/>
 				</router-link>
-				<div class="empty-wrapper">
-					<p class="empty" v-if="error === true">
-						Het is nog wat stil hier... <br />
-						<router-link to="/create"
-							><strong>Maak een zoekertje &#129311;</strong></router-link
-						>
-					</p>
-				</div>
+			</div>
+			<div class="empty-wrapper">
+				<p class="empty" v-if="error === true">
+					Het is nog wat stil hier... <br />
+					<router-link to="/create"
+						><strong>Maak een zoekertje &#129311;</strong></router-link
+					>
+				</p>
 			</div>
 		</div>
 	</div>
@@ -254,7 +254,7 @@
 		.engagements-wrapper {
 			display: flex;
 			flex-wrap: wrap;
-			width: 40rem;
+			width: 45rem;
 			justify-content: space-between;
 		}
 

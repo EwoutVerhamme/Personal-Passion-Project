@@ -22,7 +22,7 @@
 					</div>
 				</router-link>
 
-				<div class="skill">
+				<div class="skills">
 					<Skill :skill="getSkillName" />
 				</div>
 				<p class="error">{{ errors.skill }}</p>

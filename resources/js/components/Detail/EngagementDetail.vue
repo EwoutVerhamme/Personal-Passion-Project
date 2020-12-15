@@ -1,5 +1,6 @@
 <template>
 	<div class="engagement-detail">
+		<Back class="back" />
 		<Delete @click="deleteAd" class="delete" v-if="canEdit" />
 		<div class="engagement-head">
 			<img class="engagement-img" :src="getAdDetail.creator_img" alt="" />
@@ -66,12 +67,14 @@
 <script>
 	import Skill from "../Skill";
 	import Delete from "../Buttons/Delete";
+	import Back from "../Buttons/Back";
 	export default {
 		name: "EngagementsDetail",
 
 		components: {
 			Skill,
 			Delete,
+			Back,
 		},
 
 		props: {
@@ -146,6 +149,14 @@
 		position: absolute;
 		top: 0.5rem;
 		right: 0.5rem;
+	}
+
+	.back {
+		position: absolute;
+		top: 0.7rem;
+		left: 0.5rem;
+		width: 32px;
+		height: 32px;
 	}
 
 	.engagement-head {
@@ -225,6 +236,13 @@
 		.delete {
 			top: 5rem;
 			right: 5rem;
+		}
+
+		.back {
+			top: 5rem;
+			left: 5rem;
+			width: 40px;
+			height: 40px;
 		}
 
 		.engagement-head {

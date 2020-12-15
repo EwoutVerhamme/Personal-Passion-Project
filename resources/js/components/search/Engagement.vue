@@ -39,8 +39,7 @@
 		border-radius: 20px;
 		width: 95vw;
 		height: 8rem;
-		margin: 0 auto;
-		margin: 1rem 0.5rem 0rem 0.5rem;
+		margin-top: 0.5rem;
 	}
 
 	.engagement-title {
