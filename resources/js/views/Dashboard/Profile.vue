@@ -62,12 +62,14 @@
 							:location="ad.location"
 						/>
 					</router-link>
-					<p class="empty" v-if="error === true">
-						Het is nog wat stil hier... <br />
-						<router-link to="/create"
-							><strong>Maak een zoekertje &#129311;</strong></router-link
-						>
-					</p>
+					<div class="empty-wrapper">
+						<p class="empty" v-if="error === true">
+							Het is nog wat stil hier... <br />
+							<router-link to="/create"
+								><strong>Maak een zoekertje &#129311;</strong></router-link
+							>
+						</p>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -93,31 +95,37 @@
 		},
 
 		created() {
+			// Get the logged in user id
 			const profile = JSON.parse(localStorage.getItem("user"));
 			const id = profile.id;
 			this.$store.dispatch("SETPROFILEINFO", id);
 		},
 
 		computed: {
+			// Get users profile info
 			getProfileUser: function () {
 				return this.$store.getters.getProfileUser;
 			},
 
+			// Check for errors and catch them
 			getError: function () {
 				let error;
-				const getProfileUser = this.$store.getters.getProfileUser;
-				console.log(getProfileUser);
-				if (getProfileUser.ads <= 0) {
-					error = true;
-				} else {
-					error = false;
-				}
+
+				// Faked this length error with setTimeout => To be fixed
+				setTimeout(() => {
+					if (this.getProfileUser.ads.length === 0) {
+						this.error = true;
+					} else {
+						this.error = false;
+					}
+					return error;
+				}, 700);
 				return error;
 			},
 		},
 
 		watch: {
-			getProfileUser() {},
+			// getProfileUser() {},
 			getError() {},
 		},
 	};
@@ -187,17 +195,32 @@
 		align-items: center;
 		justify-content: space-between;
 	}
-
+	.engagements {
+		margin-top: 1rem;
+	}
 	.skills {
 		margin-top: 1.5rem;
 	}
 
 	.skill-wrapper {
 		display: flex;
+		flex-wrap: wrap;
 	}
 
-	.strong {
+	strong {
 		font-weight: 600;
+		color: #FF899E;
+	}
+
+	.empty-wrapper {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 10rem;
+	}
+
+	.empty {
+		font-size: 1.1rem;
 	}
 
 	@media screen and (min-width: 768px) {
@@ -230,6 +253,10 @@
 			font-size: 1.7rem;
 		}
 
+		.engagements {
+			margin-top: 1rem;
+		}
+
 		.engagements-wrapper {
 			display: flex;
 			flex-wrap: wrap;
@@ -244,6 +271,14 @@
 			padding: 0.3rem;
 			border-radius: 0.6rem;
 			margin: 0.5rem;
+		}
+
+		.empty-wrapper {
+			margin: 0 auto;
+		}
+
+		.empty {
+			font-size: 1.4rem;
 		}
 	}
 

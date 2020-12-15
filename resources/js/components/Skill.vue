@@ -18,7 +18,7 @@
 		width: fit-content;
 		color: white;
 		border-radius: 0.6rem;
-		margin: 0.5rem 0rem 1rem 0rem;
+		margin: 0.5rem 1rem 0rem 0rem;
 		font-size: 1.3rem;
 		width: fit-content;
 		padding-left: 1rem;

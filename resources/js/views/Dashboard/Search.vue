@@ -139,14 +139,17 @@
 		},
 
 		created() {
+			// Checks the currentab when page is initialized
 			this.checkCurrentTab();
 		},
 
 		currentTab() {
+			// Gets the index of the tab
 			return this.tabs[this.current].toLowerCase();
 		},
 
 		methods: {
+			// Checks what tab is active and changes GET request link based on currentTab
 			checkCurrentTab() {
 				let slug = "";
 				const tab = this.tabs[this.current].toLowerCase();
@@ -158,7 +161,7 @@
 						this.makeSearch();
 						break;
 					case "materiaal":
-						this.loading = false;
+						// This function is under development
 						break;
 					case "engagement":
 						slug = "engagements";
@@ -177,6 +180,7 @@
 				}
 			},
 
+			// Sets a timeout to prevent consuming to many data
 			onSearch() {
 				clearTimeout(this.timeout);
 				this.timeout = setTimeout(() => {
@@ -184,11 +188,7 @@
 				}, 600);
 			},
 
-			searchOnTab() {
-				if (this.currentTab) {
-					this.makeSearch();
-				}
-			},
+			// This makes the search to the API => Soon in store
 			makeSearch: async function () {
 				const token = localStorage.getItem("token");
 				this.found = true;

@@ -107,7 +107,6 @@
 	// import InputField from "../../components/input/InputField";
 	import Button from "../../components/Buttons/Button";
 	import Skill from "../../components/Skill";
-	import axios from "axios";
 
 	export default {
 		name: "CreatePost",
@@ -152,10 +151,12 @@
 		},
 
 		created() {
+			// Sets filled in info when leaving the tab
 			this.setCurrent();
 		},
 
 		methods: {
+			// When choosing a skill, all filled in inputs can't be cleared
 			storeCurrent() {
 				this.$store.dispatch("SETCURRENT", {
 					data: this.data,
@@ -163,6 +164,7 @@
 				});
 			},
 
+			// Sets the already filled in info back when choosing a skill
 			setCurrent() {
 				const set = this.getCurrent;
 				const date = this.getCurrentDate;
@@ -177,6 +179,7 @@
 				this.date.year = this.date.year;
 			},
 
+			// Checks if the form is valid before POST
 			checkForm() {
 				let errors = [];
 				if (!this.data.info) {
@@ -191,7 +194,6 @@
 					this.error.push("Error");
 					this.errors.location = "Je moet een locatie opgeven";
 				}
-				console.log(this.date.day);
 
 				if (
 					this.date.day.length == 0 ||
@@ -203,6 +205,7 @@
 				} else {
 				}
 
+				// Submit when there are no errors
 				if (this.error.length == 0) {
 					this.submitPost();
 				}
@@ -221,6 +224,7 @@
 				const creatorImg = getUser.profilepic;
 				this.data.creator_img = creatorImg;
 
+				// Make the new formdata to push into the database
 				const data = new FormData();
 				data.append("creator_name", this.data.creator_name);
 				data.append("creator_img", this.data.creator_img);
@@ -243,17 +247,22 @@
 		},
 
 		computed: {
+			// Get the filledin tabs from store
 			getCurrent: function () {
 				return this.$store.getters.getCurrent;
 			},
 
+			// Get filled in date from store
 			getCurrentDate: function () {
 				return this.$store.getters.getCurrentDate;
 			},
 
+			// Get the skill id chosen to push this in to database
 			getSkillId: function () {
 				return this.$store.getters.getSkillId;
 			},
+
+			// Get the name that you choose
 			getSkillName: function () {
 				if (this.$store.getters.getSkillName !== "") {
 					this.isActive = true;

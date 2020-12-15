@@ -51,8 +51,6 @@
 
 		data() {
 			return {
-				first_name: "",
-				profilepic: "",
 				user: [],
 				ads: [],
 				errorMessage: "",
@@ -61,15 +59,19 @@
 		},
 
 		created() {
+			// Get all the personal ads (based on your skill)
 			this.$store.dispatch("GETPERSONALADS");
 
+			// Get your own id to send with "SETPROFILEINFO"
 			const profile = JSON.parse(localStorage.getItem("user"));
 			const id = profile.id;
 
+			// Set your profile info
 			this.$store.dispatch("SETPROFILEINFO", id);
 		},
 
 		computed: {
+			// Catch all errors and display them
 			getError: function () {
 				let error;
 				const personalAdd = this.$store.getters.getPersonalAds;
@@ -93,6 +95,7 @@
 				return error;
 			},
 
+			// Get the profile 
 			getProfileUser: function () {
 				return this.$store.getters.getProfileUser;
 			},
@@ -145,7 +148,6 @@
 	.error {
 		text-align: center;
 		font-size: 1rem;
-		margin-top: 10rem;
 		line-height: 1.3rem;
 	}
 
