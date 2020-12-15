@@ -57,6 +57,7 @@ export default {
 
     },
 
+    // Get an alternative if no skills are available
     GETALTERNATIVE: async function ({ commit } ) {
       const token = localStorage.getItem("token");
           try {
@@ -75,6 +76,7 @@ export default {
   
       },
 
+      // Get an engagement detail
     GETADDETAIL: async function ({ commit }, id ) {
     const token = localStorage.getItem("token");
 				try {
@@ -92,6 +94,8 @@ export default {
 					console.error(error);
 				}
     },
+
+    // Delete an ad
     DELETEAD: ({commit}, id )=> {
       const token = localStorage.getItem("token");
       return new Promise((resolve, reject) => {

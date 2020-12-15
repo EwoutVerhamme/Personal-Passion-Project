@@ -53,6 +53,7 @@
 		},
 
 		methods: {
+			// Loggin in the user
 			login() {
 				this.$store
 					.dispatch("LOGIN", {

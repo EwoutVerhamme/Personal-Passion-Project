@@ -74,12 +74,14 @@
 		},
 
 		computed: {
+			// Get the filled in user credentials
 			registerStatus: function () {
 				return this.$store.getters.registerStatus;
 			},
 		},
 
 		methods: {
+			// Set the user his credentials and check for errors
 			setCredentials() {
 				if (
 					this.credentials.password === this.credentials.password_confirmation &&

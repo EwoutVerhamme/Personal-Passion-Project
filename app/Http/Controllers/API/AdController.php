@@ -12,8 +12,9 @@ use DB;
 
 class AdController extends Controller
 {
-public function index() {
 
+    // Get all the ads
+public function index() {
     $users = DB::table('ads')
     ->join('users', 'users.id', '=', 'ads.user_id')
     ->join('skills', 'skills.id', '=', 'ads.skill_id')
@@ -24,6 +25,7 @@ public function index() {
     return response($users, 200);
 }
 
+// Get a specific ad by id
 public function getAdById($id) {
     $ad = DB::table('ads')
     ->join('users', 'users.id', '=', 'ads.user_id')
@@ -31,14 +33,11 @@ public function getAdById($id) {
     ->select( 'users.id', 'ads.info','ads.date', 'ads.location',"users.first_name", 'users.last_name', 'ads.creator_img', 'users.youth_center', 'skills.skill_name', 'skills.skill_alias')
     ->where('ads.id', '=', $id )
     ->get();
-
-
     return response($ad, 200);
 }
 
-
+// Get ads searched on name, skill_name and skill_alias
 public function getUserWithAds($ad_name) {
-
     $users = DB::table('ads')
     ->join('users', 'users.id', '=', 'ads.user_id')
     ->join('skills', 'skills.id', '=', 'ads.skill_id')
@@ -47,13 +46,12 @@ public function getUserWithAds($ad_name) {
     ->orWhere('skill_name', 'like', '%' . $ad_name . '%')
     ->orWhere('skill_alias', 'like', '%' . $ad_name . '%')
     ->orWhere('first_name', 'like', '%' . $ad_name . '%')
-
     ->get();
-
 
     return response($users, 200);
 }
 
+// Get personal ads
 public function getMyAds($id) {
     $ads = DB::table('ads')
     ->join('users', 'users.id', '=', 'ads.user_id')
@@ -64,7 +62,7 @@ public function getMyAds($id) {
     return response($ads, 200);
 }
 
-
+// Delete an ad with his id
 public function deleteAdById($id) {
     $userId = Auth::id();
 
@@ -72,8 +70,6 @@ public function deleteAdById($id) {
     ->where('ads.id', '=', $id )
     ->where('ads.user_id', '=', $userId )
     ->delete();
-
-
     return response([$deleteAd, "Succesfully deleted ad with id $id"]);
 }
 
@@ -84,13 +80,12 @@ public function deleteAdById($id) {
      * @return \Illuminate\Http\Response
      */
 
+     // Create an ad
 public function store(Request $request) {
     
     $data = $request->all();
-
     $validator = Validator::make($data, [
                 'info' => 'required|max:255',
-            
             ]);
 
         if ($validator->fails()) {          

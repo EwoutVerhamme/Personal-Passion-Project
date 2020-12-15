@@ -48,6 +48,7 @@
 		},
 
 		created() {
+			// Get current user ID
 			const getUser = JSON.parse(localStorage.getItem("user"));
 			this.skill_id = this.getSkillId;
 			this.user_id = getUser.id;
@@ -63,6 +64,7 @@
 		},
 
 		methods: {
+			// Add the skills into the database
 			addSkills() {
 				console.log(this.skill_id, this.user_id);
 				this.$store

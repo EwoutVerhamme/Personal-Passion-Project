@@ -30,6 +30,7 @@
 		},
 
 		methods: {
+			// Loggin out the user
 			logout() {
 				this.$store
 					.dispatch("LOGOUT")

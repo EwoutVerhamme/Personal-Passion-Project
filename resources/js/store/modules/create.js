@@ -29,6 +29,8 @@ export default {
     getSkillId: state => state.skill_id,
     getSkillName: state => state.skill_name
   },
+
+
   mutations: {
     setSkillId(state, skillId){
         state.skill_id = skillId
@@ -68,9 +70,8 @@ export default {
     commit('resetFields')
 },
 
-
+// Submit a post into the database with all the needed information
   SUBMITPOST: ({ commit }, data, image) => {
-
     return new Promise((resolve, reject) => {
       axios
         .post(`api/engagements`, data, image)

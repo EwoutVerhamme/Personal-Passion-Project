@@ -16,6 +16,7 @@ export default {
   },
   actions: {
 
+    // Get all the youth_center and fetch them
     GETYOUTHCENTER: async function ({ commit }, route) {
         const url = `http://api.kollapp.test/api${route}`;
         try {

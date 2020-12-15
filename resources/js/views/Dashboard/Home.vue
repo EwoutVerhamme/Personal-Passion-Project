@@ -40,12 +40,10 @@
 </template>
 
 <script>
-	import Match from "../../components/Match.vue";
 	import Engagement from "../../components/search/Engagement";
 	export default {
 		name: "Home",
 		components: {
-			Match,
 			Engagement,
 		},
 

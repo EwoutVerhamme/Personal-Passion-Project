@@ -22,6 +22,7 @@ export default {
     registerStatus: state => state.credentials,
     getProfileUser: state => state.profileInfo,
   },
+
   mutations: {
     auth_success(state, token, user){
       state.status = 'success'
@@ -53,7 +54,7 @@ export default {
     },
   },
   actions: {
-    
+    // Log the user in
     LOGIN: ({ commit }, payload) => {
       return new Promise((resolve, reject) => {
         axios
@@ -76,7 +77,7 @@ export default {
       });
       
     },
-
+// Log the user out
     LOGOUT: ({ commit }) => {
       commit('auth_logout')
       localStorage.removeItem('user')
@@ -85,7 +86,7 @@ export default {
       console.log(localStorage)
       
     },
-
+// When refreshing log the user back in
     AUTOLOGIN: ({commit}) => {
       const token = localStorage.getItem('token')
       const user = localStorage.getItem('user')
@@ -95,15 +96,17 @@ export default {
       commit('auth_success', token, user)
     },
 
+    // When registering set the credentials before pushing to database
     SETCREDENTIALS: ({commit}, credentials) => {
       commit('setCredentials', credentials)
     },
 
+    // When registering set the user info before pushing to database
     SETUSERINFO: ({commit}, info) => {
       commit('setUserInfo', info)
     },
 
-
+// Set the searched user his profile to get all the info
     SETPROFILEINFO: ({commit}, id )=> {
       const token = localStorage.getItem("token");
         axios
@@ -117,6 +120,7 @@ export default {
           })
     },
 
+    // Update the new profile info
     SETNEWPROFILEINFO: ({commit}, data)=> {
       console.log(data)
       return new Promise((resolve, reject) => {
@@ -138,6 +142,7 @@ export default {
       });
     },
 
+    // Set the skills the user selected to create a account
     SETUSERSKILLS: ({commit}, payload )=> {
       return new Promise((resolve, reject) => {
         axios
@@ -153,7 +158,7 @@ export default {
     },
     
     
-
+// Register the user 
     REGISTER: ({ commit}, userInfo) => {
       return new Promise((resolve, reject) => {
         axios

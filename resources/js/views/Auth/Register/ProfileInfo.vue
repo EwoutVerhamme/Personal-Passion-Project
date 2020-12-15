@@ -166,6 +166,8 @@
 						console.log(error);
 					});
 			},
+
+			// When uploaded a file, handle the change
 			onChangeFileUpload() {
 				this.profilepic = this.$refs.image.files[0];
 			},

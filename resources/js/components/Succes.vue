@@ -16,5 +16,11 @@
 </script>
 
 
-<style>
+<style scoped>
+	.succes {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		grid-row: 2;
+	}
 </style>
