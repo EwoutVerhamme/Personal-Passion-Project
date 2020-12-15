@@ -85,7 +85,6 @@
 				try {
 					const response = await axios.get(`/api/skills/${this.search}`);
 					this.skills = response.data;
-					console.log(this.skills);
 				} catch (error) {
 					console.error(error);
 				}

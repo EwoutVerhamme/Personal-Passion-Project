@@ -145,20 +145,11 @@
 			};
 		},
 
-		created() {},
-
-		currentTab() {
-			console.log(this.current);
-		},
-
 		methods: {
-			setCurrentColor() {
-				console.log(this.current);
-			},
+
 
 			colorTab(e) {
 				const text = e.path[2].firstChild.id;
-				console.log(text);
 
 				if (text == "Home") {
 					this.homeColor = this.activeColor;

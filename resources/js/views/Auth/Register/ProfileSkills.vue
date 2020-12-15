@@ -19,8 +19,8 @@
 
 			<div class="skills">
 				<div class="skill">
-					<p :class="{ skillTitle: isActive }">
-						{{ getSkillName }}
+					<p>
+						<Skill :skill="getSkillName" />
 					</p>
 				</div>
 			</div>
@@ -33,11 +33,13 @@
 <script>
 	import Back from "../../../components/Buttons/Back.vue";
 	import Button from "../../../components/Buttons/Button";
+	import Skill from "../../../components/Skill";
 	export default {
 		name: "ProfileSkills",
 		components: {
 			Back,
 			Button,
+			Skill,
 		},
 
 		data() {
@@ -66,7 +68,6 @@
 		methods: {
 			// Add the skills into the database
 			addSkills() {
-				console.log(this.skill_id, this.user_id);
 				this.$store
 					.dispatch("SETUSERSKILLS", {
 						skill_id: this.skill_id,

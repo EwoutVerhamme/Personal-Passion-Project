@@ -90,7 +90,6 @@
 
 		computed: {
 			getProfileUser: function () {
-				console.log(this.$store.getters.getProfileUser);
 				return this.$store.getters.getProfileUser;
 			},
 

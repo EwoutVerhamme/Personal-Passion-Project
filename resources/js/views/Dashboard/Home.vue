@@ -199,7 +199,7 @@
 		}
 
 		.error {
-			margin-top: 18rem;
+			margin-top: 7rem;
 			font-size: 1.5rem;
 		}
 	}
@@ -227,9 +227,6 @@
 			font-size: 1.6rem;
 		}
 
-		.error {
-			margin-top: 12rem;
-			font-size: 1.5rem;
-		}
+		
 	}
 </style>

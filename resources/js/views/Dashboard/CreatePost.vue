@@ -236,7 +236,6 @@
 					.dispatch("SUBMITPOST", data)
 					.then((success) => {
 						this.$store.dispatch("RESETFIELDS");
-						console.log("succes");
 						this.$router.push("/succes");
 					})
 					.catch((error) => {
