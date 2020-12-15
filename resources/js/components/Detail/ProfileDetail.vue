@@ -221,6 +221,12 @@
 			grid-row: 2 / span 3;
 		}
 
+		.back {
+			position: absolute;
+			top: 5rem;
+			left: 6rem;
+		}
+
 		.profile-info {
 			margin: 0 auto;
 			display: flex;
