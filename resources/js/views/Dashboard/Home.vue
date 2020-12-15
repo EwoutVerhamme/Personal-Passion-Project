@@ -123,7 +123,6 @@
 	.user-img {
 		clip-path: circle(50% at center);
 		width: 4rem;
-		height: auto;
 	}
 	.subtitle {
 		margin-left: 0.5rem;
@@ -177,7 +176,7 @@
 		.user-img {
 			width: 6rem;
 			height: auto;
-			clip-path: circle(60px at center);
+		clip-path: circle(50% at center);
 		}
 
 		.subtitle {
@@ -226,7 +225,5 @@
 		.subtitle {
 			font-size: 1.6rem;
 		}
-
-		
 	}
 </style>
