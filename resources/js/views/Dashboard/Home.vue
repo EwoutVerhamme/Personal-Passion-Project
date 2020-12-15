@@ -184,7 +184,7 @@
 		}
 
 		.engagements-wrapper {
-			width: 40rem;
+			width: 45rem;
 			margin: 0 auto;
 			margin-top: 3rem;
 		}
